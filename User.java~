@@ -1,0 +1,11 @@
+/**
+ * Auto Generated Java Class.
+ */
+public class User {
+  float weight;
+  bool sex; // true is for female, false is for male
+  
+  
+  /* ADD YOUR CODE HERE */
+  
+}
