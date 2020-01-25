@@ -1,4 +1,10 @@
 week 1
 
-work:
-  1. Build the structure table for the project
+Work:
+  1. Build the structure table for the project.
+  2. Write the specifications for three modes of the project.
+  3. Write the proposal for the presentation.
+  
+Status:
+  finished
+  
