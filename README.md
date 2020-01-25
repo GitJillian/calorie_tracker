@@ -6,7 +6,10 @@
         Xiaofeng Luo
 
 # What is our project
-    The Caf Calorie Tracker is an application that features a food database in The Caf. The Caf Calorie Tracker offers users a personalized interface that allows users to enter their personal information and the diet mode. There are three functions to choose from, including Healthy Mode, Self-choosing Mode and Calorie Evaluation. Provided with these information, The Caf Calorie Tracker would automatically compute the ideal nutrition intake portion depending on the current available food at The Caf, make their own diet with the support of the food database and check the review of their daily-taking calorie. Most importantly, The Caf Calorie Tracker would display the calorie and nutrition they should take in during the meal and finally generates a menu that is suitable for the user.
+    The Caf Calorie Tracker is an application that features a food database in The Caf. 
+    The Caf Calorie Tracker offers users a personalized interface that allows users to enter their personal information and the diet mode. There are three functions to choose from, including Healthy Mode, Self-choosing Mode and Calorie Evaluation. 
+    Provided with these information, The Caf Calorie Tracker would automatically compute the ideal nutrition intake portion depending on the current available food at The Caf, make their own diet with the support of the food database and check the review of their daily-taking calorie. 
+    Most importantly, The Caf Calorie Tracker would display the calorie and nutrition they should take in during the meal and finally generates a menu that is suitable for the user.
 
 
 # Functionalities:
