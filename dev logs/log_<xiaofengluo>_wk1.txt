@@ -1,1 +1,7 @@
+Week 1
+This weeek what I have done:
+1) Finished writing functionalities requirements and user scenarios in proposal.
+2) Gave a presentation about functionalities of our APP.
 
+The challenge I faced:
+1. To provide detailed steps for the user scenarios based on our draft idea of our APP.
