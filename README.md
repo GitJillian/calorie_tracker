@@ -1,6 +1,12 @@
 # comp3004_group
 comp3004 group project
 
+Team members
+Zhaohao Li
+Ziyang Zhou 
+Yejing Li 
+Xiaofeng Luo
+
 What is our project
     The Caf Calorie Tracker is an application that features a food database in The Caf.
     The Caf Calorie Tracker offers users a personalized interface that allows users to enter their
