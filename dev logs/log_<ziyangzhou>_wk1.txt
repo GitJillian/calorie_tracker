@@ -8,3 +8,5 @@ Work:
 Status:
   finished
   
+Challenge:
+  1. Get started with the code part.
