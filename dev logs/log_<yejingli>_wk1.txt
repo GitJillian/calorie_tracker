@@ -1,1 +1,8 @@
 week 1
+work has finished:
+  1)designed a logo for our application
+  2)sketched a design pattern and coding structure for the app
+  3)finished our proposal and gave out a presentation 
+challenge
+  to finish a detailed uml for our application
+  to decide which class to include to accomplish the functionalities
