@@ -2,7 +2,7 @@
     Team members
         Zhaohao Li
         Ziyang Zhou 
-        Yejing Lii 
+        Yejing Li
         Xiaofeng Luo
 
 # What is our project
