@@ -1,1 +1,6 @@
+Week 2
+This weeek what I have done:
+1) Drawing user cases for the system.
 
+The challenge I faced:
+1. To go through the detailed functionalities of the system.
