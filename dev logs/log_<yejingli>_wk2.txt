@@ -1,0 +1,6 @@
+finished:
+1. build up basic user/administrator class
+2. determine code structure 
+
+challenge:
+write a json - java converter code to transmit data from The Caf website
