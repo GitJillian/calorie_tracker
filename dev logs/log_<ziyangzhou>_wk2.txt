@@ -1,2 +1,11 @@
 week 2
 
+Work:
+  1. Write the basic functions in food class.
+  2. Write the pseudocode for the main class.
+Status:
+  finished
+  
+Challenge:
+  1. Get started with the code in main class.
+
