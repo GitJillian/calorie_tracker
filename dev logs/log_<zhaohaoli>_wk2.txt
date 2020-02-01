@@ -1,0 +1,3 @@
+week2
+this week we working on our project for differnet part. 
+I working on setting database from The Caf website- enter the food imformation in database.
