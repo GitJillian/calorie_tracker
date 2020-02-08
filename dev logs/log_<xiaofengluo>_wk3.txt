@@ -1,1 +1,6 @@
+Week 2
+This weeek what I have done:
+1) Working on UI interface and design UI with Zhanghao Li.
 
+The challenge I faced:
+1. To learn how to UI interact with actual code and how to design a useful and clear UI.
