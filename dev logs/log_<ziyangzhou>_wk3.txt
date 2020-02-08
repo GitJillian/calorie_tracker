@@ -7,3 +7,5 @@ Works:
 Status:
   finished
   
+Challenge:
+  1. Consider about how to create the database of all foods.
