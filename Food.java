@@ -16,6 +16,17 @@ public class Food{
     this.status = status;
   }
   
+  public String getName(){
+    return this.name;
+  }
+  
+  public Float getCalorie(){
+    return this.calorie;
+  }
+  
+  public Boolean getStatus(){
+    return this.status;
+  }
   
 
 }
