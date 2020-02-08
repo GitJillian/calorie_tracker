@@ -1,0 +1,9 @@
+week 3:
+
+Works:
+  1. Discuss the UML design for the project.
+  2. Write the class function for Student users.
+  
+Status:
+  finished
+  
