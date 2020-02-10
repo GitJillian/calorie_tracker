@@ -1,0 +1,5 @@
+finished:
+built up basic code structure and obtained the caf info from rest api
+
+to be finished:
+design a filter for personalized users
