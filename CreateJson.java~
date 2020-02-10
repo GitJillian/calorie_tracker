@@ -1,0 +1,32 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.util.*;
+public class CreateJson{
+  
+  public static void main(String[] args){
+    JSONObject obj = new JSONObject();
+    obj.put("name","Egg");
+    obj.put("calory","120");
+    obj.put("weight","110");
+    JSONArray list = new JSONArray();
+    list.add("java");
+    list.add("JSP");
+    list.add("servelets");
+    obj.put("courses",list);
+    try(FileWriter file = new FileWriter("myJSON.JSON")){
+      file.write(obj.toString());
+      file.flush();
+      
+    }
+    catch(IOException e){
+      e.printStackTrace();
+    }
+    System.out.println(obj);
+  }
+}
