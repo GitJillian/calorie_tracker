@@ -1,0 +1,5 @@
+finished:
+wrote a json parser/reader for our the caf database
+
+to be finished:
+write a calculator class for self-seleted mode & healthy mode
