@@ -8,9 +8,7 @@ public class Calculator{
   }
   
   public Float CalorieSum(Float f){
-  
-  
-    
+      return f;
   }
   
 }

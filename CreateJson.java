@@ -2,10 +2,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.*;
 public class CreateJson{
   JSONObject createObj(String name, String calory, String type,List<String> tags){
@@ -14,9 +16,9 @@ public class CreateJson{
     obj.put("calory", calory);
     obj.put("type", type);
     obj.put("tags", tags);
-    try(FileWriter file = new FileWriter("myJSON.JSON")){
+    try(FileWriter file = new FileWriter("myJSON.json")){
       file.write(obj.toString());
-      file.flush(); 
+      file.flush();
     }
     catch(IOException e){
       e.printStackTrace();
@@ -30,6 +32,6 @@ public class CreateJson{
     List<String> list = Arrays.asList("one", "two", "three");
     obj.createObj("egg","120","healthy",list);
     System.out.println(obj);
-    
+
   }
 }
