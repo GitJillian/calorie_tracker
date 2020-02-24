@@ -12,24 +12,26 @@ import java.util.List;
 public class FoodCartAdapter extends BaseAdapter{
   //food menu list
   private List<Food> foodmenu;
+  
   private Context context;
 
   //set interface
   private View.OnClickListener onAdd;
   private View.OnClickListener onSub;
-  private View.OnClickListener onCheck;
-
+  private CheckInterface checkInterface;
+  
+  public void setCheckInterface(CheckInterface checkInterface){
+    this.checkInterface = checkInterface;
+  }
+  
   public void setOnAddNum(View.OnClickListener onAdd){
     this.onAdd = onAdd;
   }
-  public void setOnAddNum(View.OnClickListener onSub){
+  
+  public void setOnSubNum(View.OnClickListener onSub){
     this.onSub = onSub;
   }
-  public void setOnAddNum(View.OnClickListener onCheck){
-    this.onCheck = onCheck;
-  }
-
-  //construct
+  
   public FoodCartAdapter(List<Food> foodmenu, Context context){
     this.foodmenu = foodmenu;
     this.context = context;
