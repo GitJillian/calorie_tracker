@@ -2,36 +2,51 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import java.util.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+ 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class CreateJson{
-  JSONObject createObj(String name, String calory, String type,List<String> tags){
+  
+  JSONArray jsArray = new JSONArray();
+  JSONArray getArray(){return this.jsArray;}
+  JSONObject createObj(String name, String calory, Boolean status,List<String> tags, String listType){
     JSONObject obj = new JSONObject();
     obj.put("name",name);
     obj.put("calory", calory);
-    obj.put("type", type);
+    obj.put("status", status);
     obj.put("tags", tags);
-    try(FileWriter file = new FileWriter("myJSON.json")){
-      file.write(obj.toString());
+    JSONObject item = new JSONObject();
+    item.put(listType, obj);
+    this.jsArray.add(item);
+    return item;
+  }
+  
+  void writeToFile(String fileName){
+    
+    try(FileWriter file = new FileWriter(fileName)){
+      file.write(jsArray.toString());
       file.flush();
     }
     catch(IOException e){
       e.printStackTrace();
     }
-    System.out.println(obj);
-    return obj;
   }
-
+/* this is for testing 
   public static void main(String[] args){
-    CreateJson obj = new CreateJson();
-    List<String> list = Arrays.asList("one", "two", "three");
-    obj.createObj("egg","120","healthy",list);
-    System.out.println(obj);
+    CreateJson creator = new CreateJson();
+    List<String> list = Arrays.asList("healthy", "good", "potein");
+    creator.createObj("egg","120",true,list,"menu");
+    creator.createObj("chicken","322",false,list,"menu");
+    creator.writeToFile("myJSON.JSON");
 
-  }
+  }*/
 }
+
