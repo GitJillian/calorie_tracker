@@ -4,50 +4,62 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+ 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONParser;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class JsonReader{
     JSONParser parser;
     FileReader reader;
     JSONArray itemArray;
+    ArrayList<Food> foodList;
 
     JSONArray getArray(){
       return this.itemArray;
     }
-    void readJson(){
-      try
+    
+    void readJson(String fileName, String listType){
+      JSONParser jsonParser = new JSONParser();
+      try(FileReader reader = new FileReader(fileName))
       {
-        Object item = parser.parse(new FileReader("c:\\UsersmyJSON.JSON"));
-        JSONObject jsonObj = (JSONObject) item;
-        String name = (String) jsonObj.get("name");
-        String calory = (String) jsonObj.get("calory");
-        this.itemArray = (JSONArray) jsonObj.get("type");
-        Iterator<String> iterator = itemArray.iterator();
-        while(iterator.hasNext()){
-          System.out.println("Type: " + iterator.next());
+        
+        Object obj = jsonParser.parse(reader);
+        JSONArray jsonList = (JSONArray) obj;
+            //Iterate over the whole array
+            jsonList.forEach( item -> parseJsonObject( (JSONObject) item, listType ) );
+ 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-      }
-      catch(FileNotFoundException e){e.printStackTrace();}
-      catch(IOException e){e.printStackTrace();}
-      catch(ParseException e){e.printStackTrace();}
-      catch(Exception e){e.printStackTrace();}
     }
-
-    public static void main(String[] args){
-      JsonReader reader = new JsonReader();
-      reader.readJson();
-
-
-
-      }
+      void parseJsonObject(JSONObject item, String listType) 
+    {
+        //Get employee object within list
+        JSONObject foodObject = (JSONObject) item.get(listType);
+         
+        //Get item name
+        String name = (String) foodObject.get("name");    
+        System.out.println(name);
+         
+        //Get calory
+        String calory = (String) foodObject.get("calory");  
+        System.out.println(calory);
+        Float caloryFloat = Float.parseFloat(calory);
+         
+        //Get status
+        Boolean status = (Boolean) foodObject.get("status");  
+        
+        List<String> tags = (List<String>) foodObject.get("tags");
+        this.foodList.add(new Food(name, caloryFloat, status, tags));
+    }
 
   }
