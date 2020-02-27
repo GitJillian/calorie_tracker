@@ -15,8 +15,16 @@ import org.json.simple.parser.ParseException;
 
 public class CreateJson{
   
-  JSONArray jsArray = new JSONArray();
-  JSONArray getArray(){return this.jsArray;}
+  JSONArray jsArray;
+  
+  public CreateJson(){
+    this.jsArray = new JSONArray();
+  }
+  
+  JSONArray getArray(){
+    return this.jsArray;
+  }
+  
   JSONObject createObj(String name, String calory, Boolean status,List<String> tags, String listType){
     JSONObject obj = new JSONObject();
     obj.put("name",name);
@@ -39,14 +47,15 @@ public class CreateJson{
       e.printStackTrace();
     }
   }
-/* this is for testing 
+//this is for testing 
   public static void main(String[] args){
-    CreateJson creator = new CreateJson();
+    
+    /*CreateJson creator = new CreateJson();
     List<String> list = Arrays.asList("healthy", "good", "potein");
     creator.createObj("egg","120",true,list,"menu");
     creator.createObj("chicken","322",false,list,"menu");
     creator.writeToFile("myJSON.JSON");
-
-  }*/
+*/
+  }
 }
 

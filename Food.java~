@@ -38,9 +38,5 @@ public class Food{
     return this.tags;
   }
   
-  public String foodStats(){
-    String s = String.valueOf(this.status);
-    return "name: " + this.name + "\n" + "calorie: " + this.calorie + "\nstatus:" + s +"\ntags:"+ this.tags.toString() +"\n"; 
-    }
-  }
-  
+
+}

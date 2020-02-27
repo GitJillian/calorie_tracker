@@ -17,10 +17,14 @@ public class JsonReader{
     JSONParser parser;
     FileReader reader;
     JSONArray itemArray;
-    ArrayList<Food> foodList;
+    ArrayList<Food> foodList = new ArrayList<Food>();
 
     JSONArray getArray(){
       return this.itemArray;
+    }
+    
+    ArrayList<Food> getList(){
+      return this.foodList;
     }
     
     void readJson(String fileName, String listType){
@@ -30,6 +34,7 @@ public class JsonReader{
         
         Object obj = jsonParser.parse(reader);
         JSONArray jsonList = (JSONArray) obj;
+        //System.out.println(jsonList);
             //Iterate over the whole array
             jsonList.forEach( item -> parseJsonObject( (JSONObject) item, listType ) );
  
@@ -48,18 +53,22 @@ public class JsonReader{
          
         //Get item name
         String name = (String) foodObject.get("name");    
-        System.out.println(name);
          
         //Get calory
         String calory = (String) foodObject.get("calory");  
-        System.out.println(calory);
+        
         Float caloryFloat = Float.parseFloat(calory);
-         
         //Get status
         Boolean status = (Boolean) foodObject.get("status");  
         
         List<String> tags = (List<String>) foodObject.get("tags");
-        this.foodList.add(new Food(name, caloryFloat, status, tags));
+        Food fd = new Food(name, caloryFloat, status, tags);
+        this.foodList.add(fd);
     }
+      
+      public static void main(String[] args){
+        JsonReader reader = new JsonReader();
+        reader.readJson("myJSON.JSON","menu");
+      }
 
   }

@@ -1,14 +1,30 @@
+import java.util.*;
+
 public class Administor{
 
-  private Float sum;
-  private Boolean isWarning;
+  private Calculator caloryCalculator;
+  private CreateJson creator;
+  private JsonReader reader;
+  private ArrayList<Food> menu;
   
-  public Calculator(Float sum){
-    this.sum = sum;
+  void addItemToMenu(String foodName, String filename){
+         
+  }
+  void viewFoodItems(String filename){
+    reader = new JsonReader();
+    reader.readJson(filename,"menu");
+    ArrayList<Food> foodItems = this.reader.getList();
+    Iterator<Food> iterator = foodItems.iterator();
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
   }
   
-  public Float CalorieSum(Float f){
-      return f;
-  }
+   public static void main(String[] args){
+    Administor admin = new Administor();
+    admin.viewFoodItems("./myJSON.JSON");
+      }
+  
+  
   
 }
