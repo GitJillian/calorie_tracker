@@ -8,12 +8,12 @@ public class Food{
   private List<String> tags;
   private String image;
 
-  public Food(String name, Float calorie, Boolean status, List<String> tags){
+  public Food(String name, Float calorie, Boolean status, List<String> tags, String image){
     this.name = name;
     this.calorie = calorie;
     this.status = status;
     this.tags = tags;
-    
+    this.image = image;
   }
   
   public void SetFood(String name, Float calorie, Boolean status,List<String> tags){
