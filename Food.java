@@ -6,6 +6,7 @@ public class Food{
   private Float calorie;
   private Boolean status;
   private List<String> tags;
+  private String image;
 
   public Food(String name, Float calorie, Boolean status, List<String> tags){
     this.name = name;
@@ -36,6 +37,10 @@ public class Food{
   
   public List<String> getTags(){
     return this.tags;
+  }
+  
+  public String getImage() {
+    return this.image;
   }
   
   public String foodStats(){
