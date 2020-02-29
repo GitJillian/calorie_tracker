@@ -1,0 +1,6 @@
+Week 5
+This weeek what I have done:
+1) Working on FoodCartAdapter
+
+The challenge I faced:
+1. To learn how view interact and control with inner function.
