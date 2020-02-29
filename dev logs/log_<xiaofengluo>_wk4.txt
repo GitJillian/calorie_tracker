@@ -1,0 +1,6 @@
+Week 4
+This weeek what I have done:
+1) Working on component diagram
+
+The challenge I faced:
+1. To determine the association between classes
