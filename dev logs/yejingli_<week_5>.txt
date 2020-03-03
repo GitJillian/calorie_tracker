@@ -3,6 +3,14 @@ determine user/admin behaviors and write code for these two classes
 Add more functions to Food class
 Along with other memebers, using Andriod Studio to write front-end code for self-selected mode
 
+
 to be finished:
+For code structure:
 add management level controller to encapsulate the privacy of class properties
 e.g a student cannot access administrator's menu unless the admin have send it to management level 
+management tools would be useful and enhance code readability. I would consider adding it for modes as well.
+
+For health mode,
+With the raw data from the caf, starting to consider writing algorithms to determine whether a user should choose this dish or not
+This algorithm should be based on user's personal situation, and a proper portion of a meal
+the output of the algorithm should be a tailored menu for the user, with the provided dishes for that time
