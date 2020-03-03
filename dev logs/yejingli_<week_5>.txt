@@ -1,6 +1,7 @@
 FINISHED:
 determine user/admin behaviors and write code for these two classes
 Add more functions to Food class
+Along with other memebers, using Andriod Studio to write front-end code for self-selected mode
 
 to be finished:
 add management level controller to encapsulate the privacy of class properties
