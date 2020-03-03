@@ -1,0 +1,7 @@
+FINISHED:
+determine user/admin behaviors and write code for these two classes
+Add more functions to Food class
+
+to be finished:
+add management level controller to encapsulate the privacy of class properties
+e.g a student cannot access administrator's menu unless the admin have send it to management level 
