@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="lightsalmon">#ffa07a</color>
+    <color name="linen">#faf0e6</color>
+    <color name="mistyrose">#ffe4e1</color>
+    <color name="tomato">#D56860</color>
+    <color name="LemonChiffon">#FFFACD</color>
+</resources>

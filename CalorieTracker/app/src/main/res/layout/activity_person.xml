@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/background_login"
+                android:layout_height="match_parent" android:id="@+id/activity_person">
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+            android:paddingTop="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:layout_above="@+id/textName"
+            android:id="@+id/imageView"
+            android:layout_centerInParent="true"
+            app:siBorderWidth="4dp"
+            app:siBorderColor="@color/linen"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textName"
+            android:textStyle="bold|italic"
+            android:layout_above="@+id/textEmail"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_centerInParent="true"
+    />
+
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textEmail"
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_centerInParent="true"
+    />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/textEmail" >
+
+        <Button
+                android:id="@+id/button_sign_out"
+                android:layout_width="0.0dip"
+                android:layout_weight="1.0"
+                android:layout_gravity="center_vertical|bottom"
+                android:layout_height="wrap_content"
+                android:text="@string/button_sign_out"
+                android:background="#faf0e6"/>
+        <Button
+
+                android:id="@+id/button_launch"
+                android:layout_width="0.0dip"
+                android:layout_gravity="center_vertical|bottom"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="#ffa07a"
+                android:text="@string/button_launch"
+        />
+
+
+    </LinearLayout>
+</RelativeLayout>

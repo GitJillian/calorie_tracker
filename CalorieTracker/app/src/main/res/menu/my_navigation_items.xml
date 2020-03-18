@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/action_person"
+              android:title="@string/menu_person_info"
+              android:icon="@drawable/icon_user" />
+        <item android:id="@+id/action_self_select_mode"
+              android:title="@string/menu_self_select_mode"
+              android:icon="@drawable/icon_self" />
+        <item android:id="@+id/action_health_mode"
+              android:title="@string/menu_health_mode"
+              android:icon="@drawable/icon_health" />
+        <item android:id="@+id/action_report"
+              android:title="@string/menu_report"
+              android:icon="@drawable/icon_report" />
+    </menu>
