@@ -1,6 +1,0 @@
-Client ID 
-523448643163-p8q6fguhdidlvuouoiug214d9gq19hgr.apps.googleusercontent.com 
-content_copy 
-
-Client Secret 
-FcHPQ6hR05dgyFdDd8p1-8zA 
