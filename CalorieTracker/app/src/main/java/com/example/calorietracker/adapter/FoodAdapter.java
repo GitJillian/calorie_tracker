@@ -25,9 +25,7 @@ import static com.example.calorietracker.ui.login.local.SetWeeklyMenu.arrayList;
 import java.util.ArrayList;
 
 
-/**
- * Created by Deependra Singh Patel on 24/4/19.
- */
+
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     public static ArrayList<FoodModel> FoodsArray;
@@ -52,7 +50,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final FoodAdapter.ViewHolder viewHolder, final int i) {
-        //viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.bag));
+
         viewHolder.FoodName.setText(FoodsArray.get(i).getName()+"\n"+FoodsArray.get(i).getCalorie());
 
         viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, FoodsArray.get(i).imagePath));

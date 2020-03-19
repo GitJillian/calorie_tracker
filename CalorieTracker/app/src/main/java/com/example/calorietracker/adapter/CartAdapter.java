@@ -147,7 +147,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
 
-                    Log.d("totalcashthegun", String.valueOf(grandTotalplus));
+
                     grandTotal.setText(String.valueOf(grandTotalplus));
 
                 }

@@ -62,7 +62,7 @@ public class StudentWriter {
         FileWriter writer =null;
 
         try{
-            //parsing student info
+            
             JSONObject student_json = new JSONObject();
             JSONArray report = new JSONArray();
             student_json.put("name",student.getName());
