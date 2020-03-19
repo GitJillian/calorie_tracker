@@ -1,8 +1,6 @@
 package com.example.calorietracker.menu;
 
-/**
- * Created by Deependra Singh Patel on 24/4/19.
- */
+
 public class FoodModel {
     public String type;
     public String sodium;
