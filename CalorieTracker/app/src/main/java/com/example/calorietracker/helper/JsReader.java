@@ -57,6 +57,27 @@ public class JsReader {
         }
     }
 
+    public JsReader(InputStream input) throws JSONException {
+        is = input;
+        try {
+            bufr = new BufferedReader(new InputStreamReader(is));
+            String line;
+            builder = new StringBuilder();
+            while ((line = bufr.readLine()) != null) {
+                builder.append(line);
+            }
+            is.close();
+            bufr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try{
+            root = new JSONObject(builder.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public JsReader(Reader in) {
     }
 

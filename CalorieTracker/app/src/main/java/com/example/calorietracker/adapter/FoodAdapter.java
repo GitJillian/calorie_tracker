@@ -51,7 +51,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final FoodAdapter.ViewHolder viewHolder, final int i) {
 
-        viewHolder.FoodName.setText(FoodsArray.get(i).getName()+"\n"+FoodsArray.get(i).getCalorie());
+        viewHolder.FoodName.setText(FoodsArray.get(i).getName());
 
         viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, FoodsArray.get(i).imagePath));
 
@@ -70,7 +70,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 TextView viewCartDialog = dialog.findViewById(R.id.view_cart_button_dialog);
                 final TextView quantity = dialog.findViewById(R.id.cart_Food_quantity_tv);
                 quantity.setText(String.valueOf(0));
-                final int[] cartCounter = {0};//{(arrayListImage.get(position).getStocks())};
+                final int[] cartCounter = {0};
                 cartDecrement.setEnabled(false);
                 cartDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override

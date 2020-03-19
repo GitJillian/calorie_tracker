@@ -96,7 +96,7 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
             float height;
 
             File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(file_email) + ".JSON");
-            StudentWriter student_writer = new StudentWriter();
+            StudentWriter student_writer = new StudentWriter(file_file);
             Log.d("file_path", FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(file_email) + ".JSON");
 
             try{
@@ -125,7 +125,7 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
                 FileOutputStream is = new FileOutputStream(file_file);
                 ArrayList<Report> report = new ArrayList<Report>();
                 Student student = new Student(name, sex, age, frequency, height, weight, password);
-                student_writer.writeStudent(file_file, student, report);
+                student_writer.writeStudent(student, report);
                 startActivity(intent);
                 }
             catch(Exception e){

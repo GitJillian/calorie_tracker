@@ -105,7 +105,7 @@ public class NewLocalAccount extends AppCompatActivity {
 
         File file_file = new File(FileHelper.getFileDir(NewLocalAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
         Log.d("file_path", FileHelper.getFileDir(NewLocalAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
-        StudentWriter student_writer = new StudentWriter();
+        StudentWriter student_writer = new StudentWriter(file_file);
         try {
             age = Integer.parseInt(ageEditText.getText().toString());
             name = nameEditText.getText().toString();
@@ -136,7 +136,7 @@ public class NewLocalAccount extends AppCompatActivity {
             FileOutputStream is = new FileOutputStream(file_file);
             ArrayList<Report> report = new ArrayList<Report>();
             Student student = new Student(name, sex, age, frequency, height, weight, password);
-            student_writer.writeStudent(file_file, student, report);
+            student_writer.writeStudent(student, report);
             startActivity(intent);
         }
     catch(FileNotFoundException e){

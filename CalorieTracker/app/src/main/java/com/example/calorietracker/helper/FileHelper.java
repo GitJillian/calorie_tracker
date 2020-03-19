@@ -13,6 +13,12 @@ public class FileHelper {
         return String.valueOf(context.getFilesDir());
     }
 
+    public static int getDrawable(Context context,String name){
+        String name_format = name.replace(' ','_').toLowerCase();
+        int drawableResourceId = context.getResources().getIdentifier(name_format, "drawable", context.getPackageName());
+        return drawableResourceId;
+    }
+
     public static boolean userExists(Context context, String name){
             boolean flag;
         String path = getFileDir(context)+"/"+name+".JSON";

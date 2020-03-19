@@ -1,6 +1,7 @@
 package com.example.calorietracker.helper;
 
-import com.example.calorietracker.menu.Food;
+import android.content.Context;
+
 import com.example.calorietracker.menu.FoodModel;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import com.example.calorietracker.R;
 
 public class MenuReader extends JsReader {
     private InputStream is;
@@ -31,6 +33,12 @@ public class MenuReader extends JsReader {
        super(input);
        root = super.getObject();
        foodlistJson = super.getJsonArrayByName("menu");
+    }
+
+    public MenuReader(InputStream input) throws JSONException{
+        super(input);
+        root = super.getObject();
+        foodlistJson = super.getJsonArrayByName("menu");
     }
 
     public JSONArray getFoodListJson(){
@@ -55,7 +63,7 @@ public class MenuReader extends JsReader {
     }
 
     public String getCalorie(JSONObject obj){
-        return super.getStringByName(obj, "calorie");
+        return super.getStringByName(obj, "calory");
     }
 
     public String getFats(JSONObject obj){
@@ -98,9 +106,11 @@ public class MenuReader extends JsReader {
         protein = getProtein(obj);
         totalCarbon = getCarbohydrate(obj);
         fats = getFats(obj);
-        FoodModel food = new FoodModel(name, calorie, type, sodium, servingSize, sugar, fats, protein, totalCarbon);
+        FoodModel food = new FoodModel(name, calorie, type, sodium, servingSize, sugar, fats, protein, totalCarbon,R.drawable.burger);
+        //FoodModel food = new FoodModel(name, calorie, type, sodium, servingSize, sugar, fats, protein, totalCarbon,R.drawable.burger);
         return food;
     }
+
 
     @Override
     public ArrayList<FoodModel> getProduct(){

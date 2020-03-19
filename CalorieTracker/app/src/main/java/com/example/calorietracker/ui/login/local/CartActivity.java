@@ -24,15 +24,11 @@ import java.util.Objects;
 import static com.example.calorietracker.adapter.FoodAdapter.cartModels;
 
 
-/**
- * Created by Deependra Singh Patel on 8/5/19.
- */
-
 public class CartActivity extends AppCompatActivity {
 
     public static TextView grandTotal;
     public static int grandTotalplus;
-    
+
     public static ArrayList<FoodImage> temparraylist;
     RecyclerView cartRecyclerView;
     CartAdapter cartAdapter;
@@ -54,11 +50,11 @@ public class CartActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Generate Weekly Menu");
 
 
-
+        mToolbar = findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back_arrow));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
