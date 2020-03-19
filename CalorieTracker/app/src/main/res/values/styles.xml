@@ -9,5 +9,10 @@
         <item name="colorButtonNormal">@color/linen</item>
 
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
 
 </resources>

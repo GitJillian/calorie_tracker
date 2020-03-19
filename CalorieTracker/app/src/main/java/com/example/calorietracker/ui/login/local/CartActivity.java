@@ -51,13 +51,14 @@ public class CartActivity extends AppCompatActivity {
 
         proceedToBook = findViewById(R.id.proceed_to_book);
         grandTotal = findViewById(R.id.grand_total_cart);
-
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Generate Weekly Menu");
 
-        //setSupportActionBar(mToolbar);
-        mToolbar = findViewById(R.id.toolbar);
+
+
         mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back_arrow));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
