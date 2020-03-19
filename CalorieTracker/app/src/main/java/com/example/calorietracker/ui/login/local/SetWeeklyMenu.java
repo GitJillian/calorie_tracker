@@ -16,8 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.calorietracker.R;
 import com.example.calorietracker.adapter.FoodAdapter;
 import com.example.calorietracker.helper.ConvertIcon;
+import com.example.calorietracker.helper.FileHelper;
+import com.example.calorietracker.helper.JSONReaderFactory;
+import com.example.calorietracker.helper.JsReader;
+import com.example.calorietracker.helper.MenuReader;
 import com.example.calorietracker.menu.FoodModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 @SuppressLint("Registered")
@@ -27,13 +40,13 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
     public static int cart_count = 0;
     com.example.calorietracker.adapter.FoodAdapter FoodAdapter;
     RecyclerView FoodRecyclerView;
-
+    JSONReaderFactory factory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_menu);
 
-        addFood();
+        readDatabase();
         FoodAdapter = new FoodAdapter(arrayList, this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
 
@@ -45,43 +58,28 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
     }
 
 //TODO:REPLACE DATABASE
-    private void addFood() {
-        FoodModel burger = new FoodModel("burger","100","22",R.drawable.burger);
-        FoodModel rolls = new FoodModel("rolls", "120", "20", R.drawable.roll);
-        arrayList.add(burger);
-        arrayList.add(rolls);
-        FoodModel seasonedPotatoWedges = new FoodModel("Seasoned Potato Wedges", "100", "21",R.drawable.patato_wedges);
-        arrayList.add(seasonedPotatoWedges);
-        FoodModel boilEgg = new FoodModel("Boil egg", "70", "63", R.drawable.boiled_egg);
-        arrayList.add(boilEgg);
-        FoodModel scrambledEgg = new FoodModel("Scrambled egg", "120", "11", R.drawable.scrambled_eggs);
-        arrayList.add(scrambledEgg);
-        FoodModel frenchToast = new FoodModel("French Toast", "120", "12", R.drawable.french_toast);
-        arrayList.add(frenchToast);
-        FoodModel grilledBreakfastHam = new FoodModel("Grilled breakfast ham", "35", "5", R.drawable.grilled_ham);
-        arrayList.add(grilledBreakfastHam);
-        FoodModel vegetarianBakedBeans = new FoodModel("Vegetarian Baked Beans", "150", "7", R.drawable.baked_beans);
-        arrayList.add(vegetarianBakedBeans);
-        FoodModel cheddarCheese = new FoodModel("Cheddar cheese", "60", "4", R.drawable.cheddar_cheese);
-        arrayList.add(cheddarCheese);
-        FoodModel dicedHam = new FoodModel("Dice Ham", "20", "3", R.drawable.diced_ham);
-        arrayList.add(dicedHam);
-        FoodModel egg = new FoodModel("Egg", "160", "20", R.drawable.egg);
-        arrayList.add(egg);
-        FoodModel eggWhite = new FoodModel("Egg White", "60", "10", R.drawable.egg_whites);
-        arrayList.add(eggWhite);
-        FoodModel dicedOnion = new FoodModel("Diced Onion", "10", "10", R.drawable.diced_onion);
-        arrayList.add(dicedOnion);
-        FoodModel Peppers = new FoodModel("Pepper", "10", "24", R.drawable.peppers);
-        arrayList.add(Peppers);
-        FoodModel slicedMushroom = new FoodModel("Sliced Mushroom", "0", "12", R.drawable.sliced_mushrooms);
-        arrayList.add(slicedMushroom);
-        FoodModel riceKrispieSquare = new FoodModel("Rice Krispie Square", "80", "10", R.drawable.rice_krispie_square);
-        arrayList.add(riceKrispieSquare);/*
+    private void readDatabase() {
 
-        Food saltedCaramelBrownie = new Food("Salted Caramel Brownie", "240", "20", R.drawable.salted_caramel_brownies);
-        arrayList.add(saltedCaramelBrownie);
-*/
+        MenuReader menuReader;
+
+        try{
+        InputStream in = SetWeeklyMenu.this.getAssets().open("menu3.JSON");
+        menuReader = new MenuReader(in);
+        JSONArray jsonArray = menuReader.getFoodListJson();
+        for(int i = 0; i<jsonArray.length(); i++){
+            FoodModel model = menuReader.transJsonToFood(jsonArray.getJSONObject(i));
+            //TODO:AFTER ALL PICTURES FOUNDED, PLEASE ADD IT!
+            //model.setImagePath(FileHelper.getDrawable(SetWeeklyMenu.this,model.getName()));
+            arrayList.add(model);
+        }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

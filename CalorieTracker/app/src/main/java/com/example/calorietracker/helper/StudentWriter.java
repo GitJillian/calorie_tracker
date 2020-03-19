@@ -10,20 +10,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class StudentWriter {
+public class StudentWriter extends JsWriter {
 
-    public void writeFile(File file_out, JSONObject sample){
-        FileWriter writer =null;
-        try {
-            writer = new FileWriter(file_out);
-            writer.write(sample.toString());
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public StudentWriter(File file_out){
+        super(file_out);
     }
+
 
     //adding report to the student profile
     public void addReport(File file_out, Report report) throws JSONException, FileNotFoundException {
@@ -56,7 +48,7 @@ public class StudentWriter {
     }
 
 //initialize new student
-    public void writeStudent(File file_out, Student student, ArrayList<Report> reports) {
+    public void writeStudent(Student student, ArrayList<Report> reports) {
 
         JSONObject sample = new JSONObject();
         FileWriter writer =null;
@@ -85,7 +77,7 @@ public class StudentWriter {
 
         sample.put("info",student_json);//putting student info into jsonfile
         sample.put("report",report);//putting report array into jsonfile
-        writeFile(file_out, sample);
+        super.writeFile(sample);
 
         }catch (JSONException e){
             e.printStackTrace();

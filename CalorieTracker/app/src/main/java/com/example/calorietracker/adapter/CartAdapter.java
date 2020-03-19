@@ -113,6 +113,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                 }
                 Log.d("totalcashthegun", String.valueOf(grandTotalplus));
+
                 grandTotal.setText(String.valueOf(grandTotalplus));
 
             }
@@ -144,11 +145,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     cartModelArrayList.get(position).setTotalCalorie(calorie);
                     holder.FoodCartPrice.setText(String.valueOf(calorie));
                     for (int i = 0; i < temparraylist.size(); i++) {
+                      Log.d("totalcashthegun", String.valueOf(grandTotalplus));
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
 
 
-                    grandTotal.setText(String.valueOf(grandTotalplus));
+                   grandTotal.setText(String.valueOf(grandTotalplus));
 
                 }
             }
@@ -179,4 +181,3 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         }
     }
 }
-

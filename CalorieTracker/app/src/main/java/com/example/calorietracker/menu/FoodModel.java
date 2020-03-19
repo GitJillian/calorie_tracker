@@ -20,7 +20,7 @@ public class FoodModel {
         this.imagePath = imagePath;
     }
 
-    public FoodModel(String name, String calorie, String type, String sodium, String servingSize, String sugar, String fats, String protein, String totalCarbon) {
+    public FoodModel(String name, String calorie, String type, String sodium, String servingSize, String sugar, String fats, String protein, String totalCarbon,int imagePath) {
         this.foodName = name;
         this.calorie = calorie;
         this.sodium = sodium;
@@ -30,6 +30,16 @@ public class FoodModel {
         this.fats = fats;
         this.protein = protein;
         this.totalCarbon = totalCarbon;
+        this.imagePath = imagePath;
+    }
+    public void setName(String foodName) {
+        this.foodName = foodName;
+    }
+    public void setImagePath(int imagePath) {
+        this.imagePath = imagePath;
+    }
+    public void setCalorie(String calorie) {
+        this.calorie = calorie;
     }
 
     public String getName() {
@@ -38,20 +48,17 @@ public class FoodModel {
     public String getFats(){
         return this.fats;
     }
-    public void setName(String foodName) {
-        this.foodName = foodName;
-    }
+    public String getType(){return this.type;}
+    public String getSodium(){return this.sodium;}
     public String getCalorie() {
         return calorie;
     }
-    public void setCalorie(String calorie) {
-        this.calorie = calorie;
-    }
-
+    public String getServingSize(){return this.servingSize;}
+    public String getSugar(){return this.sugar;}
+    public String getProtein(){return this.protein;}
+    public String getTotalCarbon(){return this.totalCarbon;}
     public int getImagePath() {
         return imagePath;
     }
-    public void setImagePath(int imagePath) {
-        this.imagePath = imagePath;
-    }
+
 }

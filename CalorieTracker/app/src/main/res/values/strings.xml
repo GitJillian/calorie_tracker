@@ -34,4 +34,6 @@
     <string name="background">background</string>
     <string name="admin_log">Log in as Admin</string>
     <string name="admin_name">Admin</string>
+    <string name="item">Food</string>>
+    <string name="submit_menu">submit weekly menu</string>
 </resources>
