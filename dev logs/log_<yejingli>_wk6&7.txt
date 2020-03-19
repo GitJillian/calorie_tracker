@@ -1,0 +1,6 @@
+finished:
+build ui framework, including user activities(register, log in, sign out)...
+generate user database, profile page
+
+challenge
+not that familiar with android studio.having trouble with toolbars settings
