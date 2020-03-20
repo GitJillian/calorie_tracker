@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.calorietracker.R;
 import com.example.calorietracker.adapter.FoodAdapter;
+import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.helper.ConvertIcon;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
@@ -50,7 +51,8 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
         readDatabase();
         FoodAdapter = new FoodAdapter(arrayList, this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
-
+        selectAll = findViewById(R.id.button_submit);
+        Administrator admin = new Administrator();
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         FoodRecyclerView.setLayoutManager(gridLayoutManager);
@@ -58,14 +60,12 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
 
     }
 
-//TODO:REPLACE DATABASE
+
     private void readDatabase() {
 
         MenuReader menuReader;
 
         ArrayList<FoodModel> models = new ArrayList<>();
-
-
 
         try{
         InputStream in = SetWeeklyMenu.this.getAssets().open("menu3.JSON");
@@ -109,6 +109,8 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
                     startActivity(new Intent(this, CartActivity.class));
                 }
                 break;
+            case R.id.button_submit:
+                //TODO:MAKE SELECT ALL FUNCTION
             default:
                 return super.onOptionsItemSelected(item);
         }

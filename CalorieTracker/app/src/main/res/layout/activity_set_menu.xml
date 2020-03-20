@@ -6,12 +6,21 @@
               android:layout_height="match_parent"
               tools:context=".ui.login.local.SetWeeklyMenu"
               android:orientation="horizontal">
+
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_margin="10dp"
-            android:id="@+id/Food_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-    ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_margin="10dp"
+        android:id="@+id/Food_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:gravity="bottom"
+        android:text="@string/submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+         />
 
 
 </LinearLayout>

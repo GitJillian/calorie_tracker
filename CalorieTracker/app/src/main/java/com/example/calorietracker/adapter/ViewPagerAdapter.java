@@ -1,4 +1,4 @@
-package com.example.calorietracker.ui.design;
+package com.example.calorietracker.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

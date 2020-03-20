@@ -16,14 +16,12 @@ import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.ui.design.BottomNavigationViewHelper;
 import com.example.calorietracker.fragment.HomeInfo;
-import com.example.calorietracker.ui.design.ViewPagerAdapter;
-import com.example.calorietracker.ui.login.LoginActivity;
+import com.example.calorietracker.adapter.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;

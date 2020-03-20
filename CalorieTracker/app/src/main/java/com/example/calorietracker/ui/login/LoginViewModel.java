@@ -17,7 +17,7 @@ import org.json.JSONException;
 import java.io.*;
 
 public class LoginViewModel extends ViewModel {
-    private String student_password ,student_frequency, student_name, student_gender, student_height, student_age, student_weight;
+    private String student_password;
     private String username;
     private String password;
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
@@ -105,9 +105,9 @@ public class LoginViewModel extends ViewModel {
     }
 
     // A placeholder password validation check
-    //TODO: finish the password logic
+
     private boolean isPasswordValid(String password) {
-        if (password.length() < 5)
+        if (password.length() < 5||password.contains(" "))
         { return false;
     }return true;
 }

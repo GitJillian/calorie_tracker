@@ -95,7 +95,7 @@ public class NewLocalAccount extends AppCompatActivity {
     }
 
 
-    //TODO: verify the user input while creating Object User
+
     public boolean checkInput(EditText heightEditText, EditText weightEditText, EditText nameEditText, boolean gender,
                               EditText ageEditText, String frequency, EditText passwordEditText) throws IOException {
         String name, password,sex;
@@ -124,13 +124,6 @@ public class NewLocalAccount extends AppCompatActivity {
             } else {
                 sex = "Male";
             }
-           /* intent.putExtra("frequency", frequency);
-            intent.putExtra("name", name);
-            intent.putExtra("gender", sex);
-            intent.putExtra("height", height);
-            intent.putExtra("weight", weight);
-            intent.putExtra("age", age);
-            intent.putExtra("passowrd", password);*/
 
 
             Toast.makeText(NewLocalAccount.this, "Switching to Home Page", Toast.LENGTH_LONG).show();

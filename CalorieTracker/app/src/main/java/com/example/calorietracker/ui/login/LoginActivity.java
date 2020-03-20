@@ -43,7 +43,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-//TODO: enable user login in as well as Google Account, can copy paste the code when google account is signed in
+
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "Failure" ;
     private SignInButton signInButton;
@@ -221,11 +221,7 @@ public class LoginActivity extends AppCompatActivity {
             Student student = (Student)student_reader.getProduct();//RETURN STUDENT PRODUCT
             student_name =student.getName();
             student_password = student.getPassword();
-            /*student_frequency = student.getFrequency();
-            student_age = String.valueOf(student.getAge());
-            student_gender = student.getGender();
-            student_height = String.valueOf(student.getHeight());
-            student_weight = String.valueOf(student.getWeight());*/
+
             flag = true;
 
             if(!flag){
@@ -234,13 +230,7 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             if(flag && password.equals(student_password)){
-               /* intent.putExtra("frequency", student_frequency);
-                intent.putExtra("name", student_name);
-                intent.putExtra("gender",student_gender);
-                intent.putExtra("height", Float.parseFloat(student_height));
-                intent.putExtra("weight",Integer.parseInt(student_weight));
-                intent.putExtra("age",Integer.parseInt(student_age));
-                intent.putExtra("password",password);*/
+
                 intent.putExtra("path",path_user);
                 startActivity(intent);
             }
