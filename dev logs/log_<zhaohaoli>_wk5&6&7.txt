@@ -1,2 +1,6 @@
 During these three weeks
 I have working on the Develiverable2 and 3
+Since last dev vlog said that I was perpare for the D2
+and What I did for during the D2 is perparing the database set. insert all the food's calaroie imforamtions to the database
+upload more later, perpare for d3 demo persataiton
+
