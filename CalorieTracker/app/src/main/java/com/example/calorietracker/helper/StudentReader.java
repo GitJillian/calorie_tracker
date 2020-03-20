@@ -28,12 +28,13 @@ public class StudentReader extends JsReader {
         reportListJson = super.getJsonArrayByName("report");
     }
 
-
     public StudentReader(FileInputStream in) throws JSONException {
         super(in);
         root = super.getObject().getJSONObject("info");
         reportListJson = super.getJsonArrayByName("report");
     }
+
+    public JSONObject getStudent(){return root;}
 
     public JSONArray getJSONArray(){
         return this.reportListJson;
