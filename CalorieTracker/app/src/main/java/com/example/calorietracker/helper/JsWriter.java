@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,6 +13,10 @@ public class JsWriter {
 
     public JsWriter(File file_out){
         output = file_out;
+    }
+
+    public void writePath(File file_path){
+        this.output = file_path;
     }
 
     public void writeFile(JSONObject sample){

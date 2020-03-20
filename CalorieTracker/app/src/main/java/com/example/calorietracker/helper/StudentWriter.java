@@ -1,5 +1,7 @@
 package com.example.calorietracker.helper;
 
+import android.content.Context;
+
 import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import org.json.JSONArray;
@@ -12,15 +14,43 @@ import java.util.ArrayList;
 
 public class StudentWriter extends JsWriter {
 
+
     public StudentWriter(File file_out){
+
         super(file_out);
     }
 
+    public void editStudent(Context context, Student student) throws FileNotFoundException, JSONException {
+        FileInputStream in = new FileInputStream(this.output);
+        StudentReader reader = new StudentReader(in);
+
+        JSONObject sample = reader.getObject();
+        JSONObject old_student = reader.getStudent();
+        JSONObject new_student = new JSONObject();
+        JSONArray report = reader.getJSONArray();
+        if(!student.getName().equals(old_student.getString("name"))){
+            File new_student_output = new File(FileHelper.getFileDir(context,"/"+student.getName()+".JSON"));
+            super.writePath(new_student_output);
+        }
+        new_student.put("name",student.getName());
+        new_student.put("gender",student.getGender());
+        new_student.put("height",String.valueOf(student.getHeight()));
+        new_student.put("weight",String.valueOf(student.getWeight()));
+        new_student.put("age",String.valueOf(student.getAge()));
+        new_student.put("password",student.getPassword());
+        new_student.put("frequency", student.getFrequency());
+
+        sample.put("info", new_student);
+        sample.put("report",report);
+        writeFile(sample);
+
+
+    }
 
     //adding report to the student profile
-    public void addReport(File file_out, Report report) throws JSONException, FileNotFoundException {
+    public void addReport(Report report) throws JSONException, FileNotFoundException {
 
-        FileInputStream in = new FileInputStream(file_out);
+        FileInputStream in = new FileInputStream(this.output);
         StudentReader reader = new StudentReader(in);
         JSONObject sample = reader.getObject();
         //getting student info
@@ -31,6 +61,7 @@ public class StudentWriter extends JsWriter {
         reports.put(single_report);
         sample.put("info",info);
         sample.put("report",reports);
+        super.writeFile(sample);
     }
 
     public JSONObject reportToJson(Report report){
