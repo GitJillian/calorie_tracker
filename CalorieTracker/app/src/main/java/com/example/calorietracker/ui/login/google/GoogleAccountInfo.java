@@ -41,12 +41,7 @@ import java.io.FileNotFoundException;
         Button sign_out;
         Button launch_home;
         GoogleSignInClient mGoogleSignInClient;
-        Student student;
-        JsReader student_reader;
-        //StudentReader student_reader;
-        String student_frequency, student_name, student_gender;
-        int student_weight,student_age;
-        float student_height;
+
         @SuppressLint("ResourceType")
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -73,8 +68,12 @@ import java.io.FileNotFoundException;
 
                     case R.id.button_launch:
 
-                        File file_path = new File(FileHelper.getFileDir(GoogleAccountInfo.this) + "/" + transName(file_email) + ".JSON");
-                        JSONReaderFactory factory = new JSONReaderFactory();
+                        String student_path = FileHelper.getFileDir(GoogleAccountInfo.this) + "/" + transName(file_email) + ".JSON";
+                        Intent intent = new Intent(GoogleAccountInfo.this, HomeActivity.class);
+                        intent.putExtra("path","/" + transName(file_email) + ".JSON");
+                        startActivity(intent);
+                      //  File file_path = new File(FileHelper.getFileDir(GoogleAccountInfo.this) + "/" + transName(file_email) + ".JSON");
+                        /*JSONReaderFactory factory = new JSONReaderFactory();
 
                         try {
                             student_reader = factory.JSONReaderFactory(file_path);
@@ -97,6 +96,7 @@ import java.io.FileNotFoundException;
                         intent.putExtra("age",student_age);
                         startActivity(intent);
                         Toast.makeText(GoogleAccountInfo.this,"Switching to Home Page", Toast.LENGTH_LONG).show();
+                        */
                 }
             });
             sign_out = findViewById(R.id.button_sign_out);
