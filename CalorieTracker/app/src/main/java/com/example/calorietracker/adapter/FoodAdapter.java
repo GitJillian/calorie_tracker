@@ -31,7 +31,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public static ArrayList<FoodModel> FoodsArray;
     public static ArrayList<FoodImage> cartModels = new ArrayList<FoodImage>();
     public static FoodImage cartModel;
-    Context context;
+    private Context context;
     private CallBackUs mCallBackus;
     private HomeCallBack homeCallBack;
 

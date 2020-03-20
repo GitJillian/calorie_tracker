@@ -41,12 +41,7 @@ import java.io.FileNotFoundException;
         Button sign_out;
         Button launch_home;
         GoogleSignInClient mGoogleSignInClient;
-        Student student;
-        JsReader student_reader;
-        //StudentReader student_reader;
-        String student_frequency, student_name, student_gender;
-        int student_weight,student_age;
-        float student_height;
+
         @SuppressLint("ResourceType")
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -72,31 +67,9 @@ import java.io.FileNotFoundException;
                 switch (v.getId()){
 
                     case R.id.button_launch:
-
-                        File file_path = new File(FileHelper.getFileDir(GoogleAccountInfo.this) + "/" + transName(file_email) + ".JSON");
-                        JSONReaderFactory factory = new JSONReaderFactory();
-
-                        try {
-                            student_reader = factory.JSONReaderFactory(file_path);
-                            Student student = (Student)student_reader.getProduct();
-                            student_frequency = student.getFrequency();
-                            student_age = student.getAge();
-                            student_gender = student.getGender();
-                            student_height = student.getHeight();
-                            student_weight = student.getWeight();
-                            student_name = student.getName();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                         Intent intent = new Intent(GoogleAccountInfo.this, HomeActivity.class);
-                        intent.putExtra("frequency", student_frequency);
-                        intent.putExtra("name", student_name);
-                        intent.putExtra("gender",student_gender);
-                        intent.putExtra("height", student_height);
-                        intent.putExtra("weight",student_weight);
-                        intent.putExtra("age",student_age);
+                        intent.putExtra("path","/" + transName(file_email) + ".JSON");
                         startActivity(intent);
-                        Toast.makeText(GoogleAccountInfo.this,"Switching to Home Page", Toast.LENGTH_LONG).show();
                 }
             });
             sign_out = findViewById(R.id.button_sign_out);

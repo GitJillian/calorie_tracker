@@ -14,16 +14,14 @@ public class Administrator {
   private ArrayList<FoodModel> menuToPublish;
   
   public Administrator(){
-     /* this.reader = new JsonReader("./menu.JSON");
+
 
       this.menu = new ArrayList<FoodModel>();
-      this.menuToPublish = new ArrayList<FoodModel>();*/
+      this.menuToPublish = new ArrayList<FoodModel>();
   }
   
   public Administrator(ArrayList<FoodModel> foods){
       this.menu = foods;
-    //  this.reader = new JsonReader();
-
       this.menuToPublish = new ArrayList<FoodModel>();
   }
 
@@ -53,10 +51,5 @@ public class Administrator {
    /* this.reader.
     this.menu = this.reader.getList();*/
   }
-  
-   public static void main(String[] args){
-    Administrator admin = new Administrator();
-    admin.getFoodFromJson();
-    admin.viewFoodItems();
-  }
+
 }

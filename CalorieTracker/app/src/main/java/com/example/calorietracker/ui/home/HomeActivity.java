@@ -11,19 +11,24 @@ import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.fragment.BaseFragment;
+import com.example.calorietracker.helper.FileHelper;
+import com.example.calorietracker.helper.JSONReaderFactory;
+import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.ui.design.BottomNavigationViewHelper;
 import com.example.calorietracker.fragment.HomeInfo;
-import com.example.calorietracker.ui.design.ViewPagerAdapter;
+import com.example.calorietracker.adapter.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+
+import java.io.File;
 
 public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private MenuItem menuItem;
     private BottomNavigationView bottomNavigationView;
     private Administrator admin = new Administrator();
-    String frequency, name, gender, password;
+    String frequency, name, gender, password, path;
     int weight, age;
     float height;
 
@@ -32,16 +37,26 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Bundle data = getIntent().getExtras();
+        //Bundle data = getIntent().getExtras();
         Intent intent = getIntent();
+        JsReader student_reader;
 
-        frequency = intent.getStringExtra("frequency");
-        name = intent.getStringExtra("name");
-        gender = intent.getStringExtra("gender");
-        weight = intent.getIntExtra("weight",0);
-        height = intent.getFloatExtra("height",0);
-        age = intent.getIntExtra("age",0);
-        password = intent.getStringExtra("password");
+        path = intent.getStringExtra("path");
+        File file_path = new File(FileHelper.getFileDir(HomeActivity.this)+path);
+        JSONReaderFactory factory = new JSONReaderFactory();
+
+        try {
+            student_reader = factory.JSONReaderFactory(file_path);
+            Student student = (Student)student_reader.getProduct();
+            frequency = student.getFrequency();
+            age = student.getAge();
+            gender = student.getGender();
+            height = student.getHeight();
+            weight = student.getWeight();
+            name = student.getName();
+            } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -87,8 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        adapter.addFragment(HomeInfo.newInstance(name,gender,frequency,weight, height, age,password));
+        adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
         adapter.addFragment(BaseFragment.newInstance("Self-selected"));
         adapter.addFragment(BaseFragment.newInstance("Health mode"));
         adapter.addFragment(BaseFragment.newInstance("Report"));

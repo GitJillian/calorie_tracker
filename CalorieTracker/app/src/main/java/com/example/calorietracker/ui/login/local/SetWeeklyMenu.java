@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.calorietracker.R;
 import com.example.calorietracker.adapter.FoodAdapter;
+import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.helper.ConvertIcon;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
@@ -40,7 +42,7 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
     public static int cart_count = 0;
     com.example.calorietracker.adapter.FoodAdapter FoodAdapter;
     RecyclerView FoodRecyclerView;
-    JSONReaderFactory factory;
+    Button selectAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,8 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
         readDatabase();
         FoodAdapter = new FoodAdapter(arrayList, this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
-
+        selectAll = findViewById(R.id.button_submit);
+        Administrator admin = new Administrator();
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         FoodRecyclerView.setLayoutManager(gridLayoutManager);
@@ -57,23 +60,27 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
 
     }
 
-//TODO:REPLACE DATABASE
+
     private void readDatabase() {
 
         MenuReader menuReader;
 
+        ArrayList<FoodModel> models = new ArrayList<>();
+
         try{
         InputStream in = SetWeeklyMenu.this.getAssets().open("menu3.JSON");
+
         menuReader = new MenuReader(in);
         JSONArray jsonArray = menuReader.getFoodListJson();
-        for(int i = 0; i<jsonArray.length(); i++){
+        for(int i = 0; i<4; i++){
+
             FoodModel model = menuReader.transJsonToFood(jsonArray.getJSONObject(i));
             //TODO:AFTER ALL PICTURES FOUNDED, PLEASE ADD IT!
-            //model.setImagePath(FileHelper.getDrawable(SetWeeklyMenu.this,model.getName()));
+            model.setImagePath(FileHelper.getDrawable(SetWeeklyMenu.this,model.getName()));
+            models.add(model);
             arrayList.add(model);
         }
-
-
+        in.close();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -93,19 +100,17 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //  String name = item.get
-        //noinspection SimplifiableIfStatement
+
         switch (item.getItemId()) {
             case R.id.cart_action:
                 if (cart_count < 1) {
-                    Toast.makeText(this, "there is no item in cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Nothing is selected", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(this, CartActivity.class));
                 }
                 break;
+            case R.id.button_submit:
+                //TODO:MAKE SELECT ALL FUNCTION
             default:
                 return super.onOptionsItemSelected(item);
         }
