@@ -1,5 +1,6 @@
 Finish:
-
+write script and modify ppt for oral exam
+finish our d3 oral exam with our TA
 Create administrator user interface
 adding pictures according to the database we have
 
