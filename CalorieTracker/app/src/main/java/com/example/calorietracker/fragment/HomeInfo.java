@@ -124,6 +124,25 @@ public class HomeInfo extends Fragment {
 
         });
 */
+        btnEdit = (Button)view.findViewById(R.id.edit_profile);
+        btnLogout =(Button)view.findViewById(R.id.btn_logout);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), EditProfile.class);
+                intent.putExtra("path",getArguments().getString("path"));
+                startActivity(intent);
+            }
+        });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
 
     }
