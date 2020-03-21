@@ -19,6 +19,10 @@ public class StudentWriter extends JsWriter {
 
         super(file_out);
     }
+    
+    public void deleteStudent(Context context,String name){
+        context.deleteFile(name+".JSON");
+    }
 
     public void editStudent(Context context, Student student) throws FileNotFoundException, JSONException {
         FileInputStream in = new FileInputStream(this.output);
