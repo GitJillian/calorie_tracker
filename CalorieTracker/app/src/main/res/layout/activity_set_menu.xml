@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
+    <CheckBox
         android:id="@+id/button_submit"
         android:gravity="bottom"
         android:text="@string/submit"

@@ -292,7 +292,7 @@
       "sodium": "690",
       "protein": "17",
       "totalCarbohydrate": "29",
-      "name": "Chicken, Bacon &amp; Monterey Jack Wrap",
+      "name": "Chicken Bacon and Monterey Jack Wrap",
       "totalFat": "14",
       "servingSize": "152",
       "type": ""
@@ -479,7 +479,7 @@
       "sodium": "240",
       "protein": "6",
       "totalCarbohydrate": "34",
-      "name": "White Bread - 2 Slices",
+      "name": "White Bread 2 Slices",
       "totalFat": "1.5",
       "servingSize": "2",
       "type": ""
@@ -490,7 +490,7 @@
       "sodium": "240",
       "protein": "8",
       "totalCarbohydrate": "31",
-      "name": "Whole Wheat Bread - 2 Slices",
+      "name": "Whole Wheat Bread 2 Slices",
       "totalFat": "2",
       "servingSize": "2",
       "type": ""
@@ -523,7 +523,7 @@
       "sodium": "115",
       "protein": "5",
       "totalCarbohydrate": "21",
-      "name": "Chickpea &amp; Couscous Salad",
+      "name": "Chickpea Couscous Salad",
       "totalFat": "0.5",
       "servingSize": "4",
       "type": "Vegan"
@@ -721,7 +721,7 @@
       "sodium": "60",
       "protein": "6",
       "totalCarbohydrate": "16",
-      "name": "Saut&#233;ed Edamame, Corn, &amp; Black Beans",
+      "name": "Salted Edamame Corn and Black Beans",
       "totalFat": "2.5",
       "servingSize": "118",
       "type": "Vegan"
@@ -952,7 +952,7 @@
       "sodium": "280",
       "protein": "4",
       "totalCarbohydrate": "8",
-      "name": "B&#233;chamel Cream Sauce",
+      "name": "Bechamel Cream Sauce",
       "totalFat": "60",
       "servingSize": "3",
       "type": "Vegetarian"
@@ -1161,7 +1161,7 @@
       "sodium": "200",
       "protein": "4",
       "totalCarbohydrate": "5",
-      "name": "Broccoli &amp; Cheese Salad with Bacon",
+      "name": "Broccoli Cheese Salad with Bacon",
       "totalFat": "7",
       "servingSize": "4",
       "type": ""
@@ -1216,7 +1216,7 @@
       "sodium": "115",
       "protein": "5",
       "totalCarbohydrate": "21",
-      "name": "Chickpea & Couscous Salad",
+      "name": "Chickpea and Couscous Salad",
       "totalFat": "0.5",
       "servingSize": "4",
       "type": "Vegan"
@@ -1359,7 +1359,7 @@
       "sodium": "620",
       "protein": "5",
       "totalCarbohydrate": "28",
-      "name": "Cream of Potato &amp; Leek Soup",
+      "name": "Cream of Potato Leek Soup",
       "totalFat": "4",
       "servingSize": "8 ounces",
       "type": "Vegetarian"
@@ -1370,7 +1370,7 @@
       "sodium": "780",
       "protein": "8",
       "totalCarbohydrate": "12",
-      "name": "Gluten-Free Turkey Noodle Soup",
+      "name": "Gluten Free Turkey Noodle Soup",
       "totalFat": "2",
       "servingSize": "8 ounces",
       "type": ""

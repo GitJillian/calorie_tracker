@@ -21,12 +21,13 @@ public class StudentWriter extends JsWriter {
     }
 
     public void editStudent(Context context, Student student) throws FileNotFoundException, JSONException {
-        FileInputStream in = new FileInputStream(this.output);
-        StudentReader reader = new StudentReader(in);
+        //FileInputStream in = new FileInputStream(this.output);
+        StudentReader reader = new StudentReader(this.output);
 
-        JSONObject sample = reader.getObject();
+
         JSONObject old_student = reader.getStudent();
         JSONObject new_student = new JSONObject();
+        JSONObject new_sample = new JSONObject();
         JSONArray report = reader.getJSONArray();
 
         new_student.put("name",student.getName());
@@ -36,14 +37,15 @@ public class StudentWriter extends JsWriter {
         new_student.put("age",String.valueOf(student.getAge()));
         new_student.put("password",student.getPassword());
         new_student.put("frequency", student.getFrequency());
-        sample.put("info", new_student);
-        sample.put("report",report);
+        new_sample.put("info", new_student);
+        new_sample.put("report",report);
         if(!student.getName().equals(old_student.getString("name"))){
             File new_student_output = new File(FileHelper.getFileDir(context,"/"+student.getName()+".JSON"));
             super.writePath(new_student_output);
+            context.deleteFile(student.getName()+".JSON");
         }
-        writeFile(sample);
-        context.deleteFile(student.getName()+".JSON");
+        writeFile(new_sample);
+
 
     }
 
