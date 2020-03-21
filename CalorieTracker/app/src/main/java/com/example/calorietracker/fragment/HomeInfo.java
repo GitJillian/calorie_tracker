@@ -1,9 +1,11 @@
 package com.example.calorietracker.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,8 @@ import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
+import com.example.calorietracker.ui.login.LoginActivity;
+import com.example.calorietracker.ui.login.local.EditProfile;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
@@ -45,6 +49,7 @@ public class HomeInfo extends Fragment {
             weight = student.getWeight();
             password = student.getPassword();
             name = student.getName();
+            args.putString("path",path);
             args.putString("name", name);
             args.putFloat("height", height);
             args.putString("gender", gender);
@@ -80,6 +85,7 @@ public class HomeInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_info, null);
+        Button btnEdit,btnLogout;
         TextView name, gender, age, height, weight, frequency, bmi, bmr;
         name = view.findViewById(R.id.home_name);
         gender = view.findViewById(R.id.home_gender);
@@ -98,23 +104,23 @@ public class HomeInfo extends Fragment {
         heightStr = String.valueOf(heightFloat);
         ageInt = getArguments().getInt("age");
         ageStr = String.valueOf(ageInt);
-        age.setText("age: "+ageStr);
+        age.setText("Age: "+ageStr);
         frequencyStr = getArguments().getString("frequency");
-        frequency.setText("frequency: "+frequencyStr);
-        weight.setText("weight: "+weightStr);
-        height.setText("height: "+heightStr);
+        frequency.setText("Frequency: "+frequencyStr);
+        weight.setText("Weight: "+weightStr);
+        height.setText("Height: "+heightStr);
         genderStr = getArguments().getString("gender");
-        gender.setText("gender: "+genderStr);
+        gender.setText("Gender: "+genderStr);
         nameStr = getArguments().getString("name");
-        name.setText("name:" + nameStr);
+        name.setText("Name: " + nameStr);
         password = getArguments().getString("password");
         Student student = new Student(nameStr, genderStr,ageInt,frequencyStr, heightFloat, weightInt,password);
         bmiFloat = student.getBMI();
         bmrFloat = student.getBMR();
         bmiStr = String.valueOf(bmiFloat);
         bmrStr = String.valueOf(bmrFloat);
-        bmi.setText(bmiStr);
-        bmr.setText(bmrStr);
+        bmi.setText("Current BMI " + bmiStr);
+        bmr.setText("Current BMR "+bmrStr);
 
 /*        name.setOnClickListener(new View.OnClickListener() {
             @Override
