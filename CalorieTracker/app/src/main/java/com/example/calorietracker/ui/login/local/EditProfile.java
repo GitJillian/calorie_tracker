@@ -19,7 +19,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class EditProfile extends AppCompatActivity{
-    EditText usernameEditText, passwordEditText, heightEditText, weightEditText, ageEditText;
+    EditText heightEditText, weightEditText, ageEditText;
     RadioButton gender_female, gender_male, frequency_rarely, frequency_sometimes, frequency_medium, frequency_often, frequency_always;
     Button submit_button;
     Boolean gender = true;
@@ -29,14 +29,17 @@ public class EditProfile extends AppCompatActivity{
     float height;
     String name, password;
     StudentReader student_reader;
+    String path;
+    String oldName;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_user);
+        setContentView(R.layout.activity_edit_profile);
         setTitle("Edit Local User");
         view1 = findViewById(R.id.text_view_gender);
         view2 = findViewById(R.id.text_view_frequency);
-        usernameEditText = findViewById(R.id.new_user_name);
-        passwordEditText = findViewById(R.id.new_user_password);
+        //usernameEditText = findViewById(R.id.new_user_name);
+      //  passwordEditText = findViewById(R.id.new_user_password);
         heightEditText = findViewById(R.id.new_height);
         weightEditText = findViewById(R.id.new_weight);
         ageEditText = findViewById(R.id.new_age);
@@ -50,15 +53,17 @@ public class EditProfile extends AppCompatActivity{
         submit_button = findViewById(R.id.button_submit);
         //set previous information
         Intent intent = getIntent();
-        String path = intent.getExtras().getString("path");
+        path = intent.getExtras().getString("path");
         File file = new File(path);
         try {
             student_reader = new StudentReader(file);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        usernameEditText.setText(student_reader.getStudentName());
-        passwordEditText.setText(student_reader.getPassword());
+        oldName = student_reader.getStudentName();
+        password = student_reader.getPassword();
+       // usernameEditText.setText(student_reader.getStudentName());
+      //  passwordEditText.setText(student_reader.getPassword());
         heightEditText.setText(student_reader.getStudentHeight());
         weightEditText.setText(student_reader.getStudentWeight());
         ageEditText.setText(student_reader.getStudentAge());
@@ -66,23 +71,131 @@ public class EditProfile extends AppCompatActivity{
         String stringGender = student_reader.getStudentGender();
         frequency = student_reader.getFrequency();
 
+        //get previous information
         if(stringGender.equals("Female")){
             gender_female.setChecked(true);
         }else{
             gender_male.setChecked(true);
         }
-        if(frequency.equals("rarely")){}
-
-
+        if(frequency.equals("rarely")){
+            frequency_rarely.setChecked(true);
+        }
+        else if(frequency.equals("sometimes")){
+            frequency_sometimes.setChecked(true);
+        }
+        else if(frequency.equals("medium")){
+            frequency_medium.setChecked(true);
+        }
+        else if(frequency.equals("often")){
+            frequency_often.setChecked(true);
+        }
+        else{
+            frequency_always.setChecked(true);
+        }
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (gender_female.isChecked()) {
+                    gender = true;
+                } else if (gender_male.isChecked()) {
+                    gender = false;
+                }
+                if (!gender_female.isChecked() && !gender_male.isChecked()) {
+                    Toast.makeText(EditProfile.this, "Please choose gender", Toast.LENGTH_LONG).show();
+                }
+                if (frequency_rarely.isChecked()) {
+                    frequency = "rarely";
+                } else if (frequency_sometimes.isChecked()) {
+                    frequency = "sometimes";
+                } else if (frequency_medium.isChecked()) {
+                    frequency = "medium";
+                } else if (frequency_often.isChecked()) {
+                    frequency = "often";
+                } else {
+                    frequency = "always";
+                }
+                if (frequency == "") {
+                    frequency = "medium";
+                }
+                FileHelper helper = new FileHelper();
+                try {
+                    checkInput(heightEditText, weightEditText, gender, ageEditText, frequency);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
     }
 
+    public boolean checkInput(EditText heightEditText, EditText weightEditText, boolean gender,
+                              EditText ageEditText, String frequency) throws IOException {
+        String sex;
+        int age, weight;
+        float height;
+        boolean flag = false;
+        File file_file = new File(path);
 
+        StudentWriter student_writer = new StudentWriter(file_file);
+        try {
+            age = Integer.parseInt(ageEditText.getText().toString());
+            //  name = nameEditText.getText().toString();
+            // password = passwordEditText.getText().toString();
+            height = Float.parseFloat(heightEditText.getText().toString());
+            weight = Integer.parseInt(weightEditText.getText().toString());
+            if (frequency == "") {
+                frequency = "medium";
+            }
+            flag = true;
+            Intent intent = new Intent(EditProfile.this, HomeActivity.class);
+            //Bundle bundle = new
+
+            if (gender == true) {
+                sex = "Female";
+            } else {
+                sex = "Male";
+            }
+
+            File file = new File(path);
+            try {
+                student_reader = new StudentReader(file);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Toast.makeText(EditProfile.this, "Switching to Home Page", Toast.LENGTH_LONG).show();
+            FileOutputStream is = new FileOutputStream(file_file);
+
+            ArrayList<Report> report = student_reader.getArray();
+            Student student = new Student(oldName, sex, age, frequency, height, weight, password);
+
+            student_writer.deleteStudent(EditProfile.this,oldName);
+            student_writer.writeStudent(student,report);
+
+            //student_writer.editStudent(EditProfile.this,student);
+
+            //for(int i=0;i<report.size();i++){
+            //  student_writer.addReport(report.get(i));
+            //  }
+            //
+            intent.putExtra("path","/" + transName(oldName) + ".JSON");
+            startActivity(intent);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // catch(FileNotFoundException | JSONException e){
+        //     flag = false;
+        //       e.printStackTrace();
+        //   }
+
+        return flag;
+    }
+    private String transName(String name){
+        String str = name.replace(' ','_');
+        return str;
+    }
 }
+
