@@ -28,10 +28,7 @@ public class StudentWriter extends JsWriter {
         JSONObject old_student = reader.getStudent();
         JSONObject new_student = new JSONObject();
         JSONArray report = reader.getJSONArray();
-        if(!student.getName().equals(old_student.getString("name"))){
-            File new_student_output = new File(FileHelper.getFileDir(context,"/"+student.getName()+".JSON"));
-            super.writePath(new_student_output);
-        }
+
         new_student.put("name",student.getName());
         new_student.put("gender",student.getGender());
         new_student.put("height",String.valueOf(student.getHeight()));
@@ -39,11 +36,14 @@ public class StudentWriter extends JsWriter {
         new_student.put("age",String.valueOf(student.getAge()));
         new_student.put("password",student.getPassword());
         new_student.put("frequency", student.getFrequency());
-
         sample.put("info", new_student);
         sample.put("report",report);
+        if(!student.getName().equals(old_student.getString("name"))){
+            File new_student_output = new File(FileHelper.getFileDir(context,"/"+student.getName()+".JSON"));
+            super.writePath(new_student_output);
+        }
         writeFile(sample);
-
+        context.deleteFile(student.getName()+".JSON");
 
     }
 
