@@ -1,0 +1,9 @@
+Finish:
+
+Create administrator user interface
+adding pictures according to the database we have
+
+
+Challenge:
+improve personal information ui
+go on with Ziyang's health mode
