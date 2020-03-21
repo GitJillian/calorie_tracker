@@ -53,7 +53,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
         viewHolder.FoodName.setText(FoodsArray.get(i).getName());
 
-        viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, FoodsArray.get(i).imagePath));
+        viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, FoodsArray.get(i).getImagePath()));
 
         viewHolder.FoodImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +129,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                                     cartModels.get(i).setFoodQuantity(cartModels.get(j).getFoodQuantity());
                                     cartModels.get(i).setTotalCalorie(cartModels.get(j).getTotalCalorie());
                                     cartModels.get(i).setFoodName(cartModels.get(j).getFoodName());
-                                    //          cartModels.get(i).setImageIdSlide(cartModels.get(j).getImageIdSlide());
                                     cartModels.remove(j);
                                     j--;
                                     Log.d("remove", String.valueOf(cartModels.size()));

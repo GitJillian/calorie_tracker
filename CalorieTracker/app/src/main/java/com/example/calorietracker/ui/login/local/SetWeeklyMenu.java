@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -39,10 +42,12 @@ import java.util.ArrayList;
 public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.CallBackUs, FoodAdapter.HomeCallBack {
 
     public static ArrayList<FoodModel> arrayList = new ArrayList<>();
+    public ArrayList<FoodModel> checkedFood = new ArrayList<>();
     public static int cart_count = 0;
     com.example.calorietracker.adapter.FoodAdapter FoodAdapter;
     RecyclerView FoodRecyclerView;
-    Button selectAll;
+    //Button selectAll;
+    CheckBox selectAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +57,28 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
         FoodAdapter = new FoodAdapter(arrayList, this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
         selectAll = findViewById(R.id.button_submit);
-        Administrator admin = new Administrator();
+
+        selectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectAll.isChecked()){
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        arrayList.get(i).setSelected(true);
+                    }
+                }else{
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        arrayList.get(i).setSelected(false);
+                    }
+                }
+                FoodAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         FoodRecyclerView.setLayoutManager(gridLayoutManager);
         FoodRecyclerView.setAdapter(FoodAdapter);
+
 
     }
 
@@ -72,7 +94,7 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
 
         menuReader = new MenuReader(in);
         JSONArray jsonArray = menuReader.getFoodListJson();
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<jsonArray.length(); i++){
 
             FoodModel model = menuReader.transJsonToFood(jsonArray.getJSONObject(i));
             //TODO:AFTER ALL PICTURES FOUNDED, PLEASE ADD IT!

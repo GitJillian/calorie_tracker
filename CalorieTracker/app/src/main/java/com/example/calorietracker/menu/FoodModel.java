@@ -2,16 +2,17 @@ package com.example.calorietracker.menu;
 
 
 public class FoodModel {
-    public String type;
-    public String sodium;
-    public String servingSize;
-    public String sugar;
-    public String protein;
-    public String totalCarbon;
-    public String foodName;
-    public String calorie;
-    public String fats;
-    public int imagePath;
+    private String type;
+    private String sodium;
+    private String servingSize;
+    private String sugar;
+    private String protein;
+    private String totalCarbon;
+    private String foodName;
+    private String calorie;
+    private String fats;
+    private int imagePath;
+    private boolean isSelected;
 
     public FoodModel(String foodName, String calorie, String fats, int imagePath) {
         this.foodName = foodName;
@@ -32,6 +33,8 @@ public class FoodModel {
         this.totalCarbon = totalCarbon;
         this.imagePath = imagePath;
     }
+    public void setSelected(boolean selected){this.isSelected = selected;}
+    public boolean getSelected(){return this.isSelected;}
     public void setName(String foodName) {
         this.foodName = foodName;
     }
