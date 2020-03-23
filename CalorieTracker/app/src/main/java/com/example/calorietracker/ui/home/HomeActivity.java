@@ -105,7 +105,8 @@ public class HomeActivity extends AppCompatActivity {
         adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
         adapter.addFragment(BaseFragment.newInstance("Self-selected"));
         adapter.addFragment(BaseFragment.newInstance("Health mode"));
-        adapter.addFragment(BaseFragment.newInstance("Report"));
+        //adapter.addFragment(BaseFragment.newInstance("Report"));
+        adapter.addFragment(ReportMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
         viewPager.setAdapter(adapter);
     }
 }
