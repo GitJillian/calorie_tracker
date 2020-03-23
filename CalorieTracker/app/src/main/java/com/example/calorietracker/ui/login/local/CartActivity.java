@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,24 +18,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.calorietracker.R;
 import com.example.calorietracker.adapter.CartAdapter;
+import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.menu.FoodImage;
+import com.example.calorietracker.menu.FoodModel;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.calorietracker.adapter.FoodAdapter.cartModels;
-
+import static com.example.calorietracker.adapter.FoodAdapter.FoodArrayPublish;
 
 public class CartActivity extends AppCompatActivity {
 
-    public static TextView grandTotal;
+   // public static TextView grandTotal;
     public static int grandTotalplus;
-
+    public static ArrayList<FoodModel> modelArrayList;
     public static ArrayList<FoodImage> temparraylist;
     RecyclerView cartRecyclerView;
     CartAdapter cartAdapter;
-    LinearLayout proceedToBook;
-    Context context;
+    Button proceedToBook;
     private Toolbar mToolbar;
+    Administrator admin;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -42,16 +46,15 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        context = this;
         temparraylist = new ArrayList<>();
-
+        admin = new Administrator();
         proceedToBook = findViewById(R.id.proceed_to_book);
-        grandTotal = findViewById(R.id.grand_total_cart);
+        //grandTotal = findViewById(R.id.grand_total_cart);
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Generate Weekly Menu");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Weekly Menu");
 
 
         mToolbar = findViewById(R.id.toolbar);
@@ -64,16 +67,11 @@ public class CartActivity extends AppCompatActivity {
 
                 cartModels.addAll(temparraylist);
                 SetWeeklyMenu.cart_count = (temparraylist.size());
-//                addItemInCart.clear();
+
                 finish();
             }
         });
         SetWeeklyMenu.cart_count = 0;
-
-        //addInCart();
-
-        Log.d("sizecart_1", String.valueOf(temparraylist.size()));
-        Log.d("sizecart_2", String.valueOf(cartModels.size()));
 
         // from these lines of code we remove the duplicacy of cart and set last added quantity in cart
         // for replace same item
@@ -85,23 +83,22 @@ public class CartActivity extends AppCompatActivity {
                     cartModels.get(i).setFoodName(cartModels.get(j).getFoodName());
                     cartModels.remove(j);
                     j--;
-                    Log.d("remove", String.valueOf(cartModels.size()));
 
                 }
             }
 
         }
+        //FoodArrayPublish.addAll(modelArrayList);
         temparraylist.addAll(cartModels);
         cartModels.clear();
-        Log.d("sizecart_11", String.valueOf(temparraylist.size()));
-        Log.d("sizecart_22", String.valueOf(cartModels.size()));
+
         // this code is for get total Calorie
         for (int i = 0; i < temparraylist.size(); i++) {
             grandTotalplus += temparraylist.get(i).getTotalCalorie();
         }
-        grandTotal.setText("Total Calorie"+ grandTotalplus);
+//        grandTotal.setText("Total Calorie"+ grandTotalplus);
         cartRecyclerView = findViewById(R.id.recycler_view_cart);
-        cartAdapter = new CartAdapter(temparraylist, this);
+        cartAdapter = new CartAdapter(temparraylist, modelArrayList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         cartRecyclerView.setLayoutManager(mLayoutManager);
         cartRecyclerView.setAdapter(cartAdapter);
@@ -110,8 +107,12 @@ public class CartActivity extends AppCompatActivity {
         proceedToBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CartActivity.this, "Confirm your meal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, "Confirm", Toast.LENGTH_SHORT).show();
+              //  admin.writeDataBase(CartActivity.this, FoodArrayPublish);
+                admin.writeDataBaseImage(CartActivity.this,temparraylist);
+                FoodArrayPublish.clear();
                 temparraylist.clear();
+                cartRecyclerView.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -127,6 +128,8 @@ public class CartActivity extends AppCompatActivity {
         }
         cartModels.addAll(temparraylist);
     }
+
+
 
 
 }

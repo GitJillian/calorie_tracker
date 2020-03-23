@@ -37,4 +37,5 @@
     <string name="item">Food</string>>
     <string name="submit_menu">submit weekly menu</string>
     <string name="server_client_id">523448643163-p8q6fguhdidlvuouoiug214d9gq19hgr.apps.googleusercontent.com</string>
+    <string name="confirm">Confirm</string>
 </resources>

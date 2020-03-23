@@ -35,7 +35,7 @@ public class EditProfile extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        setTitle("Edit Local User");
+        setTitle("Edit Profile");
         view1 = findViewById(R.id.text_view_gender);
         view2 = findViewById(R.id.text_view_frequency);
         //usernameEditText = findViewById(R.id.new_user_name);

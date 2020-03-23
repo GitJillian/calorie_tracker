@@ -1,5 +1,7 @@
 package com.example.calorietracker.ui.home;
 
+import java.util.Calendar;
+import java.text.*;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.fragment.BaseFragment;
+import com.example.calorietracker.fragment.SelfSelectedMode;
+import com.example.calorietracker.helper.DateHelper;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
@@ -22,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 
 import java.io.File;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -31,13 +36,18 @@ public class HomeActivity extends AppCompatActivity {
     String frequency, name, gender, password, path;
     int weight, age;
     float height;
+    Date today;
+    String todayStr;
+    Calendar calendar = Calendar.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        todayStr = DateHelper.getTodayFormat();
         setContentView(R.layout.activity_home);
-        //Bundle data = getIntent().getExtras();
         Intent intent = getIntent();
         JsReader student_reader;
 
@@ -102,8 +112,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
-        adapter.addFragment(BaseFragment.newInstance("Self-selected"));
+        adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
+        adapter.addFragment(SelfSelectedMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
         adapter.addFragment(BaseFragment.newInstance("Health mode"));
         adapter.addFragment(BaseFragment.newInstance("Report"));
         viewPager.setAdapter(adapter);

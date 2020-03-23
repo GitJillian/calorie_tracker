@@ -83,24 +83,32 @@ public class Student implements Parcelable {
 
     public float getBMI() {
         this.BMI = this.weight / (this.height * this.height);
-        this.BMI = ((float) (Math.round(this.BMI * 100)) / 100);
+        this.BMI = ((float) (Math.round(this.BMI * 10)) / 10);
         return this.BMI;
     }
 
-    public float[] getBMRPropotion() {
+    public int[] getBMRPropotion() {
         float bmr = this.getBMR();
-        final float[] arr = new float[3];
+        final int[] arr = new int[3];
         if (this.frequency.equals("rarely") || this.frequency.equals("sometimes") || this.frequency.equals("medium")) {
-            arr[0] = ((float) (Math.round(bmr * 100 * 0.3)) / 100);
-            arr[1] = ((float) (Math.round(bmr * 100 * 0.4)) / 100);
-            arr[2] = ((float) (Math.round(bmr * 100 * 0.3)) / 100);
+            arr[0] = (int)((float) (Math.round(bmr * 100 * 0.3)) / 100);
+            arr[1] = (int)((float) (Math.round(bmr * 100 * 0.4)) / 100);
+            arr[2] = (int)((float) (Math.round(bmr * 100 * 0.3)) / 100);
         } else {
 
-            arr[0] = ((float) (Math.round(bmr * 100 * 0.4)) / 100);
-            arr[1] = ((float) (Math.round(bmr * 100 * 0.4)) / 100);
-            arr[2] = ((float) (Math.round(bmr * 100 * 0.2)) / 100);
+            arr[0] = (int)((float) (Math.round(bmr * 100 * 0.4)) / 100);
+            arr[1] = (int)((float) (Math.round(bmr * 100 * 0.4)) / 100);
+            arr[2] = (int)((float) (Math.round(bmr * 100 * 0.2)) / 100);
         }
         return arr;
+    }
+
+    public int getLowerBound(int calorie){
+        return calorie - 50;
+    }
+
+    public int getUpperBound(int calorie){
+        return calorie + 50;
     }
 
     public String getEmail() {
@@ -139,11 +147,25 @@ public class Student implements Parcelable {
         } else {
             bmr = 66.47f + (this.weight * 13.7f + 5f * this.height) - 6.8f * this.age;
         }
-        this.BMR = ((float) (Math.round(bmr * 100 * value)) / 100);
+        this.BMR = ((float) (Math.round(bmr * 10 * value)) / 10);
         return this.BMR;
     }
+    public String getBmiString(){
+        if(this.getBMI()<18.5f){
+            return "Lower than standard";
+        }
+        else if(this.getBMI()>=18.5f && this.getBMI()<=24.9f){
+            return "Perfectly standardized!";
+        }
+        else if(this.getBMI()>24.9f&&this.getBMI()<27.0f){
+            return "A little higher than standard";
+        }
+        else{
+            return "Higher than standard";
+        }
+    }
 
-    public int getAge() {
+   public int getAge() {
         return this.age;
     }
 

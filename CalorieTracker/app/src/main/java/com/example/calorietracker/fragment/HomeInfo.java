@@ -1,33 +1,32 @@
 package com.example.calorietracker.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Student;
-import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.ui.login.LoginActivity;
 import com.example.calorietracker.ui.login.local.EditProfile;
-import com.google.android.material.snackbar.Snackbar;
+import com.github.siyamed.shapeimageview.CircularImageView;
 
 import org.json.JSONException;
 
 import java.io.File;
 
 public class HomeInfo extends Fragment {
-    /*String name, frequency, gender;
-    int weight,age;
-    float height;*/
 
-    public static HomeInfo newInstance(String path){
+
+    public static HomeInfo newInstance(String path, String date){
         File file_path = new File(path);
         JSONReaderFactory factory = new JSONReaderFactory();
         JsReader student_reader;
@@ -57,6 +56,7 @@ public class HomeInfo extends Fragment {
             args.putInt("weight", weight);
             args.putInt("age", age);
             args.putString("password",password);
+            args.putString("date",date);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -66,53 +66,56 @@ public class HomeInfo extends Fragment {
 
     }
 
-    public static HomeInfo newInstance(String name, String gender, String frequency, int weight, float height, int age, String password){
-        Bundle args = new Bundle();
-        HomeInfo fragment = new HomeInfo();
-        args.putString("name", name);
-        args.putFloat("height", height);
-        args.putString("gender", gender);
-        args.putString("frequency", frequency);
-        args.putInt("weight", weight);
-        args.putInt("age", age);
-        args.putString("password",password);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_info, null);
-        Button btnEdit,btnLogout;
-        TextView name, gender, age, height, weight, frequency, bmi, bmr;
+        View view = inflater.inflate(R.layout.home_info_new, null);
+        //Button btnEdit,btnLogout;
+        ImageButton btnEdit, btnLogout;
+        TextView date, name, gender, age, height, weight, frequency, bmi, bmr, bmrBreakfast,bmrLunch, bmrDinner, bmiHint;
+        int weightInt, ageInt;
+        float heightFloat, bmiFloat, bmrFloat;
+        int bmr_breakfast,bmr_lunch,bmr_dinner ;
+        String dateStr,nameStr, ageStr, heightStr,weightStr,frequencyStr, genderStr, bmiStr, bmrStr, password;
+        CircularImageView imageView;
+        imageView = view.findViewById(R.id.imageView);
+        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/user_icon");
+        Glide.with(this).load(String.valueOf(uri)).into(imageView);
+
+
+        date = view.findViewById(R.id.home_date);
         name = view.findViewById(R.id.home_name);
-        gender = view.findViewById(R.id.home_gender);
+
+        bmi = view.findViewById(R.id.home_bmi);
+       // bmr =  view.findViewById(R.id.home_bmr);
+        bmiHint = view.findViewById(R.id.home_bmi_hint);
+        bmrBreakfast = view.findViewById(R.id.home_bmr_breakfast);
+        bmrLunch = view.findViewById(R.id.home_bmr_lunch);
+        bmrDinner = view.findViewById(R.id.home_bmr_dinner);
+
+        /* gender = view.findViewById(R.id.home_gender);
         age =  view.findViewById(R.id.home_age);
         height = view.findViewById(R.id.home_height);
         weight =view.findViewById(R.id.home_weight);
-        frequency =  view.findViewById(R.id.home_frequency);
-        bmi = view.findViewById(R.id.home_bmi);
-        bmr =  view.findViewById(R.id.home_bmr);
-        String nameStr, ageStr, heightStr,weightStr,frequencyStr, genderStr, bmiStr, bmrStr, password;
-        int weightInt, ageInt;
-        float heightFloat, bmiFloat, bmrFloat;
+        frequency =  view.findViewById(R.id.home_frequency);*/
+
+
         weightInt = getArguments().getInt("weight");
-        weightStr = String.valueOf(weightInt);
+        //weightStr = String.valueOf(weightInt);
         heightFloat = getArguments().getFloat("height");
-        heightStr = String.valueOf(heightFloat);
+       // heightStr = String.valueOf(heightFloat);
         ageInt = getArguments().getInt("age");
-        ageStr = String.valueOf(ageInt);
-        age.setText("Age: "+ageStr);
+       // ageStr = String.valueOf(ageInt);
+        //age.setText("Age: "+ageStr);
         frequencyStr = getArguments().getString("frequency");
-        frequency.setText("Frequency: "+frequencyStr);
-        weight.setText("Weight: "+weightStr);
-        height.setText("Height: "+heightStr);
+        //frequency.setText("Frequency: "+frequencyStr);
+        //weight.setText("Weight: "+weightStr);
+       // height.setText("Height: "+heightStr);
         genderStr = getArguments().getString("gender");
-        gender.setText("Gender: "+genderStr);
+        //gender.setText("Gender: "+genderStr);
         nameStr = getArguments().getString("name");
-        name.setText("Name: " + nameStr);
+        name.setText("Welcome, "+nameStr);
         password = getArguments().getString("password");
         Student student = new Student(nameStr, genderStr,ageInt,frequencyStr, heightFloat, weightInt,password);
         bmiFloat = student.getBMI();
@@ -120,18 +123,21 @@ public class HomeInfo extends Fragment {
         bmiStr = String.valueOf(bmiFloat);
         bmrStr = String.valueOf(bmrFloat);
         bmi.setText("Current BMI " + bmiStr);
-        bmr.setText("Current BMR "+bmrStr);
+//        bmr.setText("Current BMR "+bmrStr);
+        bmiHint.setText(student.getBmiString());
+        dateStr = getArguments().getString("date");
+        date.setText("Today, "+dateStr);
+        int[] bmr_portion = student.getBMRPropotion();
+        bmr_breakfast = bmr_portion[0];
+        bmr_lunch = bmr_portion[1];
+        bmr_dinner = bmr_portion[2];
+        bmrBreakfast.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_breakfast))+"~"+String.valueOf(student.getUpperBound(bmr_breakfast))+" cals");
+        bmrLunch.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_lunch))+"~"+String.valueOf(student.getUpperBound(bmr_lunch))+" cals");
+        bmrDinner.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_dinner))+"~"+String.valueOf(student.getUpperBound(bmr_dinner))+" cals");
 
-/*        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Don't click me.please!.", Snackbar.LENGTH_SHORT).show();
-            }
 
-        });
-*/
-        btnEdit = (Button)view.findViewById(R.id.edit_profile);
-        btnLogout =(Button)view.findViewById(R.id.btn_logout);
+        btnEdit = (ImageButton)view.findViewById(R.id.setting);
+        btnLogout =(ImageButton)view.findViewById(R.id.log_out);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
