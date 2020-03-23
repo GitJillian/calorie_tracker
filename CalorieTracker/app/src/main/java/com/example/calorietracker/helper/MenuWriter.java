@@ -1,6 +1,10 @@
 package com.example.calorietracker.helper;
 
+import android.content.Context;
+
+import com.example.calorietracker.menu.FoodImage;
 import com.example.calorietracker.menu.FoodModel;
+import com.example.calorietracker.ui.login.local.SetWeeklyMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +18,34 @@ public class MenuWriter extends JsWriter {
 
     public MenuWriter(File file_out){
         super(file_out);
+    }
+
+    public void writeFoodImageArray(Context context, ArrayList<FoodImage> FoodArray){
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<FoodModel> modelArrayList = new ArrayList<>();
+        for(FoodImage image:FoodArray){
+            names.add(image.getFoodName());
+        }
+
+        try{
+            InputStream in = context.getAssets().open("menu3.JSON");
+            MenuReader menuReader = new MenuReader(in);
+            ArrayList<FoodModel> origin_models = menuReader.getFoodList();
+            for(FoodModel model:origin_models){
+                for(String name:names){
+                    if(name.equals(model.getName())){
+                        modelArrayList.add(model);
+
+                    }
+                }
+            }
+            writeFoodArray(modelArrayList);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -41,7 +73,6 @@ public class MenuWriter extends JsWriter {
     public void writeFoodArray(ArrayList<FoodModel> foodList) {
 
         JSONObject sample = new JSONObject();
-        FileWriter writer =null;
 
         try{
             JSONArray foods = new JSONArray();

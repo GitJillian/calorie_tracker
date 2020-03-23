@@ -22,7 +22,6 @@ import com.example.calorietracker.adapter.FoodAdapter;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.helper.ConvertIcon;
 import com.example.calorietracker.helper.FileHelper;
-import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
 import com.example.calorietracker.menu.FoodModel;
@@ -42,37 +41,32 @@ import java.util.ArrayList;
 public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.CallBackUs, FoodAdapter.HomeCallBack {
 
     public static ArrayList<FoodModel> arrayList = new ArrayList<>();
-    public ArrayList<FoodModel> checkedFood = new ArrayList<>();
+    public static ArrayList<FoodModel> checkedFood = new ArrayList<>();
     public static int cart_count = 0;
     com.example.calorietracker.adapter.FoodAdapter FoodAdapter;
     RecyclerView FoodRecyclerView;
-    //Button selectAll;
-    CheckBox selectAll;
+
+    Button selectAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_menu);
 
         readDatabase();
-        FoodAdapter = new FoodAdapter(arrayList, this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
+
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
         selectAll = findViewById(R.id.button_submit);
 
         selectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectAll.isChecked()){
                     for (int i = 0; i < arrayList.size(); i++) {
-                        arrayList.get(i).setSelected(true);
+                        checkedFood.add(arrayList.get(i));
                     }
-                }else{
-                    for (int i = 0; i < arrayList.size(); i++) {
-                        arrayList.get(i).setSelected(false);
-                    }
-                }
                 FoodAdapter.notifyDataSetChanged();
             }
         });
+        FoodAdapter = new FoodAdapter(arrayList, checkedFood,this, (com.example.calorietracker.adapter.FoodAdapter.HomeCallBack) this);
 
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
@@ -97,7 +91,7 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
         for(int i = 0; i<jsonArray.length(); i++){
 
             FoodModel model = menuReader.transJsonToFood(jsonArray.getJSONObject(i));
-            //TODO:AFTER ALL PICTURES FOUNDED, PLEASE ADD IT!
+
             model.setImagePath(FileHelper.getDrawable(SetWeeklyMenu.this,model.getName()));
             models.add(model);
             arrayList.add(model);
@@ -120,6 +114,7 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -131,8 +126,9 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
                     startActivity(new Intent(this, CartActivity.class));
                 }
                 break;
-            case R.id.button_submit:
+           // case R.id.select_all:
                 //TODO:MAKE SELECT ALL FUNCTION
+
             default:
                 return super.onOptionsItemSelected(item);
         }

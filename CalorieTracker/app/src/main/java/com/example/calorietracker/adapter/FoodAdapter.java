@@ -29,16 +29,18 @@ import java.util.ArrayList;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     public static ArrayList<FoodModel> FoodsArray;
+    public static ArrayList<FoodModel> FoodArrayPublish;
     public static ArrayList<FoodImage> cartModels = new ArrayList<FoodImage>();
     public static FoodImage cartModel;
     private Context context;
     private CallBackUs mCallBackus;
     private HomeCallBack homeCallBack;
 
-    public FoodAdapter(ArrayList<FoodModel> FoodsArray, Context context, HomeCallBack mCallBackus) {
+    public FoodAdapter(ArrayList<FoodModel> FoodsArray,ArrayList<FoodModel> FoodArrayPublish, Context context, HomeCallBack mCallBackus) {
         this.FoodsArray = FoodsArray;
         this.context = context;
         this.homeCallBack = mCallBackus;
+        this.FoodArrayPublish = FoodArrayPublish;
     }
 
     @NonNull
@@ -116,9 +118,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                         cartModel.setFoodName(arrayList.get(i).getName());
                         cartModel.setTotalCalorie(cartCounter[0] *
                                 Integer.parseInt(arrayList.get(i).getCalorie()));
-                        Log.d("pos", String.valueOf(i));
 
                         cartModels.add(cartModel);
+                        FoodArrayPublish.add(arrayList.get(i));
 
 //
                         // from these lines of code we update badge count value
@@ -131,7 +133,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                                     cartModels.get(i).setFoodName(cartModels.get(j).getFoodName());
                                     cartModels.remove(j);
                                     j--;
-                                    Log.d("remove", String.valueOf(cartModels.size()));
+
 
                                 }
                             }
@@ -157,7 +159,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                                     cartModels.get(i).setFoodName(cartModels.get(j).getFoodName());
                                     cartModels.remove(j);
                                     j--;
-                                    Log.d("remove", String.valueOf(cartModels.size()));
 
                                 }
                             }

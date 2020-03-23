@@ -16,20 +16,23 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.calorietracker.R;
 import com.example.calorietracker.menu.FoodImage;
+import com.example.calorietracker.menu.FoodModel;
 
 
 import java.util.ArrayList;
 import static com.example.calorietracker.ui.login.local.CartActivity.temparraylist;
-import static com.example.calorietracker.ui.login.local.CartActivity.grandTotal;
+//import static com.example.calorietracker.ui.login.local.CartActivity.grandTotal;
 import static com.example.calorietracker.ui.login.local.CartActivity.grandTotalplus;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     ArrayList<FoodImage> cartModelArrayList;
+    ArrayList<FoodModel> cartPublishArrayList;
     Context context;
 
-    public CartAdapter(ArrayList<FoodImage> cartModelArrayList, Context context) {
+    public CartAdapter(ArrayList<FoodImage> cartModelArrayList, ArrayList<FoodModel> modelArrayList, Context context) {
         this.context = context;
         this.cartModelArrayList = cartModelArrayList;
+        this.cartPublishArrayList = modelArrayList;
     }
 
 
@@ -61,24 +64,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 if (cartModelArrayList.size() == 1) {
-                    cartModelArrayList.remove(position);
+                    FoodImage removed = cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
+
                     grandTotalplus = 0;
-                    grandTotal.setText(grandTotalplus);
+                   // grandTotal.setText(grandTotalplus);
                 }
 
                 if (cartModelArrayList.size() > 0) {
-                    cartModelArrayList.remove(position);
+                    FoodImage removed = cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
+
                     grandTotalplus = 0;
                     for (int i = 0; i < temparraylist.size(); i++) {
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
 
-                    Log.d("total calories", String.valueOf(grandTotalplus));
-                    grandTotal.setText(String.valueOf(grandTotalplus));
+
+                  //  grandTotal.setText(String.valueOf(grandTotalplus));
 
                 } else {
                     Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
@@ -95,7 +100,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 holder.cartDecrement.setEnabled(true);
 
                 int cartUpdateCounter = (cartModelArrayList.get(position).getFoodQuantity());
-                Log.d("counterthegun", String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
+
 
                 holder.cartIncrement.setEnabled(true);
                 cartUpdateCounter += 1;
@@ -112,9 +117,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 for (int i = 0; i < temparraylist.size(); i++) {
                     grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                 }
-                Log.d("totalcashthegun", String.valueOf(grandTotalplus));
 
-                grandTotal.setText(String.valueOf(grandTotalplus));
+
+               // grandTotal.setText(String.valueOf(grandTotalplus));
 
             }
 
@@ -129,7 +134,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 holder.cartIncrement.setEnabled(true);
 
                 int cartUpdateCounter = (cartModelArrayList.get(position).getFoodQuantity());
-                Log.d("counterthegun", String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
+
 
 
                 if (cartUpdateCounter == 1) {
@@ -145,12 +150,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     cartModelArrayList.get(position).setTotalCalorie(calorie);
                     holder.FoodCartPrice.setText(String.valueOf(calorie));
                     for (int i = 0; i < temparraylist.size(); i++) {
-                      Log.d("totalcashthegun", String.valueOf(grandTotalplus));
+
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
 
 
-                   grandTotal.setText(String.valueOf(grandTotalplus));
+                 //  grandTotal.setText(String.valueOf(grandTotalplus));
 
                 }
             }
@@ -159,7 +164,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.d("sizecart", String.valueOf(cartModelArrayList.size()));
+
         return cartModelArrayList.size();
     }
 

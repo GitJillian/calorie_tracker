@@ -25,18 +25,18 @@
 
 
         <activity
-                andriod:label="Calorie Tracker" android:name=".ui.home.HomeActivity"/>
+                android:name=".ui.home.HomeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity
                 andriod:label="Calorie Tracker" android:name=".ui.login.google.GoogleAccountInfo" />
         <activity
                 android:name=".ui.login.google.NewGoogleAccount" andriod:label="Calorie Tracker"/>
         <activity
-                android:name=".ui.login.local.EditProfile"/>
+                android:name=".ui.login.local.EditProfile" />
         <activity android:name=".ui.login.local.AdminActivity" android:label="Calorie Tracker"/>
 
         <activity android:name=".ui.login.local.CartActivity" android:label="Calorie Tracker" android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".ui.login.local.SetWeeklyMenu" android:label="Calorie Tracker"/>
+        <activity android:name=".ui.login.local.SetWeeklyMenu" android:label="Set Weekly Menu"/>
 
     </application>
 

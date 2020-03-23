@@ -12,14 +12,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class SelfSelectedMode extends Fragment {
 
-    public static BaseFragment newInstance(String info) {
+    public static SelfSelectedMode newInstance(String path,String date) {
 
         Bundle args = new Bundle();
-
-        BaseFragment fragment = new BaseFragment();
-
-        args.putString("info", info);
-
+        SelfSelectedMode fragment = new SelfSelectedMode();
+        args.putString("date", date);
+        args.putString("path",path);
         fragment.setArguments(args);
 
         return fragment;
