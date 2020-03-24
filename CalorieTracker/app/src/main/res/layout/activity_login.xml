@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fadeScrollbars="true"
-
-
+    android:background="@drawable/back_health"
     tools:context=".ui.login.LoginActivity">
 
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
         android:hint="@string/prompt_name"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
@@ -28,10 +28,11 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
@@ -41,76 +42,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="200dp"
-        tools:ignore="MissingConstraints,OnClick" />
+
 
     <Button
         android:id="@+id/admin_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="8dp"
-
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="24dp"
+        android:background="#faf0e6"
         android:text="@string/admin_log"
-        app:layout_constraintEnd_toEndOf="@id/sign_in_button"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+
+        app:layout_constraintEnd_toEndOf="@id/password"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:visibility="visible"
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/background"
-        android:scaleType="fitEnd"
-        android:src="@drawable/decor_food" />
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="245dp"
+        android:paddingRight="21dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints,OnClick" />
+
 
     <LinearLayout
-        android:id="@+id/but"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/sign_in_button"
+        android:id="@+id/but"
         android:gravity="center|bottom"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:ignore="MissingConstraints">
-
         <Button
             android:id="@+id/login"
-            android:layout_width="0.0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|bottom"
-            android:layout_weight="1.0"
-            android:background="#ffa07a"
             android:enabled="false"
+            android:layout_height="wrap_content"
+            android:layout_width="0.0dip"
+            android:layout_weight="1.0"
+            android:layout_gravity="center_vertical|bottom"
             android:text="@string/action_sign_in_short"
-            android:textColor="#FFFACD"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:background="#ffa07a" android:textColor="#FFFACD"/>
 
         <Button
             android:id="@+id/create_user"
+            android:enabled="true"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|bottom"
-            android:layout_weight="1.0"
-            android:background="#faf0e6"
-            android:enabled="true"
             android:text="@string/create_account"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:layout_weight="1.0" android:background="#faf0e6"/>
     </LinearLayout>
-
     <ProgressBar
         android:id="@+id/loading"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -118,12 +115,12 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="64dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

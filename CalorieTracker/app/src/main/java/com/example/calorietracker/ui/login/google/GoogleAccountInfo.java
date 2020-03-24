@@ -46,11 +46,13 @@ import java.io.FileNotFoundException;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            Intent intent = getIntent();
+            String file_name = intent.getStringExtra("name");
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
 
-            String file_email = personEmail.split("@")[0];
+           // String file_email = personEmail.split("@")[0];
 
             setContentView(R.layout.activity_person_google);
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -67,9 +69,9 @@ import java.io.FileNotFoundException;
                 switch (v.getId()){
 
                     case R.id.button_launch:
-                        Intent intent = new Intent(GoogleAccountInfo.this, HomeActivity.class);
-                        intent.putExtra("path","/" + transName(file_email) + ".JSON");
-                        startActivity(intent);
+                        Intent intent_new = new Intent(GoogleAccountInfo.this, HomeActivity.class);
+                        intent_new.putExtra("path","/" + transName(file_name) + ".JSON");
+                        startActivity(intent_new);
                 }
             });
             sign_out = findViewById(R.id.button_sign_out);

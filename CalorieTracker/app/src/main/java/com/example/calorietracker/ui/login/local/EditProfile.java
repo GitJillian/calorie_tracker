@@ -38,8 +38,7 @@ public class EditProfile extends AppCompatActivity{
         setTitle("Edit Profile");
         view1 = findViewById(R.id.text_view_gender);
         view2 = findViewById(R.id.text_view_frequency);
-        //usernameEditText = findViewById(R.id.new_user_name);
-      //  passwordEditText = findViewById(R.id.new_user_password);
+
         heightEditText = findViewById(R.id.new_height);
         weightEditText = findViewById(R.id.new_weight);
         ageEditText = findViewById(R.id.new_age);
@@ -62,8 +61,7 @@ public class EditProfile extends AppCompatActivity{
         }
         oldName = student_reader.getStudentName();
         password = student_reader.getPassword();
-       // usernameEditText.setText(student_reader.getStudentName());
-      //  passwordEditText.setText(student_reader.getPassword());
+
         heightEditText.setText(student_reader.getStudentHeight());
         weightEditText.setText(student_reader.getStudentWeight());
         ageEditText.setText(student_reader.getStudentAge());
@@ -136,12 +134,11 @@ public class EditProfile extends AppCompatActivity{
         float height;
         boolean flag = false;
         File file_file = new File(path);
+        String file_name = file_file.getName();
 
         StudentWriter student_writer = new StudentWriter(file_file);
         try {
             age = Integer.parseInt(ageEditText.getText().toString());
-            //  name = nameEditText.getText().toString();
-            // password = passwordEditText.getText().toString();
             height = Float.parseFloat(heightEditText.getText().toString());
             weight = Integer.parseInt(weightEditText.getText().toString());
             if (frequency == "") {
@@ -149,7 +146,7 @@ public class EditProfile extends AppCompatActivity{
             }
             flag = true;
             Intent intent = new Intent(EditProfile.this, HomeActivity.class);
-            //Bundle bundle = new
+
 
             if (gender == true) {
                 sex = "Female";
@@ -170,26 +167,17 @@ public class EditProfile extends AppCompatActivity{
             ArrayList<Report> report = student_reader.getArray();
             Student student = new Student(oldName, sex, age, frequency, height, weight, password);
 
-            student_writer.deleteStudent(EditProfile.this,oldName);
             student_writer.writeStudent(student,report);
 
-            //student_writer.editStudent(EditProfile.this,student);
 
-            //for(int i=0;i<report.size();i++){
-            //  student_writer.addReport(report.get(i));
-            //  }
-            //
-            intent.putExtra("path","/" + transName(oldName) + ".JSON");
+            intent.putExtra("path","/"+oldName+".JSON");
             startActivity(intent);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        // catch(FileNotFoundException | JSONException e){
-        //     flag = false;
-        //       e.printStackTrace();
-        //   }
+
 
         return flag;
     }

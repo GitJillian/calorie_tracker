@@ -13,6 +13,7 @@ import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.fragment.BaseFragment;
+import com.example.calorietracker.fragment.ReportMode;
 import com.example.calorietracker.fragment.SelfSelectedMode;
 import com.example.calorietracker.helper.DateHelper;
 import com.example.calorietracker.helper.FileHelper;

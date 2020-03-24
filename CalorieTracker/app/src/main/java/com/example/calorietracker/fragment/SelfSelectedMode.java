@@ -1,17 +1,26 @@
 package com.example.calorietracker.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
+import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
-import com.google.android.material.snackbar.Snackbar;
+import com.github.siyamed.shapeimageview.CircularImageView;
 import org.jetbrains.annotations.Nullable;
 
 public class SelfSelectedMode extends Fragment {
-
+    ImageView Breakfast, Lunch, Dinner;
+    ImageView BreakfastButton, LunchButton, DinnerButton;
+    TextView BreakfastShow, LunchShow, DinnerShow;
+    private CircularImageView chooseMenu;
     public static SelfSelectedMode newInstance(String path,String date) {
 
         Bundle args = new Bundle();
@@ -19,11 +28,8 @@ public class SelfSelectedMode extends Fragment {
         args.putString("date", date);
         args.putString("path",path);
         fragment.setArguments(args);
-
         return fragment;
-
     }
-
 
 
     @Nullable
@@ -32,26 +38,49 @@ public class SelfSelectedMode extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_base, null);
+        View view = inflater.inflate(R.layout.self_ui, null);
 
-        TextView tvInfo = (TextView) view.findViewById(R.id.textView);
-
-        tvInfo.setText(getArguments().getString("info"));
-
-        tvInfo.setOnClickListener(new View.OnClickListener() {
-
+        Breakfast = view.findViewById(R.id.self_breakfast);
+        BreakfastShow = view.findViewById(R.id.self_breakfast_show);
+        Lunch = view.findViewById(R.id.self_lunch);
+        LunchShow = view.findViewById(R.id.self_lunch_show);
+        Dinner = view.findViewById(R.id.self_dinner);
+        DinnerShow = view.findViewById(R.id.self_dinner_show);
+        chooseMenu = view.findViewById(R.id.image_view);
+        BreakfastButton = view.findViewById(R.id.button_breakfast);
+        LunchButton = view.findViewById(R.id.button_lunch);
+        DinnerButton = view.findViewById(R.id.button_dinner);
+       // Intent intent = new Intent(getContext(),BuildYourMenu.class);
+       // intent.put("date",getArguments().getString("date"));
+       // intent.put("path",getArguments().getString("path"));
+        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/icon_select_2");
+        Glide.with(this).load(String.valueOf(uri)).into(chooseMenu);
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
+                switch(v.getId()){
+                    case R.id.button_breakfast:
+                        //intent.putExtra("type","breakfast");
+                        Toast.makeText(getContext(),"Breakfast",Toast.LENGTH_SHORT).show();
+                        //startActivity(intent);
 
-                Snackbar.make(v, "Don't click me.please!.", Snackbar.LENGTH_SHORT).show();
+                    case R.id.button_lunch:
+                        //intent.putExtra("type","lunch");
+                        Toast.makeText(getContext(),"Lunch",Toast.LENGTH_SHORT).show();
+                        //startActivity(intent);
 
+                    case R.id.button_dinner:
+                        //intent.putExtra("type","dinner");
+                        Toast.makeText(getContext(),"Dinner",Toast.LENGTH_SHORT).show();
+                        //startActivity(intent);
+                }
             }
-
         });
-
         return view;
 
     }
 
 }
+
+
+

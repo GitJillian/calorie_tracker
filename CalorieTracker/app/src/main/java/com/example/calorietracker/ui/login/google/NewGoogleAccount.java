@@ -80,7 +80,7 @@ public class NewGoogleAccount extends AppCompatActivity {
                 if (frequency == "") {
                     frequency = "medium";
                 }
-                checkInput(heightEditText, weightEditText, nameEditText,file_email, gender, ageEditText, frequency);
+                checkInput(heightEditText, weightEditText, nameEditText,gender, ageEditText, frequency);
 
             }
         });
@@ -88,16 +88,16 @@ public class NewGoogleAccount extends AppCompatActivity {
 
 
 
-public void checkInput (EditText heightEditText, EditText weightEditText, EditText nameEditText, String file_email, boolean gender,
+public void checkInput (EditText heightEditText, EditText weightEditText, EditText nameEditText, boolean gender,
                         EditText ageEditText, String frequency){
             boolean flag = false;
             String  name,password,sex;
             int age, weight;
             float height;
 
-            File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(file_email) + ".JSON");
+            File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
             StudentWriter student_writer = new StudentWriter(file_file);
-            Log.d("file_path", FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(file_email) + ".JSON");
+           // Log.d("file_path", FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
 
             try{
                 name = nameEditText.getText().toString();
@@ -117,10 +117,10 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
 
 
                 Toast.makeText(NewGoogleAccount.this, "Switching to Home Page", Toast.LENGTH_LONG).show();
-                FileOutputStream is = new FileOutputStream(file_file);
                 ArrayList<Report> report = new ArrayList<Report>();
                 Student student = new Student(name, sex, age, frequency, height, weight, password);
                 student_writer.writeStudent(student, report);
+                intent.putExtra("name",name);
                 startActivity(intent);
                 }
             catch(Exception e){
