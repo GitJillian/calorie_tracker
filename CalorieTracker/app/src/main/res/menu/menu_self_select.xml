@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item android:id="@+id/self_breakfast" android:title="Breakfast" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/self_lunch" android:title="Lunch" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/self_dinner" android:title="Dinner" android:icon="@drawable/icon_user"/>
+    </group>
+</menu>

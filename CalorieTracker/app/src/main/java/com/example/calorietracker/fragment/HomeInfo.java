@@ -1,5 +1,6 @@
 package com.example.calorietracker.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,7 +36,6 @@ public class HomeInfo extends Fragment {
         float height;
         Bundle args = new Bundle();
         HomeInfo fragment = new HomeInfo();
-
         try {
 
             student_reader = factory.JSONReaderFactory(file_path);
