@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
+import com.example.calorietracker.ui.home.SelfSelectView;
+import com.example.calorietracker.ui.login.local.EditProfile;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,32 +52,42 @@ public class SelfSelectedMode extends Fragment {
         BreakfastButton = view.findViewById(R.id.button_breakfast);
         LunchButton = view.findViewById(R.id.button_lunch);
         DinnerButton = view.findViewById(R.id.button_dinner);
-       // Intent intent = new Intent(getContext(),BuildYourMenu.class);
-       // intent.put("date",getArguments().getString("date"));
-       // intent.put("path",getArguments().getString("path"));
+        Intent intent = new Intent(getActivity(), SelfSelectView.class);
+        intent.putExtra("date",getArguments().getString("date"));
+        intent.putExtra("path",getArguments().getString("path"));
         Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/icon_select_2");
         Glide.with(this).load(String.valueOf(uri)).into(chooseMenu);
-        view.setOnClickListener(new View.OnClickListener() {
+        BreakfastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch(v.getId()){
-                    case R.id.button_breakfast:
-                        //intent.putExtra("type","breakfast");
-                        Toast.makeText(getContext(),"Breakfast",Toast.LENGTH_SHORT).show();
-                        //startActivity(intent);
+                intent.putExtra("type","breakfast");
+                Toast.makeText(getContext(),"Breakfast",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
 
-                    case R.id.button_lunch:
-                        //intent.putExtra("type","lunch");
-                        Toast.makeText(getContext(),"Lunch",Toast.LENGTH_SHORT).show();
-                        //startActivity(intent);
-
-                    case R.id.button_dinner:
-                        //intent.putExtra("type","dinner");
-                        Toast.makeText(getContext(),"Dinner",Toast.LENGTH_SHORT).show();
-                        //startActivity(intent);
                 }
             }
-        });
+        );
+        LunchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("type","lunch");
+                Toast.makeText(getContext(),"Lunch",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                 }
+            }
+        );
+        DinnerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("type","dinner");
+                Toast.makeText(getContext(),"Dinner",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+
+            }
+            }
+        );
+
+
         return view;
 
     }

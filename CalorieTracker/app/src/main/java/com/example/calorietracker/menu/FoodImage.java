@@ -6,20 +6,15 @@ public class FoodImage {
     private Integer id;
     private String FoodName;
     private Integer FoodImage;
-    int pos,totalCalorie,FoodQuantity;
+    int totalCalorie,FoodQuantity;
     String FoodCalorie;
 
     public FoodImage() {
     }
 
-    public FoodImage(String FoodName, String FoodCalorie, int FoodQuantity, Integer FoodImage ) {
-        this.FoodImage = FoodImage;
-        this.FoodQuantity = FoodQuantity;
-        this.FoodCalorie = FoodCalorie;
-        this.FoodName = FoodName;
-    }
     public void setFoodName(String name){this.FoodName = name;}
     public void setFoodCalorie(String FoodCalorie){this.FoodCalorie = FoodCalorie;}
+
     public String getFoodCalorie() {
         return FoodCalorie;
     }

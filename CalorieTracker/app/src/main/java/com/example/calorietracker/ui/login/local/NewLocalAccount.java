@@ -14,6 +14,8 @@ import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.StudentWriter;
 import com.example.calorietracker.ui.home.HomeActivity;
 
+import org.json.JSONException;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -129,17 +131,23 @@ public class NewLocalAccount extends AppCompatActivity {
             Toast.makeText(NewLocalAccount.this, "Switching to Home Page", Toast.LENGTH_LONG).show();
             FileOutputStream is = new FileOutputStream(file_file);
             ArrayList<Report> report = new ArrayList<Report>();
+            //Report new_report = new Report(10,2000,33,33,"2020-03-23");
+           // report.add(new_report);
             Student student = new Student(name, sex, age, frequency, height, weight, password);
             student_writer.writeStudent(student, report);
             intent.putExtra("path","/" + transName(nameEditText.getText().toString()) + ".JSON");
+            Report report1 = new Report(10,2000,33,33,"2020-03-23");
+            student_writer.addReport(report1);
             startActivity(intent);
         }
     catch(FileNotFoundException e){
                 flag = false;
                 e.printStackTrace();
-            }
+            } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            return flag;
+        return flag;
         }
     private String transName(String name){
         String str = name.replace(' ','_');

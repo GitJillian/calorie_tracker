@@ -1,5 +1,6 @@
 package com.example.calorietracker.helper;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -24,6 +25,19 @@ public class JsWriter {
         try {
             writer = new FileWriter(output);
             writer.write(sample.toString());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeArrayToFile(JSONArray array){
+        FileWriter writer =null;
+        try {
+            writer = new FileWriter(output);
+            writer.write(array.toString());
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

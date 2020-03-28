@@ -21,6 +21,8 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import org.json.JSONException;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,7 +62,12 @@ public class ReportMode extends Fragment {
         TextView suggestion = view.findViewById(R.id.suggest);
         suggestion.setText("Look at meeeeee!");
         reportChart = initBarchart(reportChart); //init barchart
-        BarData reportData = setBarDate(); //拿到数据
+        BarData reportData = null; //拿到数据
+        try {
+            reportData = setBarDate();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         reportChart.setData(reportData); //显示数据
         reportChart.animateY(3000);
         reportChart.invalidate(); //填充数据后刷新
@@ -71,8 +78,9 @@ public class ReportMode extends Fragment {
     顾名思义set data
             */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public BarData setBarDate(){
+    public BarData setBarDate() throws IOException {
         List<BarEntry> entries = new ArrayList<>();
+
         //先自设7个试试
 
         /*for(int i =8;i>1;i--){
