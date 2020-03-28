@@ -55,6 +55,7 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
             @Override
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.view_food);
 
                 final ImageView cartDecrement = dialog.findViewById(R.id.cart_decrement);
                 ImageView cartIncrement = dialog.findViewById(R.id.cart_increment);
@@ -102,7 +103,7 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                                 Integer.parseInt(arrayList.get(i).getCalorie()));
 
                         cartModels.add(cartModel);
-
+//
                         // from these lines of code we update badge count value
                         SelfSelectView.cart_count = 0;
                         for (int i = 0; i < cartModels.size(); i++) {
@@ -166,7 +167,7 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
     public interface CallBackUs {
         void addCartItemView();
     }
-
+    // this interface creates for call the invalidateoptionmenu() for refresh the menu item
     public interface HomeCallBack {
         void updateCartCount(Context context);
     }

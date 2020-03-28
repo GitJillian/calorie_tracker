@@ -36,7 +36,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
     MenuAdapter menuAdapter;
     Button proceedToBook,grandTotal;
     private Toolbar mToolbar;
-    String date, path;
+    String date, path, type;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -48,6 +48,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
         Intent intent = getIntent();
         date = intent.getExtras().getString("date");
         path = intent.getExtras().getString("path");
+        type = intent.getExtras().getString("type");
         File student_file = new File(path);
         StudentWriter writer = new StudentWriter(student_file);
 
@@ -97,6 +98,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
             grandTotalplus += temparraylist.get(i).getTotalCalorie();
         }
         grandTotal.setText("Calorie Summary");
+        proceedToBook.setText("Confirm "+type);
         cartRecyclerView = findViewById(R.id.recycler_view_cart);
         menuAdapter = new MenuAdapter(temparraylist,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);

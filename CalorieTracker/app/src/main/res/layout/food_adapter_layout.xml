@@ -18,7 +18,7 @@
 
         <ImageView
                 android:id="@+id/android_gridview_image"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_lunch"
                 android:scaleType="centerCrop"/>

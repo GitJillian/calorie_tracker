@@ -28,7 +28,7 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
     public static int cart_count = 0;
     com.example.calorietracker.adapter.SelfSelectAdapter SelfSelectAdapter;
     RecyclerView FoodRecyclerView;
-    static String date, path;
+    static String date, path,type;
 
     Button selectAll;
 
@@ -36,6 +36,7 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        type = intent.getStringExtra("type");
         date = intent.getStringExtra("date");
         path = intent.getStringExtra("path");
         setContentView(R.layout.activity_set_menu);
@@ -107,8 +108,8 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
                     Intent intent = new Intent(SelfSelectView.this, SelfSelectCartActivity.class);
                     intent.putExtra("date",date);
                     intent.putExtra("path",path);
+                    intent.putExtra("type",type);
                     startActivity(intent);
-                    //startActivity(new Intent(this, SelfSelectCartActivity.class));
                 }
                 break;
 
