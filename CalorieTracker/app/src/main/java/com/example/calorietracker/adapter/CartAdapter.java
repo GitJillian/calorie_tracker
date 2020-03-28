@@ -46,7 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final CartAdapter.ViewHolder holder, final int position) {
 
-        holder.FoodCartPrice.setText(String.valueOf(cartModelArrayList.get(position).getTotalCalorie()));
+        holder.FoodCartCalorie.setText(String.valueOf(cartModelArrayList.get(position).getTotalCalorie()));
         holder.FoodCartCode.setText(cartModelArrayList.get(position).getFoodName());
         holder.FoodCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
 
@@ -69,7 +69,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     notifyItemRangeChanged(position, cartModelArrayList.size());
 
                     grandTotalplus = 0;
-                   // grandTotal.setText(grandTotalplus);
                 }
 
                 if (cartModelArrayList.size() > 0) {
@@ -82,8 +81,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
 
-
-                  //  grandTotal.setText(String.valueOf(grandTotalplus));
 
                 } else {
                     Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
@@ -111,7 +108,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 holder.FoodCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
 
                 cartModelArrayList.get(position).setTotalCalorie(calorie);
-                holder.FoodCartPrice.setText(String.valueOf(calorie));
+                holder.FoodCartCalorie.setText(String.valueOf(calorie));
 
 
                 for (int i = 0; i < temparraylist.size(); i++) {
@@ -148,7 +145,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     int calorie = (Integer.parseInt(cartModelArrayList.get(position).getFoodCalorie()) * (cartModelArrayList.get(position).getFoodQuantity()));
 
                     cartModelArrayList.get(position).setTotalCalorie(calorie);
-                    holder.FoodCartPrice.setText(String.valueOf(calorie));
+                    holder.FoodCartCalorie.setText(String.valueOf(calorie));
                     for (int i = 0; i < temparraylist.size(); i++) {
 
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
@@ -171,7 +168,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView FoodCartImage, cartIncrement, cartDecrement, deleteItem;
-        TextView FoodCartCode, FoodCartPrice, FoodCartQuantity;
+        TextView FoodCartCode, FoodCartCalorie, FoodCartQuantity;
 
         @SuppressLint("ResourceType")
         public ViewHolder(View itemView) {
@@ -179,7 +176,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             FoodCartImage = itemView.findViewById(R.id.list_image_cart);
             deleteItem = itemView.findViewById(R.id.delete_item_from_cart);
             FoodCartCode = itemView.findViewById(R.id.Food_cart_code);
-            FoodCartPrice = itemView.findViewById(R.id.Food_cart_calorie);
+            FoodCartCalorie = itemView.findViewById(R.id.Food_cart_calorie);
             FoodCartQuantity = itemView.findViewById(R.id.cart_Food_quantity_tv);
             cartDecrement = itemView.findViewById(R.id.cart_decrement);
             cartIncrement = itemView.findViewById(R.id.cart_increment);

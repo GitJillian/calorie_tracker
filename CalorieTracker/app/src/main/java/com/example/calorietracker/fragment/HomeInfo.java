@@ -1,6 +1,5 @@
 package com.example.calorietracker.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -93,37 +92,18 @@ public class HomeInfo extends Fragment {
         bmrBreakfast = view.findViewById(R.id.home_bmr_breakfast);
         bmrLunch = view.findViewById(R.id.home_bmr_lunch);
         bmrDinner = view.findViewById(R.id.home_bmr_dinner);
-
-        /* gender = view.findViewById(R.id.home_gender);
-        age =  view.findViewById(R.id.home_age);
-        height = view.findViewById(R.id.home_height);
-        weight =view.findViewById(R.id.home_weight);
-        frequency =  view.findViewById(R.id.home_frequency);*/
-
-
         weightInt = getArguments().getInt("weight");
-        //weightStr = String.valueOf(weightInt);
         heightFloat = getArguments().getFloat("height");
-       // heightStr = String.valueOf(heightFloat);
         ageInt = getArguments().getInt("age");
-       // ageStr = String.valueOf(ageInt);
-        //age.setText("Age: "+ageStr);
         frequencyStr = getArguments().getString("frequency");
-        //frequency.setText("Frequency: "+frequencyStr);
-        //weight.setText("Weight: "+weightStr);
-       // height.setText("Height: "+heightStr);
         genderStr = getArguments().getString("gender");
-        //gender.setText("Gender: "+genderStr);
         nameStr = getArguments().getString("name");
         name.setText("Welcome, "+nameStr);
         password = getArguments().getString("password");
         Student student = new Student(nameStr, genderStr,ageInt,frequencyStr, heightFloat, weightInt,password);
         bmiFloat = student.getBMI();
-        bmrFloat = student.getBMR();
         bmiStr = String.valueOf(bmiFloat);
-        bmrStr = String.valueOf(bmrFloat);
         bmi.setText("Current BMI " + bmiStr);
-//        bmr.setText("Current BMR "+bmrStr);
         bmiHint.setText(student.getBmiString());
         dateStr = getArguments().getString("date");
         date.setText("Today, "+dateStr);
@@ -136,8 +116,8 @@ public class HomeInfo extends Fragment {
         bmrDinner.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_dinner))+"~"+String.valueOf(student.getUpperBound(bmr_dinner))+" cals");
 
 
-        btnEdit = (ImageButton)view.findViewById(R.id.setting);
-        btnLogout =(ImageButton)view.findViewById(R.id.log_out);
+        btnEdit = view.findViewById(R.id.setting);
+        btnLogout =view.findViewById(R.id.log_out);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

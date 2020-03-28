@@ -126,8 +126,6 @@ public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.Call
                     startActivity(new Intent(this, CartActivity.class));
                 }
                 break;
-           // case R.id.select_all:
-                //TODO:MAKE SELECT ALL FUNCTION
 
             default:
                 return super.onOptionsItemSelected(item);

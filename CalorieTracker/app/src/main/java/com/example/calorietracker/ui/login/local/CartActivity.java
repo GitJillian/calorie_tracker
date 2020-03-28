@@ -1,15 +1,11 @@
 package com.example.calorietracker.ui.login.local;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +19,6 @@ import com.example.calorietracker.menu.FoodImage;
 import com.example.calorietracker.menu.FoodModel;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static com.example.calorietracker.adapter.FoodAdapter.cartModels;
 import static com.example.calorietracker.adapter.FoodAdapter.FoodArrayPublish;

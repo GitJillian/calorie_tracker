@@ -54,6 +54,7 @@ public class StudentWriter extends JsWriter {
 
     }
 
+
     //adding report to the student profile
     public void addReport(Report report) throws JSONException, FileNotFoundException {
 

@@ -123,12 +123,13 @@ public class MenuReader extends JsReader {
     }
 
     public ArrayList<FoodModel> getFoodListObj() {
+        ArrayList<FoodModel> models = new ArrayList<>();
 
         for(int i=0; i<foodlistJson.length(); i++){
             JSONObject obj = getFoodByIndexJson(i);
             FoodModel food = transJsonToFood(obj);
-            foodObjs.add(food);
+            models.add(food);
         }
-        return foodObjs;
+        return models;
     }
 }
