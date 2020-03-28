@@ -2,23 +2,17 @@ package com.example.calorietracker.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.calorietracker.R;
 import com.example.calorietracker.menu.FoodImage;
-
-
-
 import java.util.ArrayList;
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.temparraylist;
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.grandTotalplus;
@@ -60,7 +54,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 if (cartModelArrayList.size() == 1) {
-                    FoodImage removed = cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
 
@@ -68,7 +61,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                 }
 
                 if (cartModelArrayList.size() > 0) {
-                    FoodImage removed = cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
 
@@ -76,14 +68,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     for (int i = 0; i < temparraylist.size(); i++) {
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
-
-
-                } else {
-                    Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        // increment quantity and update quamtity and total cash
+
         holder.cartIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +95,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
 
                 for (int i = 0; i < temparraylist.size(); i++) {
-                    grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
+                    grandTotalplus += temparraylist.get(i).getTotalCalorie();
                 }
 
             }

@@ -92,7 +92,6 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                 updateQtyDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, String.valueOf(cartCounter[0]) + "", Toast.LENGTH_SHORT).show();
 
                         cartModel = new FoodImage();
                         cartModel.setFoodQuantity((cartCounter[0]));
@@ -103,7 +102,7 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                                 Integer.parseInt(arrayList.get(i).getCalorie()));
 
                         cartModels.add(cartModel);
-//
+
                         // from these lines of code we update badge count value
                         SelfSelectView.cart_count = 0;
                         for (int i = 0; i < cartModels.size(); i++) {
@@ -120,8 +119,6 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                             }
                         }
                         SelfSelectView.cart_count = cartModels.size();
-
-                        // from this interface method calling we show the updated value of cart cout in badge
                         homeCallBack.updateCartCount(context);
                         dialog.dismiss();
                     }
@@ -167,7 +164,8 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
     public interface CallBackUs {
         void addCartItemView();
     }
-    // this interface creates for call the invalidateoptionmenu() for refresh the menu item
+
+
     public interface HomeCallBack {
         void updateCartCount(Context context);
     }
