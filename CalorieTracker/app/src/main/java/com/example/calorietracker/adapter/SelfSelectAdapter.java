@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +17,7 @@ import com.example.calorietracker.R;
 import com.example.calorietracker.menu.FoodImage;
 import com.example.calorietracker.menu.FoodModel;
 import com.example.calorietracker.ui.home.SelfSelectView;
-import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
+
 
 import static com.example.calorietracker.ui.home.SelfSelectView.arrayList;
 import java.util.ArrayList;
@@ -56,11 +58,35 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.view_food);
+                TextView infoCalorie, infoType, infoProtein, infoFats, infoSodium, infoSugar, infoServing, infoCarbon;
+                infoCalorie = dialog.findViewById(R.id.info_calorie);
+                infoFats = dialog.findViewById(R.id.info_fats);
+                infoProtein = dialog.findViewById(R.id.info_protein);
+                infoServing = dialog.findViewById(R.id.info_serving);
+                infoSodium = dialog.findViewById(R.id.info_sodium);
+                infoSugar = dialog.findViewById(R.id.info_sugar);
+                infoType = dialog.findViewById(R.id.info_type);
+                infoCarbon = dialog.findViewById(R.id.info_carbon);
+
+                infoCalorie.setText(FoodsArray.get(i).getCalorie());
+                   infoFats.setText(FoodsArray.get(i).getFats()+" g");
+                infoProtein.setText(FoodsArray.get(i).getProtein()+" g");
+                infoServing.setText(FoodsArray.get(i).getServingSize());
+                 infoSodium.setText(FoodsArray.get(i).getSodium()+" mg");
+                  infoSugar.setText(FoodsArray.get(i).getSugar()+" g");
+                 infoCarbon.setText(FoodsArray.get(i).getTotalCarbon()+" g");
+
+                if(FoodsArray.get(i).getType().equals("")){
+                    infoType.setText("Regular");
+                }else{
+                    infoType.setText(FoodsArray.get(i).getType());
+                }
+
 
                 final ImageView cartDecrement = dialog.findViewById(R.id.cart_decrement);
                 ImageView cartIncrement = dialog.findViewById(R.id.cart_increment);
                 ImageView closeDialog = dialog.findViewById(R.id.imageView_close_dialog_cart);
-                TextView updateQtyDialog = dialog.findViewById(R.id.update_quantity_dialog);
+                Button updateQtyDialog = dialog.findViewById(R.id.update_quantity_dialog);
                 final TextView quantity = dialog.findViewById(R.id.cart_Food_quantity_tv);
                 quantity.setText(String.valueOf(0));
                 final int[] cartCounter = {0};
