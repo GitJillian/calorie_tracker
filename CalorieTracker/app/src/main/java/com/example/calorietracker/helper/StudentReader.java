@@ -1,11 +1,7 @@
 package com.example.calorietracker.helper;
 
-import android.renderscript.ScriptGroup;
-import android.util.JsonReader;
 import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
-import com.example.calorietracker.menu.FoodModel;
-import com.example.calorietracker.ui.login.LoginActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

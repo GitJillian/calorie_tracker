@@ -40,7 +40,6 @@ public class Student implements Parcelable {
         this.email = email;
     }
 
-    //new_student = new Student(height, weight, name, gender, age, frequency);
     public Student(Parcel in) {
         this.height = in.readFloat();
         this.weight = in.readInt();
@@ -108,7 +107,7 @@ public class Student implements Parcelable {
     }
 
     public int getUpperBound(int calorie){
-        return calorie + 50;
+        return calorie + 100;
     }
 
     public String getEmail() {

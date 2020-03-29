@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
+import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.menu.FoodModel;
 import org.json.JSONException;
@@ -33,8 +35,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HealthMode extends Fragment {
+    //this one determines how many type of food to be returned
+    private int numberOfFood;
+
 
     private Float sum;
+    //TODO: please change limit, num, sum to integer
     private Float limit;
     private Float num;
     private MenuReader mReader;
@@ -155,9 +161,10 @@ public class HealthMode extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.health_mode, null);
-       /* RadioButton item_one, item_two, item_three, item_four, item_five;
-        ImageButton breakfastButton, lunchButton, dinnerButton;
-        Button submitButton, changeButton;
+        RadioButton item_one, item_two, item_three, item_four, item_five, breakfastButton, lunchButton, dinnerButton;
+        Button submitButton, generateButton;
+        ListView foodListView;
+        //foodListView = view.findViewById(R.id.list_health_menu);
         item_one = view.findViewById(R.id.item_one);
         item_two = view.findViewById(R.id.item_two);
         item_three = view.findViewById(R.id.item_three);
@@ -166,7 +173,42 @@ public class HealthMode extends Fragment {
         breakfastButton = view.findViewById(R.id.choose_breakfast);
         lunchButton = view.findViewById(R.id.choose_lunch);
         dinnerButton = view.findViewById(R.id.choose_dinner);
-        */
+        submitButton = view.findViewById(R.id.button_health_submit);
+        generateButton = view.findViewById(R.id.button_change_menu);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: PUT STORE THE REPORT INTO STDUENT FILE
+                //example to follow. to add a breakfast report
+               // Report report = new Report(getArguments().getString("date"));
+
+                //File student_file = new File(getArguments().getString("path");
+                //StudentWriter writer = new StudentWriter(student_file);
+                //if(breakfastButton.isChecked()){report.setBreakfast(sum);}
+                //if(lunchButton.isChecked()){report.setLunch(sum);}
+                //if(dinnerButton.isChecked()){report.setDinner(sum);}
+                //writer.addReport(report);
+
+
+            }
+        });
+
+        generateButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(item_one.isChecked()){numberOfFood =1;}
+                if(item_two.isChecked()){numberOfFood =2;}
+                if(item_three.isChecked()){numberOfFood =3;}
+                if(item_four.isChecked()){numberOfFood =4;}
+                if(item_five.isChecked()){numberOfFood =5;}
+                //TODO: change limint to interger pls!
+                //if(breakfastButton.isChecked()){limit = breakfast_calorie;}
+                //if(lunchButton.isChecked()){limit = lunch_calorie;}
+                //if(dinnerButton.isChecked()){limit = dinner_calorie;}
+            }
+        });
+
 
         return view;
 
