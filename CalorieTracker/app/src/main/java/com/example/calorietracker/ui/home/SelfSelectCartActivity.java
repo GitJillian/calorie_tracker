@@ -106,10 +106,21 @@ public class SelfSelectCartActivity extends AppCompatActivity {
         cartRecyclerView.setAdapter(menuAdapter);
 
 
+
         proceedToBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Report report = new Report(0,grandTotalplus,0,0,date);
+                Report report = new Report(0,0,0,0,date);
+                if(type.equals("breakfast")){
+                    report.setBreakfast(grandTotalplus);
+                }
+                else if(type.equals("lunch")){
+                    report.setLunch(grandTotalplus);
+                }
+                else{
+                    report.setDinner(grandTotalplus);
+                }
+
                 try {
                     writer.addReport(report);
                 } catch (JSONException e) {

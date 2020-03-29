@@ -93,20 +93,20 @@ public class StudentReader extends JsReader {
         return student;
     }
 
-   public String getCalorieFromJSON(JSONObject obj){
-        return super.getStringByName(obj,"calorie");
+   public String getTotalCalorieFromJSON(JSONObject obj){
+        return super.getStringByName(obj,"total");
    }
 
-    public String getProteinFromJSON(JSONObject obj){
-        return super.getStringByName(obj,"protein");
+    public String getBreakfastFromJSON(JSONObject obj){
+        return super.getStringByName(obj,"breakfast");
     }
 
-    public String getFatsFromJSON(JSONObject obj){
-        return super.getStringByName(obj,"fats");
+    public String getLunchFromJSON(JSONObject obj){
+        return super.getStringByName(obj,"lunch");
     }
 
-    public String getCarbonFromJSON(JSONObject obj){
-        return super.getStringByName(obj,"carbon");
+    public String getDinnerFromJSON(JSONObject obj){
+        return super.getStringByName(obj,"dinner");
     }
 
     public String getDateFromJSON(JSONObject obj){
@@ -114,22 +114,22 @@ public class StudentReader extends JsReader {
     }
 
     public Report readReport(JSONObject report){
-        int calorie=0;
-        int carbon=0;
-        int fats=0;
-        int protein = 0;
+        int total_calorie=0;
+        int breakfast_calorie=0;
+        int lunch_calorie=0;
+        int dinner_calorie = 0;
         String date = "";
         try{
-            calorie = Integer.parseInt(getCalorieFromJSON(report));
-            carbon = Integer.parseInt(getCarbonFromJSON(report));
-            fats = Integer.parseInt(getFatsFromJSON(report));
-            protein = Integer.parseInt(getProteinFromJSON(report));
+            total_calorie = Integer.parseInt(getTotalCalorieFromJSON(report));
+            breakfast_calorie = Integer.parseInt(getBreakfastFromJSON(report));
+            lunch_calorie = Integer.parseInt(getLunchFromJSON(report));
+            dinner_calorie = Integer.parseInt(getDinnerFromJSON(report));
             date = getDateFromJSON(report);
             }
         catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        Report report_obj = new Report(carbon,calorie,fats, protein,date);
+        Report report_obj = new Report(breakfast_calorie,lunch_calorie,dinner_calorie,total_calorie,date);
         return report_obj;
     }
 
