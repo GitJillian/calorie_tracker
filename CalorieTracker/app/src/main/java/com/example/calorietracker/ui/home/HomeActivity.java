@@ -13,6 +13,7 @@ import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.fragment.BaseFragment;
+import com.example.calorietracker.fragment.HealthMode;
 import com.example.calorietracker.fragment.ReportMode;
 import com.example.calorietracker.fragment.SelfSelectedMode;
 import com.example.calorietracker.helper.DateHelper;
@@ -108,14 +109,18 @@ public class HomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        setupViewPager(viewPager);
+        try {
+            setupViewPager(viewPager);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager) throws JSONException {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
         adapter.addFragment(SelfSelectedMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
-        adapter.addFragment(BaseFragment.newInstance("Health mode"));
+        adapter.addFragment(HealthMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
         //adapter.addFragment(BaseFragment.newInstance("Report"));
         adapter.addFragment(ReportMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
         viewPager.setAdapter(adapter);

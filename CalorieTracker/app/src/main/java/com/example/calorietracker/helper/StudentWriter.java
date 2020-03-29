@@ -53,7 +53,9 @@ public class StudentWriter extends JsWriter {
 
 
     }
+    public void editReportByDate(String date, int breakfast, int lunch, int dinner){
 
+    }
 
     //adding report to the student profile
     public void addReport(Report report) throws JSONException, FileNotFoundException {
@@ -75,10 +77,10 @@ public class StudentWriter extends JsWriter {
     public JSONObject reportToJson(Report report){
         JSONObject single_report = new JSONObject();
         try{
-        single_report.put("carbon",String.valueOf(report.getCarbon()));
-        single_report.put("protein",String.valueOf(report.getProtein()));
-        single_report.put("fats",String.valueOf(report.getFats()));
-        single_report.put("calorie",String.valueOf(report.getCalorie()));
+        single_report.put("breakfast",String.valueOf(report.getBreakfast()));
+        single_report.put("lunch",String.valueOf(report.getLunch()));
+        single_report.put("dinner",String.valueOf(report.getDinner()));
+        single_report.put("total",String.valueOf(report.getTotal()));
         single_report.put("date",report.getDate());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -106,10 +108,10 @@ public class StudentWriter extends JsWriter {
             //parsing info
             for (Report value : reports) {
                 JSONObject single_report = new JSONObject();
-                single_report.put("carbon", String.valueOf(value.getCarbon()));
-                single_report.put("protein", String.valueOf(value.getProtein()));
-                single_report.put("fats", String.valueOf(value.getFats()));
-                single_report.put("calorie", String.valueOf(value.getCalorie()));
+                single_report.put("breakfast", String.valueOf(value.getBreakfast()));
+                single_report.put("lunch", String.valueOf(value.getLunch()));
+                single_report.put("dinner", String.valueOf(value.getDinner()));
+                single_report.put("total", String.valueOf(value.getTotal()));
                 single_report.put("date", value.getDate());
                 report.put(single_report);
             }

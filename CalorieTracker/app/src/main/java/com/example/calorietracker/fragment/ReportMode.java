@@ -93,31 +93,31 @@ public class ReportMode extends Fragment {
             int daysGap = localDate.compareTo(localDate1);
             switch (daysGap){
                 case 1:
-                    Float day1Cal = totalCalorie.get(0) + reportData.get(i).getCalorie();
+                    Float day1Cal = totalCalorie.get(0) + reportData.get(i).getTotal();
                     totalCalorie.set(0,day1Cal);
                     break;
                 case 2:
-                    Float day2Cal = totalCalorie.get(1) + reportData.get(i).getCalorie();
+                    Float day2Cal = totalCalorie.get(1) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day2Cal);
                     break;
                 case 3:
-                    Float day3Cal = totalCalorie.get(2) + reportData.get(i).getCalorie();
+                    Float day3Cal = totalCalorie.get(2) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day3Cal);
                     break;
                 case 4:
-                    Float day4Cal = totalCalorie.get(3) + reportData.get(i).getCalorie();
+                    Float day4Cal = totalCalorie.get(3) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day4Cal);
                     break;
                 case 5:
-                    Float day5Cal = totalCalorie.get(4) + reportData.get(i).getCalorie();
+                    Float day5Cal = totalCalorie.get(4) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day5Cal);
                     break;
                 case 6:
-                    Float day6Cal = totalCalorie.get(5) + reportData.get(i).getCalorie();
+                    Float day6Cal = totalCalorie.get(5) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day6Cal);
                     break;
                 case 7:
-                    Float day7Cal = totalCalorie.get(6) + reportData.get(i).getCalorie();
+                    Float day7Cal = totalCalorie.get(6) + reportData.get(i).getTotal();
                     totalCalorie.set(1,day7Cal);
                     break;
             }

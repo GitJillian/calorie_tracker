@@ -70,9 +70,8 @@ public class HomeInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_info_new, null);
-        //Button btnEdit,btnLogout;
         ImageButton btnEdit, btnLogout;
-        TextView date, name, gender, age, height, weight, frequency, bmi, bmr, bmrBreakfast,bmrLunch, bmrDinner, bmiHint;
+        TextView date, name, bmi, bmrBreakfast,bmrLunch, bmrDinner, bmiHint;
         int weightInt, ageInt;
         float heightFloat, bmiFloat, bmrFloat;
         int bmr_breakfast,bmr_lunch,bmr_dinner ;
@@ -81,13 +80,10 @@ public class HomeInfo extends Fragment {
         imageView = view.findViewById(R.id.imageView);
         Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/user_icon");
         Glide.with(this).load(String.valueOf(uri)).into(imageView);
-
-
         date = view.findViewById(R.id.home_date);
         name = view.findViewById(R.id.home_name);
 
         bmi = view.findViewById(R.id.home_bmi);
-       // bmr =  view.findViewById(R.id.home_bmr);
         bmiHint = view.findViewById(R.id.home_bmi_hint);
         bmrBreakfast = view.findViewById(R.id.home_bmr_breakfast);
         bmrLunch = view.findViewById(R.id.home_bmr_lunch);

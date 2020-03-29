@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.*;
 import java.util.ArrayList;
 
-//TODO: finish administrator while reading json file
+//update: now we do not need this
 public class Administrator {
 
   private ArrayList<FoodModel> menu;
