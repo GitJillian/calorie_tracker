@@ -8,7 +8,7 @@
       "totalCarbohydrate": "0",
       "name": "Boiled Egg",
       "totalFat": "5",
-      "servingSize": "50",
+      "servingSize": "50 gram",
       "type": "Vegetarian"
     },
     {
@@ -19,7 +19,7 @@
       "totalCarbohydrate": "2",
       "name": "Scrambled Eggs",
       "totalFat": "8",
-      "servingSize": "118",
+      "servingSize": "118 millilitre",
       "type": "Vegetarian"
     },
     {
@@ -30,29 +30,29 @@
       "totalCarbohydrate": "18",
       "name": "French Toast",
       "totalFat": "3",
-      "servingSize": "65",
+      "servingSize": "65 gram",
       "type": "Vegetarian"
     },
     {
       "calory": "100",
-      "sugar": "less",
+      "sugar": "less than 1",
       "sodium": "95",
       "protein": "2",
       "totalCarbohydrate": "15",
       "name": "Seasoned Potato Wedges",
       "totalFat": "3.5",
-      "servingSize": "89",
+      "servingSize": "89 gram",
       "type": "Vegan"
     },
     {
       "calory": "35",
-      "sugar": "less",
+      "sugar": "less than 1",
       "sodium": "300",
       "protein": "5",
-      "totalCarbohydrate": "less",
+      "totalCarbohydrate": "less than 1",
       "name": "Grilled Breakfast Ham",
       "totalFat": "1.5",
-      "servingSize": "30",
+      "servingSize": "30 gram",
       "type": ""
     },
     {
@@ -63,7 +63,7 @@
       "totalCarbohydrate": "28",
       "name": "Vegetarian Baked Beans",
       "totalFat": "2",
-      "servingSize": "130",
+      "servingSize": "130 gram",
       "type": "Vegetarian"
     },
     {
@@ -96,7 +96,7 @@
       "totalCarbohydrate": "2",
       "name": "Egg",
       "totalFat": "11",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegetarian"
     },
     {
@@ -107,7 +107,7 @@
       "totalCarbohydrate": "1",
       "name": "Egg White",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegetarian"
     },
     {
@@ -118,7 +118,7 @@
       "totalCarbohydrate": "4",
       "name": "Diced Onion",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -129,7 +129,7 @@
       "totalCarbohydrate": "2",
       "name": "Peppers",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -140,7 +140,7 @@
       "totalCarbohydrate": "0",
       "name": "Sliced Mushroom",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -162,7 +162,7 @@
       "totalCarbohydrate": "14",
       "name": "Rice Krispie Square",
       "totalFat": "3",
-      "servingSize": "20",
+      "servingSize": "20 gram",
       "type": ""
     },
     {
@@ -173,7 +173,7 @@
       "totalCarbohydrate": "36",
       "name": "Salted Caramel Brownie",
       "totalFat": "11",
-      "servingSize": "60",
+      "servingSize": "60 gram",
       "type": ""
     },
     {
@@ -184,7 +184,7 @@
       "totalCarbohydrate": "17",
       "name": "Chocolate Chip Cookie",
       "totalFat": "6",
-      "servingSize": "28",
+      "servingSize": "28 gram",
       "type": ""
     },
     {
@@ -195,7 +195,7 @@
       "totalCarbohydrate": "19",
       "name": "Chocolate Peppermint Crinkle Cookie",
       "totalFat": "4.5",
-      "servingSize": "25",
+      "servingSize": "25 gram",
       "type": ""
     },
     {
@@ -206,7 +206,7 @@
       "totalCarbohydrate": "17",
       "name": "Double Chocolate Chip Cookie",
       "totalFat": "6",
-      "servingSize": "28",
+      "servingSize": "28 gram",
       "type": "Vegetarian"
     },
     {
@@ -217,7 +217,7 @@
       "totalCarbohydrate": "17",
       "name": "Oatmeal Raisin Cookie",
       "totalFat": "5",
-      "servingSize": "28",
+      "servingSize": "28 gram",
       "type": ""
     },
     {
@@ -228,7 +228,7 @@
       "totalCarbohydrate": "18",
       "name": "Sugar Cookie",
       "totalFat": "3",
-      "servingSize": "28",
+      "servingSize": "28 gram",
       "type": ""
     },
     {
@@ -239,7 +239,7 @@
       "totalCarbohydrate": "9",
       "name": "Cantaloupe",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -250,7 +250,7 @@
       "totalCarbohydrate": "13",
       "name": "Grapefruit",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -261,7 +261,7 @@
       "totalCarbohydrate": "10",
       "name": "Honeydew",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounces",
       "type": "Vegan"
     },
     {
@@ -272,7 +272,7 @@
       "totalCarbohydrate": "15",
       "name": "Orange Sections",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounces",
       "type": "Vegan"
     },
     {
@@ -283,7 +283,7 @@
       "totalCarbohydrate": "36",
       "name": "Salmon Salad Sandwich on White",
       "totalFat": "10",
-      "servingSize": "165",
+      "servingSize": "165 gram",
       "type": ""
     },
     {
@@ -294,7 +294,7 @@
       "totalCarbohydrate": "29",
       "name": "Chicken Bacon and Monterey Jack Wrap",
       "totalFat": "14",
-      "servingSize": "152",
+      "servingSize": "152 gram",
       "type": ""
     },
     {
@@ -305,7 +305,7 @@
       "totalCarbohydrate": "14",
       "name": "Potato Chips",
       "totalFat": "20",
-      "servingSize": "148",
+      "servingSize": "148 gram",
       "type": ""
     },
     {
@@ -316,7 +316,7 @@
       "totalCarbohydrate": "0",
       "name": "Add Cheddar Cheese",
       "totalFat": "5",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegetarian"
     },
     {
@@ -327,7 +327,7 @@
       "totalCarbohydrate": "0",
       "name": "Add Swiss Cheese",
       "totalFat": "3",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegetarian"
     },
     {
@@ -337,7 +337,7 @@
       "protein": "8",
       "totalCarbohydrate": "2",
       "name": "Chicken Salad",
-      "totalFat": "3",
+      "totalFat": "3 ounce",
       "servingSize": "2",
       "type": ""
     },
@@ -348,7 +348,7 @@
       "protein": "6",
       "totalCarbohydrate": "0",
       "name": "Corned Beef",
-      "totalFat": "1",
+      "totalFat": "1 ounce",
       "servingSize": "2",
       "type": ""
     },
@@ -360,7 +360,7 @@
       "totalCarbohydrate": "1",
       "name": "Egg Salad",
       "totalFat": "5",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegetarian"
     },
     {
@@ -382,7 +382,7 @@
       "totalCarbohydrate": "0",
       "name": "Provolone Cheese",
       "totalFat": "3.5",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": ""
     },
     {
@@ -393,7 +393,7 @@
       "totalCarbohydrate": "2",
       "name": "Salmon Salad",
       "totalFat": "6",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -404,7 +404,7 @@
       "totalCarbohydrate": "0",
       "name": "Sliced Beef",
       "totalFat": "2.5",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -415,7 +415,7 @@
       "totalCarbohydrate": "1",
       "name": "Sliced Ham",
       "totalFat": "1.5",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -426,7 +426,7 @@
       "totalCarbohydrate": "2",
       "name": "Sliced Salami",
       "totalFat": "6",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -437,7 +437,7 @@
       "totalCarbohydrate": "1",
       "name": "Sliced Turkey",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -448,7 +448,7 @@
       "totalCarbohydrate": "2",
       "name": "Tuna Salad",
       "totalFat": "2.5",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -459,7 +459,7 @@
       "totalCarbohydrate": "23",
       "name": "Creamy Potato Salad",
       "totalFat": "4",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegetarian"
     },
     {
@@ -470,7 +470,7 @@
       "totalCarbohydrate": "55",
       "name": "Baguette",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": ""
     },
     {
@@ -481,7 +481,7 @@
       "totalCarbohydrate": "34",
       "name": "White Bread 2 Slices",
       "totalFat": "1.5",
-      "servingSize": "2",
+      "servingSize": "2 pieces",
       "type": ""
     },
     {
@@ -492,7 +492,7 @@
       "totalCarbohydrate": "31",
       "name": "Whole Wheat Bread 2 Slices",
       "totalFat": "2",
-      "servingSize": "2",
+      "servingSize": "2 pieces",
       "type": ""
     },
     {
@@ -503,7 +503,7 @@
       "totalCarbohydrate": "49",
       "name": "Whole Wheat Wrap",
       "totalFat": "8",
-      "servingSize": "1",
+      "servingSize": "1 wrap",
       "type": ""
     },
     {
@@ -514,7 +514,7 @@
       "totalCarbohydrate": "52",
       "name": "Wrap",
       "totalFat": "7",
-      "servingSize": "1",
+      "servingSize": "1 wrap",
       "type": "Vegan"
     },
     {
@@ -525,7 +525,7 @@
       "totalCarbohydrate": "21",
       "name": "Chickpea Couscous Salad",
       "totalFat": "0.5",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -536,7 +536,7 @@
       "totalCarbohydrate": "11",
       "name": "Grilled Balsamic Vegetables",
       "totalFat": "6",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -547,7 +547,7 @@
       "totalCarbohydrate": "0",
       "name": "Shredded Iceberg Lettuce",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegan"
     },
     {
@@ -558,7 +558,7 @@
       "totalCarbohydrate": "2",
       "name": "Sliced Cucumbers",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -569,7 +569,7 @@
       "totalCarbohydrate": "3",
       "name": "Sliced Red Onions",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -580,7 +580,7 @@
       "totalCarbohydrate": "2",
       "name": "Sliced Tomatoes",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -591,7 +591,7 @@
       "totalCarbohydrate": "0",
       "name": "Banana Peppers",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -602,7 +602,7 @@
       "totalCarbohydrate": "8",
       "name": "BBQ Sauce",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -613,7 +613,7 @@
       "totalCarbohydrate": "7",
       "name": "Calorie Wise Ranch Dressing",
       "totalFat": "4.5",
-      "servingSize": "2",
+      "servingSize": "2 tablespoons",
       "type": "Vegetarian"
     },
     {
@@ -624,7 +624,7 @@
       "totalCarbohydrate": "1",
       "name": "Chipotle Mayo",
       "totalFat": "3.5",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegetarian"
     },
     {
@@ -635,7 +635,7 @@
       "totalCarbohydrate": "0",
       "name": "Dill Pickles",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -646,7 +646,7 @@
       "totalCarbohydrate": "8",
       "name": "Honey Mustard",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegetarian"
     },
     {
@@ -657,7 +657,7 @@
       "totalCarbohydrate": "2",
       "name": "Hummus",
       "totalFat": "1.5",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -668,7 +668,7 @@
       "totalCarbohydrate": "0",
       "name": "Mayo",
       "totalFat": "10",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegetarian"
     },
     {
@@ -679,7 +679,7 @@
       "totalCarbohydrate": "2",
       "name": "Sriracha Mayo",
       "totalFat": "25",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegetarian"
     },
     {
@@ -690,7 +690,7 @@
       "totalCarbohydrate": "1",
       "name": "Yellow Mustard",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -701,7 +701,7 @@
       "totalCarbohydrate": "27",
       "name": "Fried Samosa",
       "totalFat": "27",
-      "servingSize": "85",
+      "servingSize": "85 gram",
       "type": ""
     },
     {
@@ -712,7 +712,7 @@
       "totalCarbohydrate": "15",
       "name": "Vegetable Biriyani",
       "totalFat": "1.5",
-      "servingSize": "118",
+      "servingSize": "118 millilitre",
       "type": "Vegetarian"
     },
     {
@@ -723,7 +723,7 @@
       "totalCarbohydrate": "16",
       "name": "Salted Edamame Corn and Black Beans",
       "totalFat": "2.5",
-      "servingSize": "118",
+      "servingSize": "118 millilitre",
       "type": "Vegan"
     },
     {
@@ -734,7 +734,7 @@
       "totalCarbohydrate": "10",
       "name": "Chicken Tikka Masala",
       "totalFat": "10",
-      "servingSize": "125",
+      "servingSize": "125 gram",
       "type": ""
     },
     {
@@ -745,7 +745,7 @@
       "totalCarbohydrate": "9",
       "name": "Butternut Squash Tikka Masala with Tofu",
       "totalFat": "7",
-      "servingSize": "105",
+      "servingSize": "105 gram",
       "type": "Vegan"
     },
     {
@@ -756,7 +756,7 @@
       "totalCarbohydrate": "18",
       "name": "Steamed Basmati Rice",
       "totalFat": "0",
-      "servingSize": "89",
+      "servingSize": "89 millilitre",
       "type": "Vegan"
     },
     {
@@ -767,7 +767,7 @@
       "totalCarbohydrate": "67",
       "name": "Chicago Italian Hot Beef Sandwich",
       "totalFat": "5",
-      "servingSize": "145",
+      "servingSize": "145 gram",
       "type": ""
     },
     {
@@ -778,7 +778,7 @@
       "totalCarbohydrate": "36",
       "name": "Battered Onion Rings",
       "totalFat": "13",
-      "servingSize": "100",
+      "servingSize": "100 gram",
       "type": ""
     },
     {
@@ -789,7 +789,7 @@
       "totalCarbohydrate": "9",
       "name": "Chickpeas",
       "totalFat": "1",
-      "servingSize": "59",
+      "servingSize": "59 gram",
       "type": "Vegan"
     },
     {
@@ -800,7 +800,7 @@
       "totalCarbohydrate": "1",
       "name": "Diced Tofu",
       "totalFat": "3",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegan"
     },
     {
@@ -811,7 +811,7 @@
       "totalCarbohydrate": "0",
       "name": "Ground Beef",
       "totalFat": "10",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -822,7 +822,7 @@
       "totalCarbohydrate": "0",
       "name": "Herbed Baked Chicken",
       "totalFat": "5",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": ""
     },
     {
@@ -833,7 +833,7 @@
       "totalCarbohydrate": "0",
       "name": "Italian Sausage",
       "totalFat": "8",
-      "servingSize": "59",
+      "servingSize": "59 gram",
       "type": ""
     },
     {
@@ -844,7 +844,7 @@
       "totalCarbohydrate": "27",
       "name": "No Gluten Penne Rigate",
       "totalFat": "5",
-      "servingSize": "6",
+      "servingSize": "6 ounce",
       "type": "Vegan"
     },
     {
@@ -855,7 +855,7 @@
       "totalCarbohydrate": "30",
       "name": "Penne Rigate",
       "totalFat": "5",
-      "servingSize": "6",
+      "servingSize": "6 ounce",
       "type": "Vegan"
     },
     {
@@ -866,7 +866,7 @@
       "totalCarbohydrate": "2",
       "name": "Broccoli Florets",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -877,7 +877,7 @@
       "totalCarbohydrate": "4",
       "name": "Diced Onion",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -888,7 +888,7 @@
       "totalCarbohydrate": "0",
       "name": "Diced Tomatoes",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -899,7 +899,7 @@
       "totalCarbohydrate": "0",
       "name": "Diced Zucchini",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegetarian"
     },
     {
@@ -910,7 +910,7 @@
       "totalCarbohydrate": "0",
       "name": "Garlic",
       "totalFat": "0",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -921,7 +921,7 @@
       "totalCarbohydrate": "2",
       "name": "Green Peppers",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -932,7 +932,7 @@
       "totalCarbohydrate": "4",
       "name": "Roasted Red Peppers",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -943,7 +943,7 @@
       "totalCarbohydrate": "0",
       "name": "Sliced Mushroom",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -954,7 +954,7 @@
       "totalCarbohydrate": "8",
       "name": "Bechamel Cream Sauce",
       "totalFat": "60",
-      "servingSize": "3",
+      "servingSize": "3 ounce",
       "type": "Vegetarian"
     },
     {
@@ -965,7 +965,7 @@
       "totalCarbohydrate": "0",
       "name": "Canola Oil",
       "totalFat": "9",
-      "servingSize": "10",
+      "servingSize": "10 ml",
       "type": ""
     },
     {
@@ -976,7 +976,7 @@
       "totalCarbohydrate": "7",
       "name": "Marinara Sauce",
       "totalFat": "10",
-      "servingSize": "3",
+      "servingSize": "3 tablespoon",
       "type": "Vegan"
     },
     {
@@ -987,7 +987,7 @@
       "totalCarbohydrate": "21",
       "name": "Canadian Pizza",
       "totalFat": "7",
-      "servingSize": "85",
+      "servingSize": "85 gram",
       "type": ""
     },
     {
@@ -998,7 +998,7 @@
       "totalCarbohydrate": "27",
       "name": "Cheese Pizza on Whole Wheat",
       "totalFat": "4.5",
-      "servingSize": "85",
+      "servingSize": "85 gram",
       "type": "Vegetarian"
     },
     {
@@ -1020,7 +1020,7 @@
       "totalCarbohydrate": "20",
       "name": "Pepperoni Pizza",
       "totalFat": "7",
-      "servingSize": "75",
+      "servingSize": "75 gram",
       "type": ""
     },
     {
@@ -1031,7 +1031,7 @@
       "totalCarbohydrate": "0",
       "name": "Bacon Pieces",
       "totalFat": "2.5",
-      "servingSize": "1",
+      "servingSize": "1 piece",
       "type": ""
     },
     {
@@ -1042,7 +1042,7 @@
       "totalCarbohydrate": "11",
       "name": "Black Beans",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -1053,7 +1053,7 @@
       "totalCarbohydrate": "9",
       "name": "Chickpeas",
       "totalFat": "1",
-      "servingSize": "2",
+      "servingSize": "2 ounces",
       "type": "Vegan"
     },
     {
@@ -1064,7 +1064,7 @@
       "totalCarbohydrate": "1",
       "name": "Diced Tofu",
       "totalFat": "3",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegan"
     },
     {
@@ -1075,7 +1075,7 @@
       "totalCarbohydrate": "0",
       "name": "Hard Cooked Eggs",
       "totalFat": "3.5",
-      "servingSize": "1",
+      "servingSize": "1 egg",
       "type": "Vegetarian"
     },
     {
@@ -1086,7 +1086,7 @@
       "totalCarbohydrate": "10",
       "name": "Kidney Beans",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -1097,7 +1097,7 @@
       "totalCarbohydrate": "2",
       "name": "Pumpkin Seeds",
       "totalFat": "7",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -1108,7 +1108,7 @@
       "totalCarbohydrate": "0",
       "name": "Shredded Cheddar Cheese",
       "totalFat": "4.5",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegetarian"
     },
     {
@@ -1119,7 +1119,7 @@
       "totalCarbohydrate": "2",
       "name": "Sunflower Seeds",
       "totalFat": "4.5",
-      "servingSize": "1",
+      "servingSize": "1 tablespoon",
       "type": "Vegan"
     },
     {
@@ -1130,7 +1130,7 @@
       "totalCarbohydrate": "4",
       "name": "Seasoned Croutons",
       "totalFat": "2",
-      "servingSize": "1",
+      "servingSize": "1 ounce",
       "type": "Vegan"
     },
     {
@@ -1141,7 +1141,7 @@
       "totalCarbohydrate": "2",
       "name": "Baby Kale",
       "totalFat": "0",
-      "servingSize": "8",
+      "servingSize": "8 ounce",
       "type": "Vegan"
     },
     {
@@ -1152,7 +1152,7 @@
       "totalCarbohydrate": "0",
       "name": "Baby Spinach",
       "totalFat": "0",
-      "servingSize": "8",
+      "servingSize": "8 ounce",
       "type": "Vegan"
     },
     {
@@ -1163,7 +1163,7 @@
       "totalCarbohydrate": "5",
       "name": "Broccoli Cheese Salad with Bacon",
       "totalFat": "7",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": ""
     },
     {
@@ -1174,7 +1174,7 @@
       "totalCarbohydrate": "2",
       "name": "Broccoli Florets",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -1185,7 +1185,7 @@
       "totalCarbohydrate": "5",
       "name": "Carrot Sticks",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 pieces",
       "type": "Vegan"
     },
     {
@@ -1196,7 +1196,7 @@
       "totalCarbohydrate": "5",
       "name": "Cauliflower Florets",
       "totalFat": "0.5",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -1207,7 +1207,7 @@
       "totalCarbohydrate": "2",
       "name": "Celery Sticks",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 pieces",
       "type": "Vegan"
     },
     {
@@ -1218,7 +1218,7 @@
       "totalCarbohydrate": "21",
       "name": "Chickpea and Couscous Salad",
       "totalFat": "0.5",
-      "servingSize": "4",
+      "servingSize": "4 ounces",
       "type": "Vegan"
     },
     {
@@ -1229,7 +1229,7 @@
       "totalCarbohydrate": "1",
       "name": "Mixed Peppers",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounces",
       "type": "Vegan"
     },
     {
@@ -1240,7 +1240,7 @@
       "totalCarbohydrate": "2",
       "name": "Romaine Lettuce",
       "totalFat": "0",
-      "servingSize": "8",
+      "servingSize": "8 ounce",
       "type": "Vegan"
     },
     {
@@ -1251,7 +1251,7 @@
       "totalCarbohydrate": "1",
       "name": "Sliced Beets",
       "totalFat": "0",
-      "servingSize": "2",
+      "servingSize": "2 ounce",
       "type": "Vegan"
     },
     {
@@ -1262,7 +1262,7 @@
       "totalCarbohydrate": "2",
       "name": "Sliced Cucumbers",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -1273,7 +1273,7 @@
       "totalCarbohydrate": "2",
       "name": "Spring Mix",
       "totalFat": "0",
-      "servingSize": "8",
+      "servingSize": "8 ounce",
       "type": "Vegan"
     },
     {
@@ -1284,7 +1284,7 @@
       "totalCarbohydrate": "4",
       "name": "Tomato Wedges",
       "totalFat": "0",
-      "servingSize": "4",
+      "servingSize": "4 ounce",
       "type": "Vegan"
     },
     {
@@ -1295,7 +1295,7 @@
       "totalCarbohydrate": "366",
       "name": "Balsamic Dressing",
       "totalFat": "771",
-      "servingSize": "3000",
+      "servingSize": "3000 ml",
       "type": "Vegan"
     },
     {
@@ -1306,7 +1306,7 @@
       "totalCarbohydrate": "7",
       "name": "Calorie Wise Caesar Dressing",
       "totalFat": "4.5",
-      "servingSize": "2",
+      "servingSize": "2 tablespoons",
       "type": ""
     },
     {
@@ -1317,7 +1317,7 @@
       "totalCarbohydrate": "7",
       "name": "Calorie Wise Ranch Dressing",
       "totalFat": "4.5",
-      "servingSize": "2",
+      "servingSize": "2 tablespoons",
       "type": "Vegetarian"
     },
     {
@@ -1328,7 +1328,7 @@
       "totalCarbohydrate": "2",
       "name": "Greek Dressing",
       "totalFat": "10",
-      "servingSize": "2",
+      "servingSize": "2 tablespoons",
       "type": ""
     },
     {
@@ -1339,7 +1339,7 @@
       "totalCarbohydrate": "2",
       "name": "Sliced Kalamata Olives",
       "totalFat": "4",
-      "servingSize": "2",
+      "servingSize": "2 ounces",
       "type": "Vegan"
     },
     {
@@ -1350,7 +1350,7 @@
       "totalCarbohydrate": "3",
       "name": "Zesty Italian Dressing",
       "totalFat": "6",
-      "servingSize": "2",
+      "servingSize": "2 tablespoons",
       "type": "Vegan"
     },
     {
