@@ -1,5 +1,6 @@
 package com.example.calorietracker.fragment;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Report;
+import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.helper.StudentReader;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,12 +21,10 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.siyamed.shapeimageview.CircularImageView;
 import org.json.JSONException;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,21 +34,38 @@ import java.util.List;
 import java.util.Random;
 
 import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.random;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class ReportMode extends Fragment {
 
     private static List<Report> reportData;
+
     public static ReportMode newInstance(String path) {
         File file = new File(path);
         StudentReader student_reader;
+        Student thisUser;
+        float userBMR;
+        Bundle args = new Bundle();
+        ReportMode fragment = new ReportMode();
         try {
             student_reader = new StudentReader(file);
             reportData = student_reader.getArray();
+            for(int i=0;i<reportData.size();i++){
+                System.out.println("show cal: "+reportData.get(i).getTotal());
+            }
+            if(reportData.size()==0){
+                System.out.println("NO data available");
+            }
+
+            thisUser = student_reader.getProduct();
+            userBMR = thisUser.getBMR();
+            args.putFloat("BMR",userBMR);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Bundle args = new Bundle();
-        ReportMode fragment = new ReportMode();
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,78 +76,112 @@ public class ReportMode extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.report_mode, null);
+
         BarChart reportChart = view.findViewById(R.id.bar_chart);
         TextView suggestion = view.findViewById(R.id.suggest);
-        suggestion.setText("Look at meeeeee!");
+        TextView averageBMR = view.findViewById(R.id.average_bmr);
+
+        CircularImageView imageView;
+        imageView = view.findViewById(R.id.image_view);
+        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/ic_report");
+        Glide.with(this).load(String.valueOf(uri)).into(imageView);
+
+        List<Float> totalCal = get7dayCal();
+        float userBMR = getArguments().getFloat("BMR");
+        float countCalAver = 0;
+        int countNum = 0;
         reportChart = initBarchart(reportChart); //init barchart
-        BarData reportData = null; //拿到数据
-        try {
-            reportData = setBarDate();
-        } catch (IOException e) {
-            e.printStackTrace();
+        BarData reportData = setBarDate(); //get data
+        reportChart.setData(reportData); //show data
+        reportChart.animateY(3000); //animation
+        reportChart.invalidate(); //refresh after get data
+        for(int j =0; j<totalCal.size();j++){
+            if(totalCal.get(j)!=0){
+                countCalAver = countCalAver+totalCal.get(j);
+                countNum =countNum+1;
+            }
         }
-        reportChart.setData(reportData); //显示数据
-        reportChart.animateY(3000);
-        reportChart.invalidate(); //填充数据后刷新
+
+        if(countNum!=0) {
+            averageBMR.setText("The Daily Average Calorie is " + (float) countCalAver / countNum);
+        }
+        else{
+            averageBMR.setText("The Daily Average Calorie is 0. ");
+        }
+        if(countCalAver <=userBMR-100){
+            suggestion.setText("This Week you may eat too less. ");
+        }
+        else if(countCalAver >=userBMR+100){
+            suggestion.setText("This Week you may eat too much. ");
+        }
+        else{
+            suggestion.setText("Intake balanced. Keep Going! ");
+        }
+
         return view;
     }
 
     /*
-    顾名思义set data
+    set data
             */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public BarData setBarDate() throws IOException {
+    public BarData setBarDate(){
         List<BarEntry> entries = new ArrayList<>();
-
-        //先自设7个试试
 
         /*for(int i =8;i>1;i--){
             entries.add(new BarEntry(i,new Random().nextInt(1200)));
         }*/
-        LocalDate localDate=LocalDate.now();
-        List<Float> totalCalorie = new ArrayList<>(Arrays.asList(0f, 0f, 0f, 0f, 0f, 0f,0f));
-        for(int i = 0;i<reportData.size();i++){
-            LocalDate localDate1 = LocalDate.parse(reportData.get(i).getDate());
-            int daysGap = localDate.compareTo(localDate1);
-            switch (daysGap){
-                case 1:
-                    Float day1Cal = totalCalorie.get(0) + reportData.get(i).getTotal();
-                    totalCalorie.set(0,day1Cal);
-                    break;
-                case 2:
-                    Float day2Cal = totalCalorie.get(1) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day2Cal);
-                    break;
-                case 3:
-                    Float day3Cal = totalCalorie.get(2) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day3Cal);
-                    break;
-                case 4:
-                    Float day4Cal = totalCalorie.get(3) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day4Cal);
-                    break;
-                case 5:
-                    Float day5Cal = totalCalorie.get(4) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day5Cal);
-                    break;
-                case 6:
-                    Float day6Cal = totalCalorie.get(5) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day6Cal);
-                    break;
-                case 7:
-                    Float day7Cal = totalCalorie.get(6) + reportData.get(i).getTotal();
-                    totalCalorie.set(1,day7Cal);
-                    break;
-            }
+        List<Float> totalCalorie = get7dayCal();
+        for(int i =0;i<7;i++){
+        //for(int i=6;i>=0;i--){
+            entries.add(new BarEntry(i,totalCalorie.get((int)abs(i))));
+            //entries.add(new BarEntry(i,new Random().nextInt(2000)));
         }
-        for(int i =8;i>1;i--){
-            entries.add(new BarEntry(i,totalCalorie.get((int)abs(i-8))));
-        }
-        BarDataSet barDataSet = new BarDataSet(entries,"Intake Calorie");//设置数据集
+        BarDataSet barDataSet = new BarDataSet(entries,"Intake Calorie");//set dataset
         BarData barData = new BarData(barDataSet);
         return barData;
     }
 
+    public List<Float> get7dayCal() {
+        //String localDay = DateHelper.getTodayFormat2();
+        LocalDate localDate = LocalDate.now();
+        List<Float> totalCalorie = new ArrayList<>(Arrays.asList(0f, 0f, 0f, 0f, 0f, 0f, 0f));
+        for (int i = 0; i < reportData.size(); i++) {
+            LocalDate localDate1 = LocalDate.parse(reportData.get(i).getDate());
+            int daysGap = localDate.compareTo(localDate1);
+            switch (daysGap) {
+                case 1:
+                    Float day1Cal = totalCalorie.get(6) + reportData.get(i).getTotal();
+                    totalCalorie.set(6, day1Cal);
+                    break;
+                case 2:
+                    Float day2Cal = totalCalorie.get(5) + reportData.get(i).getTotal();
+                    totalCalorie.set(5, day2Cal);
+                    break;
+                case 3:
+                    Float day3Cal = totalCalorie.get(4) + reportData.get(i).getTotal();
+                    totalCalorie.set(4, day3Cal);
+                    break;
+                case 4:
+                    Float day4Cal = totalCalorie.get(3) + reportData.get(i).getTotal();
+                    totalCalorie.set(3, day4Cal);
+                    break;
+                case 5:
+                    Float day5Cal = totalCalorie.get(2) + reportData.get(i).getTotal();
+                    totalCalorie.set(2, day5Cal);
+                    break;
+                case 6:
+                    Float day6Cal = totalCalorie.get(1) + reportData.get(i).getTotal();
+                    totalCalorie.set(1, day6Cal);
+                    break;
+                case 7:
+                    Float day7Cal = totalCalorie.get(0) + reportData.get(i).getTotal();
+                    totalCalorie.set(0, day7Cal);
+                    break;
+            }
+        }
+        return totalCalorie;
+    }
     /*
      *used to initiate barchart
      */
@@ -148,17 +200,17 @@ public class ReportMode extends Fragment {
     //init x and y axis
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setAxis(XAxis xAxis, YAxis yAxisLeft, YAxis yAxisRight){
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //设置x axis在底部显示
-        xAxis.setAxisLineWidth(1); //设置x轴的宽度
-        xAxis.setAxisMinimum(-0.5f); //设置x轴从0开始刻画
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //set x axis bottom show
+        xAxis.setAxisLineWidth(1); //width with x axis
+        xAxis.setAxisMinimum(-0.5f); 
         xAxis.setAxisMaximum(6.5f);//maximum is 6
-        xAxis.setDrawAxisLine(true); //设置显示x轴轴线
-        xAxis.setDrawGridLines(false); //不显示x轴的表格线
-        xAxis.setEnabled(true); //设置x轴显示
+        xAxis.setDrawAxisLine(true); 
+        xAxis.setDrawGridLines(false); 
+        xAxis.setEnabled(true); 
         List<String> stringDate = new ArrayList<String>();
         DateTimeFormatter format =DateTimeFormatter.ofPattern("MM-dd");
         LocalDateTime now = LocalDateTime.now();
-        for(int j=8;j>1;j--){
+        for(int j=7;j>0;j--){
             String date = now.minusDays(j).format(format);
             stringDate.add(date);
         }
@@ -169,17 +221,17 @@ public class ReportMode extends Fragment {
             }
         });
 
-        yAxisLeft.setAxisMinimum(0); //设置y轴从0开始
-        yAxisLeft.setDrawGridLines(false);//不显示y轴的表格线
-        yAxisLeft.setDrawAxisLine(true); //设置显示y轴轴线
-        yAxisLeft.setAxisLineWidth(1); //设置y轴的宽度
-        yAxisLeft.setEnabled(true); //设置左边y轴显示
+        yAxisLeft.setAxisMinimum(0); //y axis begin with 0
+        yAxisLeft.setDrawGridLines(false);//not showing table line
+        yAxisLeft.setDrawAxisLine(true); //show the axis number
+        yAxisLeft.setAxisLineWidth(1); //width with y axis
+        yAxisLeft.setEnabled(true); //set left y axis show
 
-        yAxisRight.setAxisMinimum(0); //设置y轴从0开始
-        yAxisRight.setDrawGridLines(false);//不显示y轴的表格线
-        yAxisRight.setDrawAxisLine(true); //设置显示y轴轴线
-        yAxisRight.setAxisLineWidth(1); //设置y轴的宽度
-        yAxisRight.setEnabled(false); //设置右边y轴不显示
+        yAxisRight.setAxisMinimum(0); 
+        yAxisRight.setDrawGridLines(false);
+        yAxisRight.setDrawAxisLine(true); 
+        yAxisRight.setAxisLineWidth(1); 
+        yAxisRight.setEnabled(false); 
 
     }
 
