@@ -1,0 +1,7 @@
+finished:
+created ui for health mode
+updated the report data structure, also modify the student reader, student writer accrodingly
+
+to be finished:
+thinking about developing a more sophisticated ui for our app. for example, the log out, and the view personal profile button : )
+discuss the health mode listview with Ziyang

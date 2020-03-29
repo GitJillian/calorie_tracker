@@ -137,7 +137,7 @@ public class HealthMode extends Fragment {
 
         labelB:
         while(this.isFull(limit)){
-            if (this.isFull(average)){
+        if (this.isFull(average)){
                 ArrayList<FoodModel> menu1 = new ArrayList<>();
                 for (int i = 0; i < menu.size(); i++) {
                     if (average > Float.parseFloat(menu.get(i).getCalorie())) {
