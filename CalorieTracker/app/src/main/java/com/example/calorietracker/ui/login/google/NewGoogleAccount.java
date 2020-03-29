@@ -30,14 +30,15 @@ public class NewGoogleAccount extends AppCompatActivity {
     int weight, age;
     float height;
     String name,password;
-    //Student new_student;
 
     @SuppressLint("WrongViewCast")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        String email = acct.getEmail();
-        String file_email = email.split("@")[0];
+        Intent intent = getIntent();
+        String file_email = intent.getStringExtra("path");
+        //String email = acct.getEmail();
+       // String file_email = email.split("@")[0];
         setContentView(R.layout.activity_create_user_google);
         setTitle("Create Google User");
         String personName = acct.getDisplayName();
@@ -80,7 +81,7 @@ public class NewGoogleAccount extends AppCompatActivity {
                 if (frequency == "") {
                     frequency = "medium";
                 }
-                checkInput(heightEditText, weightEditText, nameEditText,gender, ageEditText, frequency);
+                checkInput(heightEditText, weightEditText, nameEditText,gender, ageEditText, frequency, file_email);
 
             }
         });
@@ -89,13 +90,14 @@ public class NewGoogleAccount extends AppCompatActivity {
 
 
 public void checkInput (EditText heightEditText, EditText weightEditText, EditText nameEditText, boolean gender,
-                        EditText ageEditText, String frequency){
+                        EditText ageEditText, String frequency, String file_email){
             boolean flag = false;
             String  name,password,sex;
             int age, weight;
             float height;
+            File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + file_email);
 
-            File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
+            //File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
             StudentWriter student_writer = new StudentWriter(file_file);
            // Log.d("file_path", FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
 
@@ -120,7 +122,8 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
                 ArrayList<Report> report = new ArrayList<Report>();
                 Student student = new Student(name, sex, age, frequency, height, weight, password);
                 student_writer.writeStudent(student, report);
-                intent.putExtra("name",name);
+                //intent.putExtra("name",name);
+                intent.putExtra("path",file_email);
                 startActivity(intent);
                 }
             catch(Exception e){

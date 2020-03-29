@@ -47,7 +47,7 @@ import java.io.FileNotFoundException;
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             Intent intent = getIntent();
-            String file_name = intent.getStringExtra("name");
+            String file_name = intent.getStringExtra("path");
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
@@ -70,7 +70,7 @@ import java.io.FileNotFoundException;
 
                     case R.id.button_launch:
                         Intent intent_new = new Intent(GoogleAccountInfo.this, HomeActivity.class);
-                        intent_new.putExtra("path","/" + transName(file_name) + ".JSON");
+                        intent_new.putExtra("path",file_name);
                         startActivity(intent_new);
                 }
             });

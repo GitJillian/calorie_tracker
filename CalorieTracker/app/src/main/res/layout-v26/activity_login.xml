@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingLeft="0dp"
-        android:paddingTop="245dp"
+        android:paddingTop="240dp"
         android:paddingRight="21dp"
 
         app:layout_constraintEnd_toEndOf="parent"
