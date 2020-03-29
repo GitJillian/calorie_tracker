@@ -117,7 +117,7 @@ public class NewLocalAccount extends AppCompatActivity {
             }
             flag = true;
             Intent intent = new Intent(NewLocalAccount.this, HomeActivity.class);
-            //Bundle bundle = new
+
 
             if (gender == true) {
                 sex = "Female";
