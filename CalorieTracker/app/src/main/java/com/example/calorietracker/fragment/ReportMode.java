@@ -151,6 +151,7 @@ public class ReportMode extends Fragment {
             int daysGap = localDate.compareTo(localDate1);
             switch (daysGap) {
                 case 1:
+
                     Float day1Cal = totalCalorie.get(6) + reportData.get(i).getTotal();
                     totalCalorie.set(6, day1Cal);
                     break;
@@ -177,6 +178,7 @@ public class ReportMode extends Fragment {
                 case 7:
                     Float day7Cal = totalCalorie.get(0) + reportData.get(i).getTotal();
                     totalCalorie.set(0, day7Cal);
+
                     break;
             }
         }
