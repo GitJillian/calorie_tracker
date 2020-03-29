@@ -11,30 +11,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="Intake in the pass 7 days: "
+            android:text="Past 7 days Report"
             android:textSize="20dp" />
-    <!--<TextView
-            android:text="Intake in the pass 7 days: "
-            android:textSize="25dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-    >-->
 
-<!--    </TextView>-->
     <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/image_view"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:paddingTop="40dp"
+            android:paddingTop="50dp"
             app:siBorderColor="@color/linen"
             app:siBorderWidth="5dp" />
 
     <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="300dp"
     >

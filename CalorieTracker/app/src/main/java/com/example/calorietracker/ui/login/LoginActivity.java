@@ -187,7 +187,6 @@ public class LoginActivity extends AppCompatActivity {
                     case R.id.sign_in_button:
                         signIn();
                         break;
-                    // ...
                 }
             }
         });
@@ -266,15 +265,17 @@ public class LoginActivity extends AppCompatActivity {
 
             String email =account.getEmail();
             String str = email.split("@")[0].replace(' ','_');
-            String path = FileHelper.getFileDir(LoginActivity.this)+"/"+str+".JSON";
-            File file = new File(path);
+           // String path = FileHelper.getFileDir(LoginActivity.this)+"/"+str+".JSON";
+           // File file = new File(path);
             if(FileHelper.userExists(LoginActivity.this,str)){
                 Intent intent = new Intent(LoginActivity.this, GoogleAccountInfo.class);
+                 intent.putExtra("path","/"+str+".JSON");
                  startActivity(intent);
                  Toast.makeText(LoginActivity.this,"Log in with existing user", Toast.LENGTH_LONG).show();
                 }
                 else{
                  Intent intent = new Intent(LoginActivity.this, NewGoogleAccount.class);
+                 intent.putExtra("path","/"+str+".JSON");
                  startActivity(intent);
                  Toast.makeText(LoginActivity.this,"Log in with new user", Toast.LENGTH_LONG).show();
              }

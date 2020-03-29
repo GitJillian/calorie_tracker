@@ -38,7 +38,7 @@
         android:focusable="true"
         android:gravity="center|center_horizontal"
         android:paddingLeft="5dp"
-        android:paddingTop="80dp"
+        android:paddingTop="50dp"
         android:singleLine="true"
         android:text="Build Your Own Meal"
         android:textColor="@color/tomato"
@@ -90,6 +90,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
             android:src="@drawable/ic_add_self_reverse" />
     </LinearLayout>
 
@@ -139,6 +140,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
             android:src="@drawable/ic_add_self_reverse" />
 
     </LinearLayout>
@@ -184,6 +186,7 @@
             android:id="@+id/button_dinner"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_add_self_reverse" />
     </LinearLayout>
