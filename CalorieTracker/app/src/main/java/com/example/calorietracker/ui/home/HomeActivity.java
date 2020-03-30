@@ -110,18 +110,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         try {
-            setupViewPager(viewPager);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                setupViewPager(viewPager);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setupViewPager(ViewPager viewPager) throws JSONException {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(HomeInfo.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
         adapter.addFragment(SelfSelectedMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
         adapter.addFragment(HealthMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path,todayStr));
-        //adapter.addFragment(BaseFragment.newInstance("Report"));
         adapter.addFragment(ReportMode.newInstance(FileHelper.getFileDir(HomeActivity.this)+path));
         viewPager.setAdapter(adapter);
     }
