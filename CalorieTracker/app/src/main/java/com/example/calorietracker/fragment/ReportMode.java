@@ -15,6 +15,7 @@ import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.helper.StudentReader;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -90,11 +91,11 @@ public class ReportMode extends Fragment {
         float userBMR = getArguments().getFloat("BMR");
         float countCalAver = 0;
         int countNum = 0;
-        reportChart = initBarchart(reportChart); //init barchart
-        BarData reportData = setBarDate(); //get data
+        reportChart = initBarchart(reportChart,userBMR); //init barchart
+        BarData reportData = setBarDate(); //getdata
         reportChart.setData(reportData); //show data
         reportChart.animateY(3000); //animation
-        reportChart.invalidate(); //refresh after get data
+        reportChart.invalidate(); //refresh
         for(int j =0; j<totalCal.size();j++){
             if(totalCal.get(j)!=0){
                 countCalAver = countCalAver+totalCal.get(j);
@@ -127,7 +128,6 @@ public class ReportMode extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public BarData setBarDate(){
         List<BarEntry> entries = new ArrayList<>();
-
         /*for(int i =8;i>1;i--){
             entries.add(new BarEntry(i,new Random().nextInt(1200)));
         }*/
@@ -151,7 +151,6 @@ public class ReportMode extends Fragment {
             int daysGap = localDate.compareTo(localDate1);
             switch (daysGap) {
                 case 1:
-
                     Float day1Cal = totalCalorie.get(6) + reportData.get(i).getTotal();
                     totalCalorie.set(6, day1Cal);
                     break;
@@ -178,7 +177,6 @@ public class ReportMode extends Fragment {
                 case 7:
                     Float day7Cal = totalCalorie.get(0) + reportData.get(i).getTotal();
                     totalCalorie.set(0, day7Cal);
-
                     break;
             }
         }
@@ -188,22 +186,22 @@ public class ReportMode extends Fragment {
      *used to initiate barchart
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public BarChart initBarchart(BarChart reportChart){
+    public BarChart initBarchart(BarChart reportChart,float userBMR){
         reportChart.getDescription().setText("Calorie Diagram");//description
         reportChart.setDrawBarShadow(false);
         reportChart.setDrawValueAboveBar(true);//show value in different barchart
         XAxis xAxis = reportChart.getXAxis(); //get x axis
         YAxis yAxisLeft = reportChart.getAxisLeft(); //get left y axis
         YAxis yAxisRight = reportChart.getAxisRight(); //get right y axis
-        setAxis(xAxis,yAxisLeft,yAxisRight); //set x y axis
+        setAxis(xAxis,yAxisLeft,yAxisRight,userBMR); //set x y axis
         return reportChart;
     }
 
     //init x and y axis
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setAxis(XAxis xAxis, YAxis yAxisLeft, YAxis yAxisRight){
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //set x axis bottom show
-        xAxis.setAxisLineWidth(1); //width with x axis
+    public void setAxis(XAxis xAxis, YAxis yAxisLeft, YAxis yAxisRight,float userBMR){
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); 
+        xAxis.setAxisLineWidth(1); 
         xAxis.setAxisMinimum(-0.5f); 
         xAxis.setAxisMaximum(6.5f);//maximum is 6
         xAxis.setDrawAxisLine(true); 
@@ -223,11 +221,14 @@ public class ReportMode extends Fragment {
             }
         });
 
-        yAxisLeft.setAxisMinimum(0); //y axis begin with 0
-        yAxisLeft.setDrawGridLines(false);//not showing table line
-        yAxisLeft.setDrawAxisLine(true); //show the axis number
-        yAxisLeft.setAxisLineWidth(1); //width with y axis
-        yAxisLeft.setEnabled(true); //set left y axis show
+        LimitLine yLimitLine = new LimitLine(userBMR,"User BMR");//add limit line of y axis
+        yAxisLeft.setAxisMinimum(0); 
+        yAxisLeft.setDrawGridLines(false);
+        yAxisLeft.setDrawAxisLine(true); 
+        yAxisLeft.setAxisLineWidth(1); 
+        yAxisLeft.setEnabled(true); 
+        yAxisLeft.addLimitLine(yLimitLine);
+
 
         yAxisRight.setAxisMinimum(0); 
         yAxisRight.setDrawGridLines(false);
