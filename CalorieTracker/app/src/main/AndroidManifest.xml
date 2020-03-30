@@ -42,7 +42,7 @@
             android:name=".ui.login.local.SetWeeklyMenu" android:label="Set Weekly Menu"/>
 
         <activity
-            android:name=".ui.home.SelfSelectView" android:label="Build Your Own Meal" />
+            android:name=".ui.home.SelfSelectView"/>
 
         <activity
             android:name=".ui.home.SelfSelectCartActivity" android:theme="@style/AppTheme.NoActionBar"/>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,7 @@ import static com.example.calorietracker.adapter.FoodAdapter.FoodArrayPublish;
 
 public class CartActivity extends AppCompatActivity {
 
-   // public static TextView grandTotal;
+    public static TextView grandTotal;
     public static int grandTotalplus;
     public static ArrayList<FoodModel> modelArrayList;
     public static ArrayList<FoodImage> temparraylist;

@@ -103,7 +103,7 @@ public class Student implements Parcelable {
     }
 
     public int getLowerBound(int calorie){
-        return calorie - 50;
+        return calorie - 100;
     }
 
     public int getUpperBound(int calorie){
