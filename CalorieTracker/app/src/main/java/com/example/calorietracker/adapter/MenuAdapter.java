@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.calorietracker.R;
 import com.example.calorietracker.menu.FoodImage;
 import java.util.ArrayList;
+import static com.example.calorietracker.ui.home.SelfSelectCartActivity.grandTotal;
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.temparraylist;
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.grandTotalplus;
 
@@ -37,7 +38,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final MenuAdapter.ViewHolder holder, final int position) {
 
-        holder.FoodCartCalorie.setText(String.valueOf(cartModelArrayList.get(position).getTotalCalorie()));
+        holder.FoodCartCalorie.setText(cartModelArrayList.get(position).getTotalCalorie()+" cals");
         holder.FoodCartCode.setText(cartModelArrayList.get(position).getFoodName());
         holder.FoodCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
 
@@ -52,15 +53,19 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                holder.deleteItem.setEnabled(true);
 
                 if (cartModelArrayList.size() == 1) {
-                    notifyItemRemoved(position);
+                    cartModelArrayList.remove(position);
+                    notifyItemChanged(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
 
                     grandTotalplus = 0;
+                    grandTotal.setText("Total Calorie: "+grandTotalplus+" cals");
                 }
 
                 if (cartModelArrayList.size() > 0) {
+                    cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, cartModelArrayList.size());
 
@@ -68,7 +73,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     for (int i = 0; i < temparraylist.size(); i++) {
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
+                    grandTotal.setText("Total Calorie: "+grandTotalplus+" cals");
                 }
+
             }
         });
 
@@ -91,12 +98,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                 holder.FoodCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
 
                 cartModelArrayList.get(position).setTotalCalorie(calorie);
-                holder.FoodCartCalorie.setText(String.valueOf(calorie));
+                holder.FoodCartCalorie.setText(String.valueOf(calorie) +" cals");
 
 
                 for (int i = 0; i < temparraylist.size(); i++) {
                     grandTotalplus += temparraylist.get(i).getTotalCalorie();
                 }
+
+                grandTotal.setText("Total Calorie: "+grandTotalplus+" cals");
 
             }
 
@@ -124,11 +133,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     int calorie = (Integer.parseInt(cartModelArrayList.get(position).getFoodCalorie()) * (cartModelArrayList.get(position).getFoodQuantity()));
 
                     cartModelArrayList.get(position).setTotalCalorie(calorie);
-                    holder.FoodCartCalorie.setText(String.valueOf(calorie));
+                    holder.FoodCartCalorie.setText(String.valueOf(calorie)+ " cals");
                     for (int i = 0; i < temparraylist.size(); i++) {
 
                         grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCalorie();
                     }
+                    grandTotal.setText("Total Calorie: "+grandTotalplus+" cals");
 
                 }
             }

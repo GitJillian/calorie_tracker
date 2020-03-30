@@ -21,7 +21,7 @@ import com.example.calorietracker.menu.FoodModel;
 
 import java.util.ArrayList;
 import static com.example.calorietracker.ui.login.local.CartActivity.temparraylist;
-//import static com.example.calorietracker.ui.login.local.CartActivity.grandTotal;
+///import static com.example.calorietracker.ui.login.local.CartActivity.grandTotal;
 import static com.example.calorietracker.ui.login.local.CartActivity.grandTotalplus;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
@@ -63,6 +63,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
 
+                holder.deleteItem.setEnabled(true);
+
                 if (cartModelArrayList.size() == 1) {
                     FoodImage removed = cartModelArrayList.remove(position);
                     notifyItemRemoved(position);
@@ -91,7 +93,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.cartIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //total_cash=0;\
 
                 grandTotalplus = 0;
                 holder.cartDecrement.setEnabled(true);
@@ -116,7 +117,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 }
 
 
-               // grandTotal.setText(String.valueOf(grandTotalplus));
+                //grandTotal.setText(String.valueOf(grandTotalplus));
 
             }
 
@@ -126,7 +127,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.cartDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //total_cash=0;
+
                 grandTotalplus = 0;
                 holder.cartIncrement.setEnabled(true);
 
@@ -152,7 +153,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     }
 
 
-                 //  grandTotal.setText(String.valueOf(grandTotalplus));
+                  // grandTotal.setText(String.valueOf(grandTotalplus));
 
                 }
             }
