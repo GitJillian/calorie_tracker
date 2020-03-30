@@ -1,4 +1,5 @@
 package com.example.calorietracker.ui.home;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+@SuppressLint("Registered")
+
 public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapter.CallBackUs, SelfSelectAdapter.HomeCallBack {
     public static ArrayList<FoodModel> arrayList = new ArrayList<>();
 
@@ -39,20 +42,18 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
         type = intent.getStringExtra("type");
         date = intent.getStringExtra("date");
         path = intent.getStringExtra("path");
-        setContentView(R.layout.activity_set_menu);
-
+        setContentView(R.layout.self_select_view);
+        String typeTitle = type.toUpperCase();
+        setTitle("BUILD YOUR "+typeTitle);
+        //setting our database
         readDatabase();
 
         FoodRecyclerView = findViewById(R.id.Food_recycler_view);
-        selectAll = findViewById(R.id.button_submit);
-
         SelfSelectAdapter = new SelfSelectAdapter(arrayList, this, (com.example.calorietracker.adapter.SelfSelectAdapter.HomeCallBack) this);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         FoodRecyclerView.setLayoutManager(gridLayoutManager);
         FoodRecyclerView.setAdapter(SelfSelectAdapter);
-
-
+        SelfSelectAdapter.notifyDataSetChanged();
     }
 
 
@@ -61,6 +62,7 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
         MenuReader menuReader;
 
         try {
+            //TODO:USE FACTORY INSTEAD
             InputStream in = SelfSelectView.this.getAssets().open("menu3.JSON");
             //File file = new File(FileHelper.getFileDir(SelfSelectView.this,"/menu_release.JSON"));
            // MenuWriter writer = new MenuWriter(file);
