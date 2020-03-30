@@ -140,4 +140,38 @@ public class StudentReader extends JsReader {
         }
         return reportArrayList;
     }
+
+
+    public ArrayList<Report> getArrayByDate(String date){
+        ArrayList<Report> reportArrayList = this.getArray();
+        ArrayList<Report> reportByDate = new ArrayList<>();
+        for(Report report:reportArrayList){
+            if(report.getDate().equals(date)){
+                reportByDate.add(report);
+            }
+
+        }return reportByDate;
+
+    }
+
+    @Override
+
+    public int[] getSum(String date){
+        ArrayList<Report> reportOfDate = this.getArrayByDate(date);
+        int[] sums = {0,0,0};
+        for(Report report:reportOfDate){
+                if(report.getBreakfast()!=0){
+                    sums[0]+= report.getBreakfast();
+
+            }
+                if(report.getLunch()!=0){
+                    sums[1]+= report.getLunch();
+                }
+
+                if(report.getDinner()!=0){
+                    sums[2]+=report.getDinner();
+                }
+
+        }return sums;
+    }
 }

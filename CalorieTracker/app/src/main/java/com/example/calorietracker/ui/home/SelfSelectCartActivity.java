@@ -43,7 +43,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
     public static TextView grandTotal;
     private Toolbar mToolbar;
     String date, path, type;
-    int limitOfCalorie;
+    int limitOfCalorie, eatenBreakfast, eatenLunch, eatenDinner;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -65,19 +65,21 @@ public class SelfSelectCartActivity extends AppCompatActivity {
 
         reader = factory.JSONReaderFactory(student_file);
         Student student = (Student) reader.getProduct();
+        eatenBreakfast = reader.getSum(date)[0];
+        eatenLunch = reader.getSum(date)[1];
+        eatenDinner = reader.getSum(date)[2];
             if(type.equals("breakfast")){
-                limitOfCalorie = student.getBMRPropotion()[0];
+                limitOfCalorie = student.getBMRPropotion()[0] - eatenBreakfast;
             }
             else if(type.equals("lunch")){
-                limitOfCalorie = student.getBMRPropotion()[1];
+                limitOfCalorie = student.getBMRPropotion()[1] - eatenLunch;
             }
             else{
-                limitOfCalorie = student.getBMRPropotion()[2];
+                limitOfCalorie = student.getBMRPropotion()[2] - eatenDinner;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
 
         proceedToBook = findViewById(R.id.proceed_to_book);
@@ -157,11 +159,14 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                 TextView message = dialog.findViewById(R.id.self_proceed_message);
                 Button okButton = dialog.findViewById(R.id.ok_button);
                 Button cancelButton = dialog.findViewById(R.id.cancel_button);
+
+                //if your exceed the limit
                 if(grandTotalplus > limitOfCalorie + 100){
-                    message.setText("Exceeds recommended calorie range "+String.valueOf(limitOfCalorie - 100)+"~"+String.valueOf(limitOfCalorie + 100)+" cals. \nDo you wish to proceed?\n");
+                    message.setText("Exceeds recommended calorie range.\nYou can consider removing some of them :)\n");
                 }
+                //if you are below the limit
                 else if(grandTotalplus < limitOfCalorie - 100){
-                    message.setText("Lower than recommended calorie range "+String.valueOf(limitOfCalorie - 100)+"~"+String.valueOf(limitOfCalorie + 100)+" cals.\n Do you wish to proceed?\n");
+                    message.setText("Lower than recommended calorie range.\nYou can still add some more :)\n");
                 }
                 else{
                     message.setText("Perfect food choice according to your recommended intake!");
@@ -195,6 +200,14 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                         temparraylist.clear();
                         grandTotal.setText("Total Calorie: 0 cals");
                         cartRecyclerView.setVisibility(View.INVISIBLE);
+                        Intent intent = new Intent(SelfSelectCartActivity.this, HomeActivity.class);
+
+                        String[] splits =  path.split("/");
+                        int len = splits.length;
+                        String new_path = "/"+splits[len-1];
+                        intent.putExtra("path",new_path);
+                        intent.putExtra("date",date);
+                        startActivity(intent);
                         dialog.dismiss();
 
                     }

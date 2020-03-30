@@ -1,5 +1,7 @@
 package com.example.calorietracker.helper;
 
+import com.example.calorietracker.data.model.Report;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -153,6 +155,17 @@ public class JsReader {
     public Object getProduct(){
         Object obj = new Object();
         return obj;
+    }
+
+    public ArrayList<Object> getArrayByString(String date){
+        ArrayList<Object> objs = new ArrayList<>();
+        return objs;
+    }
+
+    public int[] getSum(String date){
+
+        int[] sums = {0,0,0};
+        return sums;
     }
 
 
