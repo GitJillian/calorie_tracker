@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingTop="20dp"
         android:text="Self-Selected Mode"
-        android:textColor="@color/LemonChiffon"
+        android:textColor="#E5F8F8F7"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -47,23 +47,21 @@
         tools:textStyle="italic|bold" />
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        tools:background="#F8F5F4">
+        android:layout_marginRight="15dp"
+        android:background="@drawable/custom_button_border"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/self_breakfast">
+            android:background="@drawable/icon_breakfast_2">
 
         </ImageView>
 
@@ -87,7 +85,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="Breakfast"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
                 />
 
@@ -104,7 +102,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="bmr breakfast"
-                android:textSize="14sp"
+                android:textSize="13sp"
 
                 />
 
@@ -118,7 +116,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="breakfast eaten"
-                android:textSize="15sp"
+                android:textSize="13sp"
 
                 />
         </LinearLayout>
@@ -131,29 +129,28 @@
 
         <ImageView
             android:id="@+id/button_breakfast"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_add_self_reverse" />
+            android:src="@drawable/ic_add" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        tools:background="#F8F5F4">
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/custom_button_border"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/self_lunch">
+            android:background="@drawable/icon_lunch">
 
         </ImageView>
 
@@ -178,7 +175,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="Lunch"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
                 />
 
@@ -195,7 +192,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="bmr lunch"
-                android:textSize="14sp"
+                android:textSize="13sp"
 
                 />
 
@@ -212,7 +209,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="lunch eaten"
-                android:textSize="15sp"
+                android:textSize="13sp"
 
                 />
         </LinearLayout>
@@ -225,30 +222,29 @@
 
         <ImageView
             android:id="@+id/button_lunch"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_add_self_reverse" />
+            android:src="@drawable/ic_add" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="bottom"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        tools:background="#F8F5F4">
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/custom_button_border"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="55dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/self_dinner">
+            android:background="@drawable/icon_dinner">
 
         </ImageView>
 
@@ -271,7 +267,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="Dinner"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
                 />
 
@@ -285,7 +281,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="bmr dinner"
-                android:textSize="14sp"
+                android:textSize="13sp"
 
                 />
 
@@ -299,7 +295,7 @@
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:text="dinner eaten"
-                android:textSize="15sp"
+                android:textSize="13sp"
 
                 />
         </LinearLayout>
@@ -312,11 +308,11 @@
 
         <ImageView
             android:id="@+id/button_dinner"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_add_self_reverse" />
+            android:src="@drawable/ic_add" />
     </LinearLayout>
 
 
