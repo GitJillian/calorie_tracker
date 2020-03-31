@@ -154,6 +154,18 @@ public class StudentReader extends JsReader {
 
     }
 
+    public ArrayList<Report> deleteArrayByDate(String date){
+        ArrayList<Report> reportArrayList = this.getArray();
+        ArrayList<Report> reportByDate = new ArrayList<>();
+        for(Report report:reportArrayList){
+            if(!report.getDate().equals(date)){
+                reportByDate.add(report);
+            }
+
+        }return reportByDate;
+
+    }
+
     @Override
 
     public int[] getSum(String date){

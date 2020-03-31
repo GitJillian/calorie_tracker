@@ -45,7 +45,6 @@ public class CartActivity extends AppCompatActivity {
         temparraylist = new ArrayList<>();
         admin = new Administrator();
         proceedToBook = findViewById(R.id.proceed_to_book);
-        //grandTotal = findViewById(R.id.grand_total_cart);
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,7 +59,6 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // these lines of code for show the same  cart for future refrence
                 grandTotalplus = 0;
-
                 cartModels.addAll(temparraylist);
                 SetWeeklyMenu.cart_count = (temparraylist.size());
 
@@ -84,7 +82,7 @@ public class CartActivity extends AppCompatActivity {
             }
 
         }
-        //FoodArrayPublish.addAll(modelArrayList);
+
         temparraylist.addAll(cartModels);
         cartModels.clear();
 
@@ -92,7 +90,7 @@ public class CartActivity extends AppCompatActivity {
         for (int i = 0; i < temparraylist.size(); i++) {
             grandTotalplus += temparraylist.get(i).getTotalCalorie();
         }
-//        grandTotal.setText("Total Calorie"+ grandTotalplus);
+
         cartRecyclerView = findViewById(R.id.recycler_view_cart);
         cartAdapter = new CartAdapter(temparraylist, modelArrayList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -104,7 +102,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CartActivity.this, "Confirm", Toast.LENGTH_SHORT).show();
-              //  admin.writeDataBase(CartActivity.this, FoodArrayPublish);
                 admin.writeDataBaseImage(CartActivity.this,temparraylist);
                 FoodArrayPublish.clear();
                 temparraylist.clear();
@@ -124,8 +121,6 @@ public class CartActivity extends AppCompatActivity {
         }
         cartModels.addAll(temparraylist);
     }
-
-
 
 
 }

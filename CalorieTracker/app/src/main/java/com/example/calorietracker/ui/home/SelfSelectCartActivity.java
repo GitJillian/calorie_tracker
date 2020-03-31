@@ -39,7 +39,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
     public static ArrayList<FoodImage> temparraylist;
     RecyclerView cartRecyclerView;
     MenuAdapter menuAdapter;
-    Button proceedToBook,clearAll;
+    Button confirmButton,clearAll;
     public static TextView grandTotal;
     private Toolbar mToolbar;
     String date, path, type;
@@ -54,12 +54,14 @@ public class SelfSelectCartActivity extends AppCompatActivity {
         setContentView(R.layout.self_select_mode);
         temparraylist = new ArrayList<>();
         Intent intent = getIntent();
+        //getting current date, file path, and which type of meal(breakfast, lunch, dinner) from SelfSelectView fragment
         date = intent.getExtras().getString("date");
         path = intent.getExtras().getString("path");
         type = intent.getExtras().getString("type");
         File student_file = new File(path);
         StudentWriter writer = new StudentWriter(student_file);
 
+        //generating reader for student, using factory
         JSONReaderFactory factory = new JSONReaderFactory();
         JsReader reader;
         try{
@@ -86,7 +88,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
 
 
 
-        proceedToBook = findViewById(R.id.proceed_to_book);
+        confirmButton = findViewById(R.id.proceed_to_book);
         grandTotal = findViewById(R.id.grand_total_cart);
         clearAll = findViewById(R.id.delete_all);
 
@@ -135,7 +137,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
         }
 
         grandTotal.setText("Total Calorie: "+grandTotalplus+" cals");
-        proceedToBook.setText("Confirm "+type);
+        confirmButton.setText("Confirm "+type);
         cartRecyclerView = findViewById(R.id.recycler_view_cart);
         menuAdapter = new MenuAdapter(temparraylist,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -146,16 +148,14 @@ public class SelfSelectCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 temparraylist.clear();
+                grandTotalplus = 0;
                 grandTotal.setText("Total Calorie: 0 cals");
                 cartRecyclerView.setVisibility(View.INVISIBLE);
             }
         });
 
 
-
-
-
-        proceedToBook.setOnClickListener(new View.OnClickListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(SelfSelectCartActivity.this);
@@ -205,6 +205,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                         Toast.makeText(SelfSelectCartActivity.this, "Confirm", Toast.LENGTH_SHORT).show();
                         temparraylist.clear();
                         grandTotal.setText("Total Calorie: 0 cals");
+                        grandTotalplus  = 0;
                         cartRecyclerView.setVisibility(View.INVISIBLE);
 
                         Intent intent = new Intent(SelfSelectCartActivity.this, HomeActivity.class);
