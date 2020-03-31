@@ -28,7 +28,7 @@
         android:gravity="center"
         android:paddingTop="40dp"
         app:siBorderColor="@color/linen"
-        app:siBorderWidth="5dp"  />
+        app:siBorderWidth="5dp"/>
 
 
     <TextView

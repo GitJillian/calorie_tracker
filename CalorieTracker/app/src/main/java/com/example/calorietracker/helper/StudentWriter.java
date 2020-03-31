@@ -53,7 +53,36 @@ public class StudentWriter extends JsWriter {
 
 
     }
-    public void editReportByDate(String date, int breakfast, int lunch, int dinner){
+
+    public void deleteAllRecord()throws JSONException, FileNotFoundException{
+        FileInputStream in = new FileInputStream(this.output);
+        StudentReader reader = new StudentReader(in);
+        JSONObject sample = reader.getObject();
+
+        JSONObject info = sample.getJSONObject("info");
+        JSONArray new_report = new JSONArray();
+        sample.put("info",info);
+        sample.put("report",new_report);
+        super.writeFile(sample);
+    }
+
+    public void deleteReportByDate(String date)throws JSONException, FileNotFoundException{
+        FileInputStream in = new FileInputStream(this.output);
+        StudentReader reader = new StudentReader(in);
+        JSONObject sample = reader.getObject();
+
+        JSONObject info = sample.getJSONObject("info");
+
+        JSONArray new_report = new JSONArray();
+        ArrayList<Report> report_deleted =  reader.deleteArrayByDate(date);
+        for(Report report:report_deleted){
+            JSONObject single_report = reportToJson(report);
+            new_report.put(single_report);
+        }
+
+        sample.put("info",info);
+        sample.put("report",new_report);
+        super.writeFile(sample);
 
     }
 
