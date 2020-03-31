@@ -43,11 +43,8 @@ public class SelfSelectCartActivity extends AppCompatActivity {
     public static TextView grandTotal;
     private Toolbar mToolbar;
     String date, path, type;
-<<<<<<< HEAD
     int limitOfCalorie, eatenBreakfast, eatenLunch, eatenDinner;
-=======
-    int limitOfCalorie;
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -69,7 +66,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
 
         reader = factory.JSONReaderFactory(student_file);
         Student student = (Student) reader.getProduct();
-<<<<<<< HEAD
+
         eatenBreakfast = reader.getSum(date)[0];
         eatenLunch = reader.getSum(date)[1];
         eatenDinner = reader.getSum(date)[2];
@@ -81,25 +78,13 @@ public class SelfSelectCartActivity extends AppCompatActivity {
             }
             else{
                 limitOfCalorie = student.getBMRPropotion()[2] - eatenDinner;
-=======
-            if(type.equals("breakfast")){
-                limitOfCalorie = student.getBMRPropotion()[0];
-            }
-            else if(type.equals("lunch")){
-                limitOfCalorie = student.getBMRPropotion()[1];
-            }
-            else{
-                limitOfCalorie = student.getBMRPropotion()[2];
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
-            }
-        } catch (JSONException e) {
+
+
+        }} catch (JSONException e) {
             e.printStackTrace();
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
 
         proceedToBook = findViewById(R.id.proceed_to_book);
         grandTotal = findViewById(R.id.grand_total_cart);
@@ -178,22 +163,16 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                 TextView message = dialog.findViewById(R.id.self_proceed_message);
                 Button okButton = dialog.findViewById(R.id.ok_button);
                 Button cancelButton = dialog.findViewById(R.id.cancel_button);
-<<<<<<< HEAD
+
 
                 //if your exceed the limit
                 if(grandTotalplus > limitOfCalorie + 100){
                     message.setText("Exceeds recommended calorie range.\nYou can consider removing some of them :)\n");
                 }
                 //if you are below the limit
-                else if(grandTotalplus < limitOfCalorie - 100){
+                else if(grandTotalplus < limitOfCalorie - 100) {
                     message.setText("Lower than recommended calorie range.\nYou can still add some more :)\n");
-=======
-                if(grandTotalplus > limitOfCalorie + 100){
-                    message.setText("Exceeds recommended calorie range "+String.valueOf(limitOfCalorie - 100)+"~"+String.valueOf(limitOfCalorie + 100)+" cals. \nDo you wish to proceed?\n");
-                }
-                else if(grandTotalplus < limitOfCalorie - 100){
-                    message.setText("Lower than recommended calorie range "+String.valueOf(limitOfCalorie - 100)+"~"+String.valueOf(limitOfCalorie + 100)+" cals.\n Do you wish to proceed?\n");
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
+
                 }
                 else{
                     message.setText("Perfect food choice according to your recommended intake!");
@@ -227,7 +206,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                         temparraylist.clear();
                         grandTotal.setText("Total Calorie: 0 cals");
                         cartRecyclerView.setVisibility(View.INVISIBLE);
-<<<<<<< HEAD
+
                         Intent intent = new Intent(SelfSelectCartActivity.this, HomeActivity.class);
 
                         String[] splits =  path.split("/");
@@ -236,8 +215,7 @@ public class SelfSelectCartActivity extends AppCompatActivity {
                         intent.putExtra("path",new_path);
                         intent.putExtra("date",date);
                         startActivity(intent);
-=======
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
+
                         dialog.dismiss();
 
                     }

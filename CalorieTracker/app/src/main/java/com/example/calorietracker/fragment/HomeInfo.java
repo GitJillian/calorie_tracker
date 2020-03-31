@@ -1,12 +1,15 @@
 package com.example.calorietracker.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -70,24 +73,21 @@ public class HomeInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_info_new, null);
-        ImageButton btnEdit, btnLogout;
-        TextView date, name, bmi, bmrBreakfast,bmrLunch, bmrDinner, bmiHint;
+        //ImageButton btnEdit, btnLogout;
+        LinearLayout btnEdit, btnLogout;
+        TextView date, name, bmi, bmr,bmiHint;
         int weightInt, ageInt;
-        float heightFloat, bmiFloat, bmrFloat;
-        int bmr_breakfast,bmr_lunch,bmr_dinner ;
-        String dateStr,nameStr, ageStr, heightStr,weightStr,frequencyStr, genderStr, bmiStr, bmrStr, password;
+        float heightFloat, bmiFloat;
+        String dateStr,nameStr, frequencyStr, genderStr, bmiStr,  password;
         CircularImageView imageView;
         imageView = view.findViewById(R.id.imageView);
         Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/user_icon");
         Glide.with(this).load(String.valueOf(uri)).into(imageView);
         date = view.findViewById(R.id.home_date);
         name = view.findViewById(R.id.home_name);
-
         bmi = view.findViewById(R.id.home_bmi);
         bmiHint = view.findViewById(R.id.home_bmi_hint);
-        bmrBreakfast = view.findViewById(R.id.home_bmr_breakfast);
-        bmrLunch = view.findViewById(R.id.home_bmr_lunch);
-        bmrDinner = view.findViewById(R.id.home_bmr_dinner);
+        bmr = view.findViewById(R.id.bmr);
         weightInt = getArguments().getInt("weight");
         heightFloat = getArguments().getFloat("height");
         ageInt = getArguments().getInt("age");
@@ -103,17 +103,10 @@ public class HomeInfo extends Fragment {
         bmiHint.setText(student.getBmiString());
         dateStr = getArguments().getString("date");
         date.setText("Today, "+dateStr);
-        int[] bmr_portion = student.getBMRPropotion();
-        bmr_breakfast = bmr_portion[0];
-        bmr_lunch = bmr_portion[1];
-        bmr_dinner = bmr_portion[2];
-        bmrBreakfast.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_breakfast))+"~"+String.valueOf(student.getUpperBound(bmr_breakfast))+" cals");
-        bmrLunch.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_lunch))+"~"+String.valueOf(student.getUpperBound(bmr_lunch))+" cals");
-        bmrDinner.setText("Recommended "+String.valueOf(student.getLowerBound(bmr_dinner))+"~"+String.valueOf(student.getUpperBound(bmr_dinner))+" cals");
-
-
-        btnEdit = view.findViewById(R.id.setting);
-        btnLogout =view.findViewById(R.id.log_out);
+        int bmrInt = (int)student.getBMR();
+        bmr.setText("Your Suggeested daily intake is "+bmrInt+" cals");
+        btnEdit = view.findViewById(R.id.edit_button);
+        btnLogout =view.findViewById(R.id.log_out_button);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,9 +119,28 @@ public class HomeInfo extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_logout);
+                Button okButton = dialog.findViewById(R.id.ok_button);
+                Button cancelButton = dialog.findViewById(R.id.cancel_button);
+                dialog.show();
+                okButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+
+                    }
+                });
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
         return view;

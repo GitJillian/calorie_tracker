@@ -24,19 +24,7 @@
         android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
-<<<<<<< HEAD
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="25dp"
-            android:background="@drawable/dash_line"
-            android:layerType="software"/>
-=======
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
-
-        <TextView
+<TextView
             android:id="@+id/grand_total_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,11 +42,7 @@
         <Button
             android:id="@+id/delete_all"
             android:layout_width="match_parent"
-<<<<<<< HEAD
             android:layout_height="50dp"
-=======
-            android:layout_height="60dp"
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
             android:gravity="center_vertical|center_horizontal"
             android:text="clear all"
             android:textColor="#271F1F"
@@ -68,11 +52,7 @@
         <Button
             android:id="@+id/proceed_to_book"
             android:layout_width="match_parent"
-<<<<<<< HEAD
             android:layout_height="50dp"
-=======
-            android:layout_height="60dp"
->>>>>>> 98657b5d34d162798d91ef481f7b7aaefe4164a7
 
             android:gravity="center_vertical|center_horizontal"
             android:text="proceed"
