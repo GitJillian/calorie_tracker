@@ -1,0 +1,8 @@
+Week 6
+This weeek what I have done:
+1) Working on D3 documents and diagrams
+2) Working on log out and edit user profile functions with Yejing Li
+
+The challenge I faced:
+1. To learn how to kill activities to avoid users going back to the last layout when pressing onBack button
+2. To learn how edit JSON file but failed, so for the edit profile function is actullay deleting the old user JSON file and create a new one.
