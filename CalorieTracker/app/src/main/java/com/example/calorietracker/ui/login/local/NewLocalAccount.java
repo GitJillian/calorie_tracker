@@ -130,6 +130,7 @@ public class NewLocalAccount extends AppCompatActivity {
             FileOutputStream is = new FileOutputStream(file_file);
             ArrayList<Report> report = new ArrayList<>();
 
+
             Student student = new Student(name, sex, age, frequency, height, weight, password);
             student_writer.writeStudent(student, report);
             intent.putExtra("path","/" + transName(nameEditText.getText().toString()) + ".JSON");
