@@ -1,0 +1,9 @@
+finished:
+unit testing for each function in home activity, home info and self selected cart
+merged menu json files
+deleted admin functions that call REST Api to generate menu JSON file
+add new feature:user can delete their records(today's and all)
+develop ui 
+
+to be finished: 
+verify Ziyang's health mode
