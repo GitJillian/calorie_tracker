@@ -67,7 +67,7 @@
             android:layout_weight="1.0"
             android:background="@drawable/custom_button_border"
             android:orientation="horizontal"
-            tools:layout_marginRight="15dp">
+            android:layout_marginRight="15dp">
 
             <ImageView
                 android:layout_width="55dp"

@@ -134,7 +134,6 @@ public class EditProfile extends AppCompatActivity{
         float height;
         boolean flag = false;
         File file_file = new File(path);
-        String file_name = file_file.getName();
 
         StudentWriter student_writer = new StudentWriter(file_file);
         try {
@@ -148,7 +147,7 @@ public class EditProfile extends AppCompatActivity{
             Intent intent = new Intent(EditProfile.this, HomeActivity.class);
 
 
-            if (gender == true) {
+            if (gender==true) {
                 sex = "Female";
             } else {
                 sex = "Male";
@@ -169,8 +168,13 @@ public class EditProfile extends AppCompatActivity{
 
             student_writer.writeStudent(student,report);
 
+            //let
 
-            intent.putExtra("path","/"+oldName+".JSON");
+            String[] splits =  path.split("/");
+            int len = splits.length;
+            String new_path = "/"+splits[len-1];
+            intent.putExtra("path",new_path);
+
             startActivity(intent);
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -178,12 +182,7 @@ public class EditProfile extends AppCompatActivity{
             e.printStackTrace();
         }
 
-
         return flag;
-    }
-    private String transName(String name){
-        String str = name.replace(' ','_');
-        return str;
     }
 }
 
