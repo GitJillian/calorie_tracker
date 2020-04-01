@@ -21,7 +21,7 @@ import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.menu.FoodModel;
 import org.json.JSONException;
-
+import com.example.calorietracker.helper.StudentWriter;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
@@ -30,6 +30,7 @@ import com.example.calorietracker.ui.login.local.EditProfile;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -39,13 +40,13 @@ public class HealthMode extends Fragment {
     private int numberOfFood;
 
 
-    private Float sum;
-    //TODO: please change limit, num, sum to integer
-    private Float limit;
-    private Float num;
+    private int sum;
+    private int limit;
+    private int num;
     private MenuReader mReader;
     private static int[] mealBmrs;
     private static int breakfast_calorie, lunch_calorie, dinner_calorie;
+    private Student student;
 
     public static HealthMode newInstance(String path, String date) {
 
@@ -77,7 +78,7 @@ public class HealthMode extends Fragment {
 
     }
 
-    public Boolean isFull(Float limit){
+    public Boolean isFull(int limit){
         if (this.sum < limit){
             return true;
         }else{
@@ -98,7 +99,7 @@ public class HealthMode extends Fragment {
 
     }
 
-    public Boolean isNull(Float average) {
+    public Boolean isNull(float average) {
         float calory = 0;
         Boolean tmp = true;
         try{
@@ -128,7 +129,7 @@ public class HealthMode extends Fragment {
 
     }
 
-    public String pickFood(float limit, float num){
+    public String pickFood(int limit, int num){
         String list = "";
 
         float average = (limit / num);
@@ -142,14 +143,16 @@ public class HealthMode extends Fragment {
 
                 ArrayList<FoodModel> menu1 = new ArrayList<>();
                 for (int i = 0; i < menu.size(); i++) {
-                    if (average > Float.parseFloat(menu.get(i).getCalorie())) {
+                    if (average < 10){
+                        break labelB;
+                    }else if ((average > Float.parseFloat(menu.get(i).getCalorie())) & ((average - 10.0) < Float.parseFloat(menu.get(i).getCalorie()))) {
                         menu1.add(menu.get(i));
                     }
                 }
 
                 FoodModel food = menu1.get((int)Math.random()*menu.size());
                 list = list + " + " + food.getName();
-                sum = sum + Float.parseFloat(food.getCalorie());
+                sum = sum + Integer.parseInt(food.getCalorie());
                 num = num - 1;
                 average = ((limit-sum) / num);
             }else{
@@ -181,18 +184,22 @@ public class HealthMode extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: PUT STORE THE REPORT INTO STDUENT FILE
+
                 //example to follow. to add a breakfast report
-               // Report report = new Report(getArguments().getString("date"));
+                Report report = new Report(getArguments().getString("date"));
 
-                //File student_file = new File(getArguments().getString("path");
-                //StudentWriter writer = new StudentWriter(student_file);
-                //if(breakfastButton.isChecked()){report.setBreakfast(sum);}
-                //if(lunchButton.isChecked()){report.setLunch(sum);}
-                //if(dinnerButton.isChecked()){report.setDinner(sum);}
-                //writer.addReport(report);
-
-
+                File student_file = new File(getArguments().getString("path"));
+                StudentWriter writer = new StudentWriter(student_file);
+                if(breakfastButton.isChecked()){report.setBreakfast(sum);}
+                if(lunchButton.isChecked()){report.setLunch(sum);}
+                if(dinnerButton.isChecked()){report.setDinner(sum);}
+                try {
+                    writer.addReport(report);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -204,10 +211,9 @@ public class HealthMode extends Fragment {
                 if(item_three.isChecked()){numberOfFood =3;}
                 if(item_four.isChecked()){numberOfFood =4;}
                 if(item_five.isChecked()){numberOfFood =5;}
-                //TODO: change limint to interger pls!
-                //if(breakfastButton.isChecked()){limit = breakfast_calorie;}
-                //if(lunchButton.isChecked()){limit = lunch_calorie;}
-                //if(dinnerButton.isChecked()){limit = dinner_calorie;}
+                if(breakfastButton.isChecked()){limit = breakfast_calorie;}
+                if(lunchButton.isChecked()){limit = lunch_calorie;}
+                if(dinnerButton.isChecked()){limit = dinner_calorie;}
             }
         });
 
