@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HealthMode extends Fragment {
@@ -86,6 +87,7 @@ public class HealthMode extends Fragment {
         }
     }
 
+
     public String[] calorieList(MenuReader mReader){
 
 
@@ -98,7 +100,8 @@ public class HealthMode extends Fragment {
         return list;
 
     }
-
+    
+    //function in order to test whether there is any food in database for average
     public Boolean isNull(float average) {
         float calory = 0;
         Boolean tmp = true;
@@ -129,8 +132,9 @@ public class HealthMode extends Fragment {
 
     }
 
-    public String pickFood(int limit, int num){
-        String list = "";
+    //function in order to manage foodlist with food limit and food numbers
+    public ArrayList<FoodModel> pickFood(int limit, int num){
+        ArrayList<FoodModel> list = new ArrayList<FoodModel>(limit);
 
         float average = (limit / num);
 
@@ -151,7 +155,7 @@ public class HealthMode extends Fragment {
                 }
 
                 FoodModel food = menu1.get((int)Math.random()*menu.size());
-                list = list + " + " + food.getName();
+                list.add(food);
                 sum = sum + Integer.parseInt(food.getCalorie());
                 num = num - 1;
                 average = ((limit-sum) / num);
@@ -169,7 +173,7 @@ public class HealthMode extends Fragment {
         RadioButton item_one, item_two, item_three, item_four, item_five, breakfastButton, lunchButton, dinnerButton;
         Button submitButton, generateButton;
         ListView foodListView;
-        //foodListView = view.findViewById(R.id.list_health_menu);
+        foodListView = view.findViewById(R.id.list_image_cart);
         item_one = view.findViewById(R.id.item_one);
         item_two = view.findViewById(R.id.item_two);
         item_three = view.findViewById(R.id.item_three);
@@ -200,6 +204,7 @@ public class HealthMode extends Fragment {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+
             }
         });
 
@@ -214,7 +219,11 @@ public class HealthMode extends Fragment {
                 if(breakfastButton.isChecked()){limit = breakfast_calorie;}
                 if(lunchButton.isChecked()){limit = lunch_calorie;}
                 if(dinnerButton.isChecked()){limit = dinner_calorie;}
+                ArrayList<FoodModel> foodList = pickFood(limit, numberOfFood);
+
+
             }
+
         });
 
 
