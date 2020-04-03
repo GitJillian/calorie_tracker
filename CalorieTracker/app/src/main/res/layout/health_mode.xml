@@ -85,7 +85,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
-        android:orientation="vertical" tools:ignore="MissingConstraints" android:id="@+id/new_frequency"
+        android:orientation="vertical" tools:ignore="MissingConstraints" android:id="@+id/new_meal"
         app:layout_constraintTop_toBottomOf="@+id/text_view_type"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp">
@@ -107,6 +107,18 @@
             />
 
     </RadioGroup>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FoodList"
+        app:layout_constraintTop_toBottomOf="@+id/new_meal"
+        tools:ignore="MissingConstraints" android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp" app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="12dp" android:layout_marginStart="12dp"
+        android:id="@+id/list_image_cart"
+         />
     <LinearLayout
         android:gravity="center|bottom"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -142,12 +154,7 @@
         android:background="#ffa07a"/>
     </LinearLayout>
 
-    <ListView
-        android:layout_width="347dp"
-        android:layout_height="361dp"
-        android:text="FoodList"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="246dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
