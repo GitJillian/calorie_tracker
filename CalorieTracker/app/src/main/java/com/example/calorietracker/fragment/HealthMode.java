@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -39,7 +40,6 @@ public class HealthMode extends Fragment {
 
     private int sum;
     private int limit;
-    private int num;
     private MenuReader mReader;
     private static int[] mealBmrs;
     private static int breakfast_calorie, lunch_calorie, dinner_calorie;
@@ -101,15 +101,6 @@ public class HealthMode extends Fragment {
     public Boolean isNull(float average) {
         float calory = 0;
         Boolean tmp = true;
-        try{
-            InputStream in = getContext().getAssets().open("menu3.JSON");
-            mReader = new MenuReader(in);
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         String[] list = this.calorieList(this.mReader);
 
@@ -133,6 +124,16 @@ public class HealthMode extends Fragment {
         ArrayList<FoodModel> list = new ArrayList<>();
 
         float average = (limit / num);
+
+        try{
+            InputStream in = getContext().getAssets().open("menu3.JSON");
+            mReader = new MenuReader(in);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         ArrayList<FoodModel> menu = mReader.getFoodListObj();
 
@@ -218,9 +219,19 @@ public class HealthMode extends Fragment {
             @Override
             public void onClick(View v){
                 // get food and setting adapter
+
+                if(item_one.isChecked()){numberOfFood =1;}
+                if(item_two.isChecked()){numberOfFood =2;}
+                if(item_three.isChecked()){numberOfFood =3;}
+                if(item_four.isChecked()){numberOfFood =4;}
+                if(item_five.isChecked()){numberOfFood =5;}
+                if(breakfastButton.isChecked()){limit = breakfast_calorie;}
+                if(lunchButton.isChecked()){limit = lunch_calorie;}
+                if(dinnerButton.isChecked()){limit = dinner_calorie;}
                 foodList = pickFood(limit, numberOfFood);
                 ArrayAdapter<FoodModel> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
                 foodListView.setAdapter(itemAdapter);
+                //Toast.makeText(getContext(),)
             }
 
         });
