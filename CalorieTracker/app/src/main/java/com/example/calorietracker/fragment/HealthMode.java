@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -25,15 +26,10 @@ import com.example.calorietracker.helper.StudentWriter;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
-import com.example.calorietracker.ui.login.LoginActivity;
-import com.example.calorietracker.ui.login.local.EditProfile;
-import com.github.siyamed.shapeimageview.CircularImageView;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HealthMode extends Fragment {
@@ -47,7 +43,7 @@ public class HealthMode extends Fragment {
     private MenuReader mReader;
     private static int[] mealBmrs;
     private static int breakfast_calorie, lunch_calorie, dinner_calorie;
-    private Student student;
+    private ArrayList<FoodModel> foodList;
 
     public static HealthMode newInstance(String path, String date) {
 
@@ -134,7 +130,7 @@ public class HealthMode extends Fragment {
 
     //function in order to manage foodlist with food limit and food numbers
     public ArrayList<FoodModel> pickFood(int limit, int num){
-        ArrayList<FoodModel> list = new ArrayList<FoodModel>(limit);
+        ArrayList<FoodModel> list = new ArrayList<>();
 
         float average = (limit / num);
 
@@ -169,6 +165,7 @@ public class HealthMode extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.health_mode, null);
         RadioButton item_one, item_two, item_three, item_four, item_five, breakfastButton, lunchButton, dinnerButton;
         Button submitButton, generateButton;
@@ -184,6 +181,15 @@ public class HealthMode extends Fragment {
         dinnerButton = view.findViewById(R.id.choose_dinner);
         submitButton = view.findViewById(R.id.button_health_submit);
         generateButton = view.findViewById(R.id.button_change_menu);
+
+        if(item_one.isChecked()){numberOfFood =1;}
+        if(item_two.isChecked()){numberOfFood =2;}
+        if(item_three.isChecked()){numberOfFood =3;}
+        if(item_four.isChecked()){numberOfFood =4;}
+        if(item_five.isChecked()){numberOfFood =5;}
+        if(breakfastButton.isChecked()){limit = breakfast_calorie;}
+        if(lunchButton.isChecked()){limit = lunch_calorie;}
+        if(dinnerButton.isChecked()){limit = dinner_calorie;}
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,17 +217,10 @@ public class HealthMode extends Fragment {
         generateButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(item_one.isChecked()){numberOfFood =1;}
-                if(item_two.isChecked()){numberOfFood =2;}
-                if(item_three.isChecked()){numberOfFood =3;}
-                if(item_four.isChecked()){numberOfFood =4;}
-                if(item_five.isChecked()){numberOfFood =5;}
-                if(breakfastButton.isChecked()){limit = breakfast_calorie;}
-                if(lunchButton.isChecked()){limit = lunch_calorie;}
-                if(dinnerButton.isChecked()){limit = dinner_calorie;}
-                ArrayList<FoodModel> foodList = pickFood(limit, numberOfFood);
-
-
+                // get food and setting adapter
+                foodList = pickFood(limit, numberOfFood);
+                ArrayAdapter<FoodModel> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
+                foodListView.setAdapter(itemAdapter);
             }
 
         });
