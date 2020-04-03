@@ -38,7 +38,7 @@ public class HealthMode extends Fragment {
     private int numberOfFood;
 
 
-    private int sum;
+    private int sum = 0;
     private int limit;
     private MenuReader mReader;
     private static int[] mealBmrs;
@@ -139,23 +139,28 @@ public class HealthMode extends Fragment {
 
         labelB:
         while(this.isFull(limit)){
-
-            if (this.isNull(average)){
-
+            if (!this.isNull(average)){
+                System.out.println("average is " + average);
                 ArrayList<FoodModel> menu1 = new ArrayList<>();
                 for (int i = 0; i < menu.size(); i++) {
                     if (average < 10){
                         break labelB;
-                    }else if ((average > Float.parseFloat(menu.get(i).getCalorie())) & ((average - 10.0) < Float.parseFloat(menu.get(i).getCalorie()))) {
+                    }else if (((average+30) > Float.parseFloat(menu.get(i).getCalorie())) && ((average - 30.0) < Float.parseFloat(menu.get(i).getCalorie()))) {
+                        System.out.println("menu in " + i +" is "+ menu.get(i).getName()+ " and calorie is "+ menu.get(i).getCalorie());
                         menu1.add(menu.get(i));
                     }
                 }
 
-                FoodModel food = menu1.get((int)Math.random()*menu.size());
+                FoodModel food = menu1.get((int) (Math.random() * menu1.size()));
                 list.add(food);
                 sum = sum + Integer.parseInt(food.getCalorie());
                 num = num - 1;
-                average = ((limit-sum) / num);
+                if (num ==0){
+                    break labelB;
+                }
+                else{
+                    average = ((limit-sum) / num);
+                }
             }else{
                 break labelB;
             }
@@ -172,22 +177,22 @@ public class HealthMode extends Fragment {
         Button submitButton, generateButton;
         ListView foodListView;
         foodListView = view.findViewById(R.id.list_image_cart);
-        item_one = view.findViewById(R.id.item_one);
+        /*item_one = view.findViewById(R.id.item_one);
         item_two = view.findViewById(R.id.item_two);
         item_three = view.findViewById(R.id.item_three);
         item_four = view.findViewById(R.id.item_four);
-        item_five = view.findViewById(R.id.item_five);
+        item_five = view.findViewById(R.id.item_five);*/
         breakfastButton = view.findViewById(R.id.choose_breakfast);
         lunchButton = view.findViewById(R.id.choose_lunch);
         dinnerButton = view.findViewById(R.id.choose_dinner);
         submitButton = view.findViewById(R.id.button_health_submit);
         generateButton = view.findViewById(R.id.button_change_menu);
 
-        if(item_one.isChecked()){numberOfFood =1;}
+        /*if(item_one.isChecked()){numberOfFood =1;}
         if(item_two.isChecked()){numberOfFood =2;}
         if(item_three.isChecked()){numberOfFood =3;}
         if(item_four.isChecked()){numberOfFood =4;}
-        if(item_five.isChecked()){numberOfFood =5;}
+        if(item_five.isChecked()){numberOfFood =5;}*/
         if(breakfastButton.isChecked()){limit = breakfast_calorie;}
         if(lunchButton.isChecked()){limit = lunch_calorie;}
         if(dinnerButton.isChecked()){limit = dinner_calorie;}
@@ -220,17 +225,19 @@ public class HealthMode extends Fragment {
             public void onClick(View v){
                 // get food and setting adapter
 
-                if(item_one.isChecked()){numberOfFood =1;}
+                /*if(item_one.isChecked()){numberOfFood =1;}
                 if(item_two.isChecked()){numberOfFood =2;}
                 if(item_three.isChecked()){numberOfFood =3;}
                 if(item_four.isChecked()){numberOfFood =4;}
-                if(item_five.isChecked()){numberOfFood =5;}
+                if(item_five.isChecked()){numberOfFood =5;}*/
                 if(breakfastButton.isChecked()){limit = breakfast_calorie;}
                 if(lunchButton.isChecked()){limit = lunch_calorie;}
                 if(dinnerButton.isChecked()){limit = dinner_calorie;}
+                numberOfFood = (int)(3+Math.random()*2);
                 foodList = pickFood(limit, numberOfFood);
                 ArrayAdapter<FoodModel> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
                 foodListView.setAdapter(itemAdapter);
+                sum = 0;
                 //Toast.makeText(getContext(),)
             }
 
