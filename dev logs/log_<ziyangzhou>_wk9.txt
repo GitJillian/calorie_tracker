@@ -1,0 +1,5 @@
+Finished:
+1. Finished work on health mode.
+
+To be finished:
+1. Creating a video of introducing the application.
