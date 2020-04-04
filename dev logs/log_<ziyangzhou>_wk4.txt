@@ -1,1 +1,5 @@
+finished:
+wrote a json database and set a food type
 
+to be finished:
+write the pseudocode of the health mode.
