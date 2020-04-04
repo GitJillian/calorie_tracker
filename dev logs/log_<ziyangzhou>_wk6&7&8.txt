@@ -1,0 +1,7 @@
+Finished:
+1. Write the logic code of the health mode
+2. Constructing the relationship between health mode and student's personal account with yejing
+
+To be finished:
+1. Verifying the bug in health mode with yejing
+2. Writing the presentation documents.
