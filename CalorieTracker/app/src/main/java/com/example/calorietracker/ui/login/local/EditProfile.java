@@ -19,6 +19,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class EditProfile extends AppCompatActivity{
+
+    //users should be able to edit their personal profile here
+    //this page is kind of like "survey"...
+
     EditText heightEditText, weightEditText, ageEditText;
     RadioButton gender_female, gender_male, frequency_rarely, frequency_sometimes, frequency_medium, frequency_often, frequency_always;
     Button submit_button;
@@ -91,6 +95,7 @@ public class EditProfile extends AppCompatActivity{
             frequency_always.setChecked(true);
         }
 
+//submit your info
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +132,7 @@ public class EditProfile extends AppCompatActivity{
 
     }
 
+//check if your input is valid
     public boolean checkInput(EditText heightEditText, EditText weightEditText, boolean gender,
                               EditText ageEditText, String frequency) throws IOException {
         String sex;
@@ -166,9 +172,10 @@ public class EditProfile extends AppCompatActivity{
             ArrayList<Report> report = student_reader.getArray();
             Student student = new Student(oldName, sex, age, frequency, height, weight, password);
 
+            //if all set, write the new info into database JSON file
             student_writer.writeStudent(student,report);
 
-            //let
+            //setting the path to be "studentname.json" and put it to intent
 
             String[] splits =  path.split("/");
             int len = splits.length;

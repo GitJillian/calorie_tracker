@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +21,7 @@ import com.example.calorietracker.ui.home.SelfSelectView;
 import static com.example.calorietracker.ui.home.SelfSelectView.arrayList;
 import java.util.ArrayList;
 
-
-
+//This is an adapter for SelfSelectView
 public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.ViewHolder> {
 
     public static ArrayList<FoodModel> FoodsArray;
@@ -48,11 +46,11 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final SelfSelectAdapter.ViewHolder viewHolder, final int i) {
-
+        //shows food name and image
         viewHolder.FoodName.setText(FoodsArray.get(i).getName());
 
         viewHolder.FoodImage.setImageDrawable(ContextCompat.getDrawable(context, FoodsArray.get(i).getImagePath()));
-
+        //if you click on each picture of the food list, you are able to see a view holder that shows food information
         viewHolder.FoodImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,19 +74,25 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                   infoSugar.setText(FoodsArray.get(i).getSugar()+" g");
                  infoCarbon.setText(FoodsArray.get(i).getTotalCarbon()+" g");
 
+                 //for the food that is neither "vegan" nor "vegetarian", would be set to "regular"
                 if(FoodsArray.get(i).getType().equals("")){
                     infoType.setText("Regular");
                 }else{
                     infoType.setText(FoodsArray.get(i).getType());
                 }
 
-
+                //decrement item quantity
                 final ImageView cartDecrement = dialog.findViewById(R.id.cart_decrement);
+                //increment item quntity
                 ImageView cartIncrement = dialog.findViewById(R.id.cart_increment);
+                //close the dialog button
                 ImageView closeDialog = dialog.findViewById(R.id.imageView_close_dialog_cart);
+                //update quantity
                 Button updateQtyDialog = dialog.findViewById(R.id.update_quantity_dialog);
+                //show quantity in textview
                 final TextView quantity = dialog.findViewById(R.id.cart_Food_quantity_tv);
-                quantity.setText(String.valueOf(0));
+                //first add, set to 1
+                quantity.setText(String.valueOf(1));
                 final int[] cartCounter = {0};
                 cartDecrement.setEnabled(false);
                 cartDecrement.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +107,8 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
 
                     }
                 });
+
+                //click increment button, your food quantity +=1
                 cartIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -150,7 +156,7 @@ public class SelfSelectAdapter extends RecyclerView.Adapter<SelfSelectAdapter.Vi
                     }
 
                 });
-
+                //close dialog
                 closeDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

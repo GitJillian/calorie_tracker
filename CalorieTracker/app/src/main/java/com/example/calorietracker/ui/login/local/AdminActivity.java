@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.calorietracker.R;
 
 public class AdminActivity extends AppCompatActivity {
+
+
+    //deprecated as Admin is no longer used
     EditText name, password;
     String admin_name, admin_password;
     Button signInButton;

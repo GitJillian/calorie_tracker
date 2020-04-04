@@ -29,10 +29,13 @@ public class SelfSelectedMode extends Fragment {
     ImageView Breakfast, Lunch, Dinner;
     private CircularImageView chooseMenu;
     public static SelfSelectedMode newInstance(String path,String date) {
+        //Bundles is used for declaring variables and stored them.
 
         Bundle args = new Bundle();
         SelfSelectedMode fragment = new SelfSelectedMode();
         File file_path = new File(path);
+
+        //JSONREADERFACTORY is used for producing reader for JSON files
         JSONReaderFactory factory = new JSONReaderFactory();
         JsReader student_reader;
         String name, gender,frequency, password;
@@ -43,7 +46,7 @@ public class SelfSelectedMode extends Fragment {
 
             student_reader = factory.JSONReaderFactory(file_path);
             Student student = (Student)student_reader.getProduct();
-
+            //reader can generate a Student Object
             frequency = student.getFrequency();
             age = student.getAge();
             gender = student.getGender();
@@ -63,6 +66,8 @@ public class SelfSelectedMode extends Fragment {
             args.putInt("age", age);
             args.putString("password",password);
             args.putString("date",date);
+            //the reder reads the eaten calorie for breakfast, lunch, dinner respectfully
+            //parse them into Bundle for the next coming operations
             args.putInt("breakfast",breakfastEaten);
             args.putInt("lunch",lunchEaten);
             args.putInt("dinner",dinnerEaten);
@@ -78,8 +83,13 @@ public class SelfSelectedMode extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.self_selected_ui, null);
+
+        //shows how much calorie has been taken in for breakfast, lunch, dinner
         TextView eatenBreakfast, eatenLunch, eatenDinner;
+        //button for adding breakfast, lunch,dinner
         ImageView BreakfastButton, LunchButton, DinnerButton;
+        //showing how much limit should be for breakfast, lunch, dinner
+
         TextView bmrBreakfast,bmrLunch, bmrDinner;
         int weightInt, ageInt;
         float heightFloat;
@@ -103,7 +113,6 @@ public class SelfSelectedMode extends Fragment {
         eaten_dinner = getArguments().getInt("dinner");
 
         eatenBreakfast.setText("You have eaten "+eaten_breakfast+" cals");
-        //eatenBreakfast.setTextColor(1);
         eatenLunch.setText("You have eaten "+eaten_lunch+" cals");
         eatenDinner.setText("You have eaten "+eaten_dinner+" cals");
 
@@ -129,6 +138,8 @@ public class SelfSelectedMode extends Fragment {
         Intent intent = new Intent(getActivity(), SelfSelectView.class);
         intent.putExtra("date",getArguments().getString("date"));
         intent.putExtra("path",getArguments().getString("path"));
+
+        //if one of the buttons are clicked, would switch to SelfSelectView
 
         BreakfastButton.setOnClickListener(new View.OnClickListener() {
             @Override

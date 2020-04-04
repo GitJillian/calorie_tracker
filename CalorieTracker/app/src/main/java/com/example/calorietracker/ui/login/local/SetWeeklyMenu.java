@@ -40,6 +40,7 @@ import java.util.ArrayList;
 @SuppressLint("Registered")
 public class SetWeeklyMenu extends AppCompatActivity implements FoodAdapter.CallBackUs, FoodAdapter.HomeCallBack {
 
+//this is deprecated as well as admin activity
     public static ArrayList<FoodModel> arrayList = new ArrayList<>();
     public static ArrayList<FoodModel> checkedFood = new ArrayList<>();
     public static int cart_count = 0;

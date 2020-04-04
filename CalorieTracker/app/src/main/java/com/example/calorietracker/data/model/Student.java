@@ -15,7 +15,6 @@ public class Student implements Parcelable {
     private String frequency;//frequency of sports
     private int age;
     private float BMR;
-    private String email;
     private String gender;
     private String password;
 
@@ -29,16 +28,6 @@ public class Student implements Parcelable {
         this.password = password;
     }
 
-    public Student(float h, int w, String s, String gender, int age, String frequency, String email) {
-
-        this.height = h;
-        this.weight = w;
-        this.name = s;
-        this.gender = gender;
-        this.age = age;
-        this.frequency = frequency;
-        this.email = email;
-    }
 
     public Student(Parcel in) {
         this.height = in.readFloat();
@@ -48,7 +37,7 @@ public class Student implements Parcelable {
         this.age = in.readInt();
         this.frequency = in.readString();
     }
-
+//below are setter and getter
     public void setPassword(String password) {
         this.password = password;
     }
@@ -67,14 +56,6 @@ public class Student implements Parcelable {
         }
     };
 
-    public String toJsonString() {
-        return "{\"Name\": \"" + this.name + "\",\n" +
-                "\"Gender\":\"" + this.sex + "\",\n" +
-                "\"Age\":" + this.age + ",\n" +
-                "\"Height\":" + this.height + ",\n" +
-                "\"Weight\":" + this.height + ",\n" +
-                "\"Frequency\":\"" + this.frequency + "\"}";
-    }
 
     public String getFrequency() {
         return this.frequency;
@@ -85,6 +66,45 @@ public class Student implements Parcelable {
         this.BMI = ((float) (Math.round(this.BMI * 10)) / 10);
         return this.BMI;
     }
+    public int getAge() {
+        return this.age;
+    }
+
+    public float getHeight() {
+
+        return this.height;
+    }
+
+    public int getWeight() {
+        return this.weight;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public void setName(String s) {
+        this.name = s;
+    }
+
+    public void setHeight(int h) {
+        this.height = h;
+    }
+
+    public void setWeight(int w) {
+        this.weight = w;
+    }
+
+    public String getGender() {
+        return this.gender;
+    }
+
+    //calculation for suggested bmr for each meal accroding to formula. getBMRPropotion[0] should be breakfast, ....
 
     public int[] getBMRPropotion() {
         float bmr = this.getBMR();
@@ -110,13 +130,7 @@ public class Student implements Parcelable {
         return calorie + 100;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
 
-    public String getGender() {
-        return this.gender;
-    }
 
     public float getBMR() {
         float bmr = 1f;
@@ -149,6 +163,8 @@ public class Student implements Parcelable {
         this.BMR = ((float) (Math.round(bmr * 10 * value)) / 10);
         return this.BMR;
     }
+
+    //return a string that describe the bmi, compared with the standard
     public String getBmiString(){
         if(this.getBMI()<18.5f){
             return "Lower than standard";
@@ -162,44 +178,6 @@ public class Student implements Parcelable {
         else{
             return "Higher than standard";
         }
-    }
-
-   public int getAge() {
-        return this.age;
-    }
-
-    public float getHeight() {
-
-        return this.height;
-    }
-
-    public int getWeight() {
-        return this.weight;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Boolean getSex() {
-        return this.sex;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-
-    public void setName(String s) {
-        this.name = s;
-    }
-
-    public void setHeight(int h) {
-        this.height = h;
-    }
-
-    public void setWeight(int w) {
-        this.weight = w;
     }
 
     @Override

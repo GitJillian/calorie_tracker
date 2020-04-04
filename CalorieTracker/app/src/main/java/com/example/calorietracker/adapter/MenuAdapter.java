@@ -14,8 +14,15 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.calorietracker.R;
 import com.example.calorietracker.menu.FoodImage;
 import java.util.ArrayList;
+
+//grandTotal is the textview showing the total calorie in the cart
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.grandTotal;
+
+//temparry list is the list of food items in the cart
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.temparraylist;
+
+//grandtotalplus is the value of total calorie
+
 import static com.example.calorietracker.ui.home.SelfSelectCartActivity.grandTotalplus;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
@@ -37,18 +44,20 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final MenuAdapter.ViewHolder holder, final int position) {
+        //for each items in the cart, we should see its total calorie, quantity, the its name
 
         holder.FoodCartCalorie.setText(cartModelArrayList.get(position).getTotalCalorie()+" cals");
         holder.FoodCartCode.setText(cartModelArrayList.get(position).getFoodName());
         holder.FoodCartQuantity.setText(String.valueOf(cartModelArrayList.get(position).getFoodQuantity()));
 
+        //load food pictures
         RequestOptions requestOptions = new RequestOptions();
 
         Glide.with(context)
                 .setDefaultRequestOptions(requestOptions)
                 .load(cartModelArrayList.get(position).getFoodImage()).into(holder.FoodCartImage);
 
-
+        //delete item from cart
         holder.deleteItem.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -78,7 +87,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
             }
         });
-
+/// click this and increment the current food item
         holder.cartIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +119,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             }
 
         });
+        //decrement the food item for each positon
 
         holder.cartDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +169,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         @SuppressLint("ResourceType")
         public ViewHolder(View itemView) {
             super(itemView);
+
+            //renders each food item view in the cart according to its food type
             FoodCartImage = itemView.findViewById(R.id.list_image_cart);
             deleteItem = itemView.findViewById(R.id.delete_item_from_cart);
             FoodCartCode = itemView.findViewById(R.id.Food_cart_code);

@@ -20,6 +20,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class NewLocalAccount extends AppCompatActivity {
+
+    //user should be able to register for a new account through the settings
+
     EditText usernameEditText, passwordEditText, heightEditText, weightEditText, ageEditText;
     RadioButton gender_female, gender_male, frequency_rarely, frequency_sometimes, frequency_medium, frequency_often, frequency_always;
     Button submit_button;
@@ -35,6 +38,7 @@ public class NewLocalAccount extends AppCompatActivity {
         view2 = findViewById(R.id.text_view_frequency);
         setContentView(R.layout.activity_create_user);
         setTitle("Create Local User");
+        //setting title of the activity
         usernameEditText = findViewById(R.id.new_user_name);
         passwordEditText = findViewById(R.id.new_user_password);
         heightEditText = findViewById(R.id.new_height);
@@ -94,7 +98,7 @@ public class NewLocalAccount extends AppCompatActivity {
         });
     }
 
-
+//check user input is valid
 
     public boolean checkInput(EditText heightEditText, EditText weightEditText, EditText nameEditText, boolean gender,
                               EditText ageEditText, String frequency, EditText passwordEditText) throws IOException {
@@ -102,6 +106,7 @@ public class NewLocalAccount extends AppCompatActivity {
         int age, weight;
         float height;
         boolean flag = false;
+        //create a JSON file for the student using the name, should be  <absolute path>+"/studentname.json"
 
         File file_file = new File(FileHelper.getFileDir(NewLocalAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
         Log.d("file_path", FileHelper.getFileDir(NewLocalAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
@@ -135,6 +140,7 @@ public class NewLocalAccount extends AppCompatActivity {
             student_writer.writeStudent(student, report);
             intent.putExtra("path","/" + transName(nameEditText.getText().toString()) + ".JSON");
             startActivity(intent);
+            //if the input is valid, switch to home page using startActivity()
         }
     catch(FileNotFoundException e){
                 flag = false;

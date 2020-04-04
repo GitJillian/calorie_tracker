@@ -12,7 +12,9 @@ import java.io.File;
 import java.util.*;
 import java.util.ArrayList;
 
-//update: now we do not need this
+//update: now we do not need this since we realized that the product ids in RESTAPI is hard coded
+//Then if we send a HTTP REQUEST, we won't get all product ids, also sometimes it return null
+//then we decide to delete the function of admin, but the interface is still here
 public class Administrator {
 
   private ArrayList<FoodModel> menu;

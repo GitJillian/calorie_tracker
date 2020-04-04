@@ -16,9 +16,15 @@ import java.util.ArrayList;
 
 public class MenuWriter extends JsWriter {
 
+    //this class is for writing the food items into menu database, which is used by admin
+    //not that relevant right now. can be deleted
+
+    //setting file output stream path
     public MenuWriter(File file_out){
         super(file_out);
     }
+
+    //from write FoodImage lists into JSON file
 
     public void writeFoodImageArray(Context context, ArrayList<FoodImage> FoodArray){
         ArrayList<String> names = new ArrayList<>();
@@ -49,7 +55,7 @@ public class MenuWriter extends JsWriter {
     }
 
 
-
+// transform each food model into JSON objects
     public JSONObject menuToJson(FoodModel model){
         JSONObject single_menu = new JSONObject();
         try{
@@ -69,7 +75,7 @@ public class MenuWriter extends JsWriter {
         return single_menu;
     }
 
-    //initialize new student
+    //write foodmodels into database
     public void writeFoodArray(ArrayList<FoodModel> foodList) {
 
         JSONObject sample = new JSONObject();
