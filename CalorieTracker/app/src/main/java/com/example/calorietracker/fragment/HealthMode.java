@@ -188,7 +188,11 @@ public class HealthMode extends Fragment {
         final Button btn = view.findViewById(R.id.popupMenuBtn);
 
         final PopupMenu popupMenu = new PopupMenu(getContext(), btn);
-
+        
+        CircularImageView imageView;
+        imageView = view.findViewById(R.id.image_view);
+        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/ic_report");
+        Glide.with(this).load(String.valueOf(uri)).into(imageView);
 
         popupMenu.inflate(R.menu.menu_self_select);
 
