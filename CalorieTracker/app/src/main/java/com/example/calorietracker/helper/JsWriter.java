@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsWriter {
+
+    //an abstract class for MenuWriter and StudentWriter
     File output;
 
     public JsWriter(File file_out){

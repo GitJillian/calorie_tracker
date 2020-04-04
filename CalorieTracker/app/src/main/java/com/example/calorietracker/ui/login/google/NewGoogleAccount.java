@@ -12,7 +12,6 @@ import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.StudentWriter;
-import com.example.calorietracker.ui.login.local.NewLocalAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
@@ -36,12 +35,12 @@ public class NewGoogleAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         Intent intent = getIntent();
+
+        //if a student create an account using Gmail, the new path for the JSON file should be "emailname.JSON"(without @gmail.com)
         String file_email = intent.getStringExtra("path");
-        //String email = acct.getEmail();
-       // String file_email = email.split("@")[0];
+
         setContentView(R.layout.activity_create_user_google);
         setTitle("Create Google User");
-        String personName = acct.getDisplayName();
         view1 = findViewById(R.id.text_view_gender);
         view2 = findViewById(R.id.text_view_frequency);
         heightEditText = findViewById(R.id.new_height);
@@ -91,16 +90,15 @@ public class NewGoogleAccount extends AppCompatActivity {
 
 public void checkInput (EditText heightEditText, EditText weightEditText, EditText nameEditText, boolean gender,
                         EditText ageEditText, String frequency, String file_email){
-            boolean flag = false;
+
             String  name,password,sex;
             int age, weight;
             float height;
+
+            //create a new file for the user
             File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + file_email);
 
-            //File file_file = new File(FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
             StudentWriter student_writer = new StudentWriter(file_file);
-           // Log.d("file_path", FileHelper.getFileDir(NewGoogleAccount.this) + "/" + transName(nameEditText.getText().toString()) + ".JSON");
-
             try{
                 name = nameEditText.getText().toString();
                 age = Integer.parseInt(ageEditText.getText().toString());
@@ -111,7 +109,7 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
                     frequency = "medium";
                    }
 
-            flag = true;
+
                 Intent intent = new Intent(NewGoogleAccount.this, GoogleAccountInfo.class);
 
                 if(gender == true){sex = "Female";}
@@ -122,9 +120,10 @@ public void checkInput (EditText heightEditText, EditText weightEditText, EditTe
                 ArrayList<Report> report = new ArrayList<Report>();
                 Student student = new Student(name, sex, age, frequency, height, weight, password);
                 student_writer.writeStudent(student, report);
-                //intent.putExtra("name",name);
+
                 intent.putExtra("path",file_email);
                 startActivity(intent);
+                //switch to next activity if the user input is valid and written to database
                 }
             catch(Exception e){
                 Toast.makeText(NewGoogleAccount.this, "Error input!", Toast.LENGTH_LONG).show();

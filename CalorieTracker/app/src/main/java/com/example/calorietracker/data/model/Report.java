@@ -1,6 +1,10 @@
 package com.example.calorietracker.data.model;
 
 public class Report {
+
+    //when a user add a meal to json data base, we create a Report object and write it to database using Student writer
+
+    //this class is used by SelfSelectedMode and HealthMode, and ReportMode
     private int breakfast_calorie;
     private int lunch_calorie;
     private int dinner_calorie;
@@ -15,7 +19,6 @@ public class Report {
    }
 
 
-
    public Report(String date){
         this.date = date;
         this.breakfast_calorie = 0;
@@ -24,6 +27,7 @@ public class Report {
         this.total_calorie = 0;
    }
 
+   //setter and getter for Report
 
    public int getBreakfast(){
        return this.breakfast_calorie;
@@ -40,10 +44,7 @@ public class Report {
     public void setBreakfast(int breakfast){this.breakfast_calorie = breakfast;}
     public void setLunch(int lunch){this.lunch_calorie = lunch; }
     public void setDinner(int dinner){this.dinner_calorie = dinner;}
-    public void setTotal(){this.total_calorie = this.breakfast_calorie+this.lunch_calorie+this.dinner_calorie;}
-
-
-   public String getDate(){
+    public String getDate(){
        return this.date;
    }
 

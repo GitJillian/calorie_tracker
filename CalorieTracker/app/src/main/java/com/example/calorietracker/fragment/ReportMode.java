@@ -105,18 +105,19 @@ public class ReportMode extends Fragment {
 
         if(countNum!=0) {
             averageBMR.setText("The Daily Average Calorie is " + (float) countCalAver / countNum);
+            if((countCalAver / countNum) <=userBMR-100){
+                suggestion.setText("This Week you may eat too less. ");
+            }
+            else if((countCalAver / countNum) >=userBMR+100){
+                suggestion.setText("This Week you may eat too much. ");
+            }
+            else{
+                suggestion.setText("Intake balanced. Keep Going! ");
+            }
         }
         else{
             averageBMR.setText("The Daily Average Calorie is 0. ");
-        }
-        if(countCalAver <=userBMR-100){
-            suggestion.setText("This Week you may eat too less. ");
-        }
-        else if(countCalAver >=userBMR+100){
-            suggestion.setText("This Week you may eat too much. ");
-        }
-        else{
-            suggestion.setText("Intake balanced. Keep Going! ");
+            suggestion.setText(" ");
         }
 
         return view;
@@ -143,10 +144,12 @@ public class ReportMode extends Fragment {
     }
 
     public List<Float> get7dayCal() {
-        //String localDay = DateHelper.getTodayFormat2();
+
+        //getting the current date
         LocalDate localDate = LocalDate.now();
         List<Float> totalCalorie = new ArrayList<>(Arrays.asList(0f, 0f, 0f, 0f, 0f, 0f, 0f));
         for (int i = 0; i < reportData.size(); i++) {
+            //getting dates in reportData
             LocalDate localDate1 = LocalDate.parse(reportData.get(i).getDate());
             int daysGap = localDate.compareTo(localDate1);
             switch (daysGap) {

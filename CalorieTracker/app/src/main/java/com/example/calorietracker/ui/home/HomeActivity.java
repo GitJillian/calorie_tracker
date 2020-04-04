@@ -1,7 +1,7 @@
 package com.example.calorietracker.ui.home;
 
 import java.util.Calendar;
-import java.text.*;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
 import com.example.calorietracker.data.model.Student;
-import com.example.calorietracker.fragment.BaseFragment;
 import com.example.calorietracker.fragment.HealthMode;
 import com.example.calorietracker.fragment.ReportMode;
 import com.example.calorietracker.fragment.SelfSelectedMode;

@@ -23,24 +23,26 @@ public class MenuReader extends JsReader {
     private JSONObject root;
     private File file_path;
 
+    //open file
     public MenuReader(File file) throws JSONException {
         super(file);
         root = super.getObject();
         foodlistJson = super.getJsonArrayByName("menu");
     }
-
+// open file input stream
     public MenuReader(FileInputStream input) throws JSONException {
        super(input);
        root = super.getObject();
        foodlistJson = super.getJsonArrayByName("menu");
     }
-
+//open input stream
     public MenuReader(InputStream input) throws JSONException{
         super(input);
         root = super.getObject();
         foodlistJson = super.getJsonArrayByName("menu");
     }
 
+    //return food list as json objects
     public JSONArray getFoodListJson(){
         return foodlistJson;
     }
@@ -53,10 +55,14 @@ public class MenuReader extends JsReader {
         return root;
     }
 
+    //get each food using index
+
     public JSONObject getFoodByIndexJson(int index){
         JSONObject obj = super.getObjectByIndex(foodlistJson, index);
         return obj;
     }
+
+    //getting food status functions
 
     public String getFoodName(JSONObject obj){
         return super.getStringByName(obj, "name");
@@ -95,6 +101,7 @@ public class MenuReader extends JsReader {
     }
 
 
+//transform JSON object to FoodModel Object
     public FoodModel transJsonToFood(JSONObject obj){
         String name, calorie, type, sodium, servingSize, sugar, fats,protein, totalCarbon;
         name = getFoodName(obj);
@@ -107,11 +114,10 @@ public class MenuReader extends JsReader {
         totalCarbon = getCarbohydrate(obj);
         fats = getFats(obj);
         FoodModel food = new FoodModel(name, calorie, type, sodium, servingSize, sugar, fats, protein, totalCarbon,R.drawable.burger);
-        //FoodModel food = new FoodModel(name, calorie, type, sodium, servingSize, sugar, fats, protein, totalCarbon,R.drawable.burger);
         return food;
     }
 
-
+//getting all food items from database
     @Override
     public ArrayList<FoodModel> getProduct(){
         for(int i=0; i<foodlistJson.length(); i++){

@@ -52,8 +52,6 @@ import java.io.FileNotFoundException;
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
 
-           // String file_email = personEmail.split("@")[0];
-
             setContentView(R.layout.activity_person_google);
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
@@ -64,7 +62,7 @@ import java.io.FileNotFoundException;
             email = findViewById(R.id.textEmail);
             launch_home = findViewById(R.id.button_launch);
 
-
+            //switch to home activity
             launch_home.setOnClickListener(v -> {
                 switch (v.getId()){
 
@@ -86,15 +84,16 @@ import java.io.FileNotFoundException;
                 }
             });
 
-
-            if (acct != null) {
+                //renders log in page view
                 Uri personPhoto = acct.getPhotoUrl();
                 name.setText("Welcome,"+personName);
                 email.setText("Logged in using:"+personEmail);
+                //shows google icon
                 Glide.with(this).load(String.valueOf(personPhoto)).into(imageView);
-            }
+
         }
 
+        // signout option for google account
         private void signOut() {
             mGoogleSignInClient.signOut()
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {

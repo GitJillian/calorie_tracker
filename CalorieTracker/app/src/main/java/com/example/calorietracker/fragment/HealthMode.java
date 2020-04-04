@@ -2,6 +2,7 @@ package com.example.calorietracker.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
@@ -28,6 +31,7 @@ import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
 import com.example.calorietracker.ui.home.HomeActivity;
+import com.github.siyamed.shapeimageview.CircularImageView;
 
 
 import java.io.File;
@@ -59,17 +63,30 @@ public class HealthMode extends Fragment {
 
         JSONReaderFactory factory = new JSONReaderFactory();
         JsReader reader;
+        int breakfastEaten, lunchEaten, dinnerEaten;
         try{
             reader = factory.JSONReaderFactory(student_file);
             Student student = (Student) reader.getProduct();
             mealBmrs= student.getBMRPropotion();
+            breakfastEaten = reader.getSum(date)[0];
+            lunchEaten = reader.getSum(date)[1];
+            dinnerEaten = reader.getSum(date)[2];
+            //this is getting the eaten calorie from today
+            args.putInt("breakfast_eaten",breakfastEaten);
+            args.putInt("lunch_eaten",lunchEaten);
+            args.putInt("dinner_eaten",dinnerEaten);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        //this refers to the recommended calorie intake
         breakfast_calorie = mealBmrs[0];
         lunch_calorie = mealBmrs[1];
         dinner_calorie = mealBmrs[2];
+
+        //setting the recommended calorie to argument
+
         args.putInt("breakfast", breakfast_calorie);
         args.putInt("lunch", lunch_calorie);
         args.putInt("dinner", dinner_calorie);
@@ -89,8 +106,9 @@ public class HealthMode extends Fragment {
 
     public String[] calorieList(MenuReader mReader){
 
-
+        //getting the calorie list from our database
         ArrayList<FoodModel> menu = mReader.getFoodListObj();
+        // getting the menu as a list of <FoodModel>
         String[] list = new String[256];
         for (int i = 0; i < menu.size(); i++){
             list[i] = menu.get(i).getCalorie();
@@ -191,7 +209,9 @@ public class HealthMode extends Fragment {
         
         CircularImageView imageView;
         imageView = view.findViewById(R.id.image_view);
-        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/ic_report");
+        TextView totalText = view.findViewById(R.id.total);
+        totalText.setText("Total calorie: 0 cal");
+        Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/icon_health_mode");
         Glide.with(this).load(String.valueOf(uri)).into(imageView);
 
         popupMenu.inflate(R.menu.menu_self_select);
@@ -233,7 +253,34 @@ public class HealthMode extends Fragment {
                 TextView message = dialog.findViewById(R.id.self_proceed_message);
                 Button okButton = dialog.findViewById(R.id.ok_button);
                 Button cancelButton = dialog.findViewById(R.id.cancel_button);
-                message.setText("Are you sure to add these?");
+                int total = 0;
+                dialog.show();
+                Toast.makeText(getContext(),"Confirm",Toast.LENGTH_SHORT).show();
+               // message.setText("Are you sure to add these?");
+                switch(type){
+                    case "breakfast":
+                        total = temparySum + getArguments().getInt("breakfast_eaten");
+                        break;
+                    case "lunch":
+                        total = temparySum + getArguments().getInt("lunch_eaten");
+                        break;
+                    case "dinner":
+                        total = temparySum + getArguments().getInt("dinner_eaten");
+
+
+                }
+                //if the total is greater than upper bound
+                if(total > limit + 100){
+                 message.setText("Your food choice exceeds your recommended calorie intake. Do you wish to proceed? : )" + "total = "+ String.valueOf(total));
+                }
+                //if you have not add any food
+                else if(temparySum ==0){
+                    message.setText("You haven't add any food yet");
+                }
+                //proper situation
+                else{
+                    message.setText("Perfect! Do you wish to confirm?");
+                }
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -253,6 +300,8 @@ public class HealthMode extends Fragment {
                        StudentWriter writer = new StudentWriter(student_file);
 
                        if (!type.equals("")) {
+
+                           //if the student choose breakfast/lunch/dinner, set sum to one of it accordingly
                            if (type.equals("breakfast")) {
                                report.setBreakfast(temparySum);
                            } else if (type.equals("lunch")) {
@@ -264,20 +313,21 @@ public class HealthMode extends Fragment {
 
                            try {
                                writer.addReport(report);
-
                            } catch (JSONException e) {
                                e.printStackTrace();
                            } catch (FileNotFoundException e) {
                                e.printStackTrace();
                            }
                            Intent intent = new Intent(getContext(), HomeActivity.class);
-
+                           foodListView.setVisibility(View.INVISIBLE);
+                           totalText.setText("Total calorie: 0 cal");
                            String[] splits =  getArguments().getString("path").split("/");
                            int len = splits.length;
                            String new_path = "/"+splits[len-1];
                            intent.putExtra("path",new_path);
                            intent.putExtra("date",getArguments().getString("date"));
                            startActivity(intent);
+                           //since the database has changed, we need to switch to new home activity
                            dialog.dismiss();
 
                        }
@@ -310,6 +360,7 @@ public class HealthMode extends Fragment {
                     }
                 }
                 temparySum = sum;
+                totalText.setText("Total calorie: "+ temparySum+" cal");
                 ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, nameOfFood);
                 foodListView.setAdapter(itemAdapter);
                 foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener()

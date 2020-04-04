@@ -41,10 +41,11 @@ public class HomeInfo extends Fragment {
         Bundle args = new Bundle();
         HomeInfo fragment = new HomeInfo();
         try {
-
+//using JSONREADERFACTORY to generate reader for json file
             student_reader = factory.JSONReaderFactory(file_path);
             Student student = (Student) student_reader.getProduct();
 
+            // create a student using the file info
             frequency = student.getFrequency();
             age = student.getAge();
             gender = student.getGender();
@@ -52,6 +53,8 @@ public class HomeInfo extends Fragment {
             weight = student.getWeight();
             password = student.getPassword();
             name = student.getName();
+
+            //setting the information to the bundle of HomeInfo
             args.putString("path", path);
             args.putString("name", name);
             args.putFloat("height", height);
@@ -90,7 +93,7 @@ public class HomeInfo extends Fragment {
         Uri uri = Uri.parse("android.resource://com.example.calorietracker/drawable/user_icon");
         Glide.with(this).load(String.valueOf(uri)).into(imageView);
 
-
+        //rendering HomeInfo page
         date = view.findViewById(R.id.home_date);
         name = view.findViewById(R.id.home_name);
         bmi = view.findViewById(R.id.home_bmi);
@@ -114,9 +117,10 @@ public class HomeInfo extends Fragment {
         int bmrInt = (int) student.getBMR();
         bmr.setText("Your Suggeested daily intake is " + bmrInt + " cals");
 
+        //btnEdit is the Edit profile button. If you click on it, would start a new Activity called EditProfile
 
         btnEdit = view.findViewById(R.id.edit_button);
-        btnLogout = view.findViewById(R.id.log_out_button);
+
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +130,9 @@ public class HomeInfo extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //btnLogout is for user to log out. would pop up a warning asking whether the user wants to log out
+        btnLogout = view.findViewById(R.id.log_out_button);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +160,8 @@ public class HomeInfo extends Fragment {
 
             }
         });
+
+        //if you click on the circular image, would pop up a dialog showing your personal information
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,6 +194,8 @@ public class HomeInfo extends Fragment {
 
                 }
 
+                //this one is to clear today's record. If you added some food for today and want to reset, just click it
+
                 clearTodayRecord.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -205,6 +216,8 @@ public class HomeInfo extends Fragment {
                         }
                     }
                 });
+
+                //clears all records for this user. be careful with this!!!!
                 clearAllRecord.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
