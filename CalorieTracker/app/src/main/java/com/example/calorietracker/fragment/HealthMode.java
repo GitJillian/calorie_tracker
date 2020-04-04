@@ -1,23 +1,23 @@
 package com.example.calorietracker.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
@@ -27,6 +27,9 @@ import com.example.calorietracker.helper.StudentWriter;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
+import com.example.calorietracker.ui.home.HomeActivity;
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,14 +39,14 @@ import java.util.ArrayList;
 public class HealthMode extends Fragment {
     //this one determines how many type of food to be returned
     private int numberOfFood;
-
-
+    private int temparySum;
     private int sum = 0;
     private int limit;
     private MenuReader mReader;
     private static int[] mealBmrs;
     private static int breakfast_calorie, lunch_calorie, dinner_calorie;
     private ArrayList<FoodModel> foodList;
+    private String type = "";
 
     public static HealthMode newInstance(String path, String date) {
 
@@ -145,9 +148,11 @@ public class HealthMode extends Fragment {
                 for (int i = 0; i < menu.size(); i++) {
                     if (average < 10){
                         break labelB;
-                    }else if (((average+30) > Float.parseFloat(menu.get(i).getCalorie())) && ((average - 30.0) < Float.parseFloat(menu.get(i).getCalorie()))) {
+                    }else if (((average+50) > Float.parseFloat(menu.get(i).getCalorie())) && ((average - 50.0) < Float.parseFloat(menu.get(i).getCalorie()))) {
                         System.out.println("menu in " + i +" is "+ menu.get(i).getName()+ " and calorie is "+ menu.get(i).getCalorie());
+                        //delete repeated items
                         menu1.add(menu.get(i));
+
                     }
                 }
 
@@ -173,76 +178,184 @@ public class HealthMode extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.health_mode, null);
-        RadioButton item_one, item_two, item_three, item_four, item_five, breakfastButton, lunchButton, dinnerButton;
         Button submitButton, generateButton;
         ListView foodListView;
         foodListView = view.findViewById(R.id.list_image_cart);
-        /*item_one = view.findViewById(R.id.item_one);
-        item_two = view.findViewById(R.id.item_two);
-        item_three = view.findViewById(R.id.item_three);
-        item_four = view.findViewById(R.id.item_four);
-        item_five = view.findViewById(R.id.item_five);*/
-        breakfastButton = view.findViewById(R.id.choose_breakfast);
-        lunchButton = view.findViewById(R.id.choose_lunch);
-        dinnerButton = view.findViewById(R.id.choose_dinner);
+
         submitButton = view.findViewById(R.id.button_health_submit);
         generateButton = view.findViewById(R.id.button_change_menu);
 
-        /*if(item_one.isChecked()){numberOfFood =1;}
-        if(item_two.isChecked()){numberOfFood =2;}
-        if(item_three.isChecked()){numberOfFood =3;}
-        if(item_four.isChecked()){numberOfFood =4;}
-        if(item_five.isChecked()){numberOfFood =5;}*/
-        if(breakfastButton.isChecked()){limit = breakfast_calorie;}
-        if(lunchButton.isChecked()){limit = lunch_calorie;}
-        if(dinnerButton.isChecked()){limit = dinner_calorie;}
+        final Button btn = view.findViewById(R.id.popupMenuBtn);
+
+        final PopupMenu popupMenu = new PopupMenu(getContext(), btn);
+
+
+        popupMenu.inflate(R.menu.menu_self_select);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupMenu.show();
+            }
+        });
+
+        popupMenu.setOnMenuItemClickListener(
+                new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.breakfast:
+                                type = "breakfast";
+                                limit = breakfast_calorie;
+                                break;
+                            case R.id.lunch:
+                                type = "lunch";
+                                limit = lunch_calorie;
+                                break;
+                            case R.id.dinner:
+                                type = "dinner";
+                                limit = dinner_calorie;
+                                break;
+                        }
+                        return true;
+                    }
+                });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_proceed);
+                TextView message = dialog.findViewById(R.id.self_proceed_message);
+                Button okButton = dialog.findViewById(R.id.ok_button);
+                Button cancelButton = dialog.findViewById(R.id.cancel_button);
+                message.setText("Are you sure to add these?");
 
-                //example to follow. to add a breakfast report
-                Report report = new Report(getArguments().getString("date"));
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
-                File student_file = new File(getArguments().getString("path"));
-                StudentWriter writer = new StudentWriter(student_file);
-                if(breakfastButton.isChecked()){report.setBreakfast(sum);}
-                if(lunchButton.isChecked()){report.setLunch(sum);}
-                if(dinnerButton.isChecked()){report.setDinner(sum);}
-                try {
-                    writer.addReport(report);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                okButton.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                    public void onClick(View v) {
+
+                       //example to follow. to add a breakfast report
+                       Report report = new Report(getArguments().getString("date"));
+
+                       File student_file = new File(getArguments().getString("path"));
+                       StudentWriter writer = new StudentWriter(student_file);
+
+                       if (!type.equals("")) {
+                           if (type.equals("breakfast")) {
+                               report.setBreakfast(temparySum);
+                           } else if (type.equals("lunch")) {
+                               report.setLunch(temparySum);
+                           } else if (type.equals("dinner")) {
+                               report.setDinner(temparySum);
+                           }
+
+
+                           try {
+                               writer.addReport(report);
+
+                           } catch (JSONException e) {
+                               e.printStackTrace();
+                           } catch (FileNotFoundException e) {
+                               e.printStackTrace();
+                           }
+                           Intent intent = new Intent(getContext(), HomeActivity.class);
+
+                           String[] splits =  getArguments().getString("path").split("/");
+                           int len = splits.length;
+                           String new_path = "/"+splits[len-1];
+                           intent.putExtra("path",new_path);
+                           intent.putExtra("date",getArguments().getString("date"));
+                           startActivity(intent);
+                           dialog.dismiss();
+
+                       }
+
+                     else{
+                        Toast.makeText(getContext(),"Please select your meal type", Toast.LENGTH_SHORT).show();
+                         }
+                        }
+                    });
+
                 }
-
-            }
-        });
+            });
 
         generateButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                // get food and setting adapter
 
-                /*if(item_one.isChecked()){numberOfFood =1;}
-                if(item_two.isChecked()){numberOfFood =2;}
-                if(item_three.isChecked()){numberOfFood =3;}
-                if(item_four.isChecked()){numberOfFood =4;}
-                if(item_five.isChecked()){numberOfFood =5;}*/
-                if(breakfastButton.isChecked()){limit = breakfast_calorie;}
-                if(lunchButton.isChecked()){limit = lunch_calorie;}
-                if(dinnerButton.isChecked()){limit = dinner_calorie;}
-                numberOfFood = (int)(3+Math.random()*2);
-                foodList = pickFood(limit, numberOfFood);
-                ArrayAdapter<FoodModel> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
+                if(type.equals("breakfast")){limit = breakfast_calorie;}
+                if(type.equals("lunch")){limit = lunch_calorie;}
+                if(type.equals("dinner")){limit = dinner_calorie;}
+                numberOfFood = (int)(2+Math.random()*3);
+                ArrayList<String> nameOfFood = new ArrayList<>();
+                while(true){
+                    foodList = pickFood(limit, numberOfFood);
+                    if(foodList.size() != 0){
+                        for(FoodModel model:foodList){
+                            nameOfFood.add(model.getName());
+                        }
+                        break;
+                    }
+                }
+                temparySum = sum;
+                ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, nameOfFood);
                 foodListView.setAdapter(itemAdapter);
+                foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.food_info);
+                        FoodModel model = foodList.get(position);
+                        TextView infoCalorie, infoType, infoProtein, infoFats, infoSodium, infoSugar, infoServing, infoCarbon;
+                        infoCalorie = dialog.findViewById(R.id.info_calorie);
+                        infoFats = dialog.findViewById(R.id.info_fats);
+                        infoProtein = dialog.findViewById(R.id.info_protein);
+                        infoServing = dialog.findViewById(R.id.info_serving);
+                        infoSodium = dialog.findViewById(R.id.info_sodium);
+                        infoSugar = dialog.findViewById(R.id.info_sugar);
+                        infoType = dialog.findViewById(R.id.info_type);
+                        infoCarbon = dialog.findViewById(R.id.info_carbon);
+
+                        infoCalorie.setText(model.getCalorie());
+                        infoFats.setText(model.getFats()+" g");
+                        infoProtein.setText(model.getProtein()+" g");
+                        infoServing.setText(model.getServingSize());
+                        infoSodium.setText(model.getSodium()+" mg");
+                        infoSugar.setText(model.getSugar()+" g");
+                        infoCarbon.setText(model.getTotalCarbon()+" g");
+
+                        if(model.getType().equals("")){
+                            infoType.setText("Regular");
+                        }else{
+                            infoType.setText(model.getType());
+                        }
+                        dialog.show();
+
+                        ImageView closeDialog = dialog.findViewById(R.id.imageView_close_dialog_cart);
+                        closeDialog.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                    }
+                });
                 sum = 0;
-                //Toast.makeText(getContext(),)
+
             }
 
         });
-
 
         return view;
 
