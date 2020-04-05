@@ -1,0 +1,5 @@
+all the group working on the D3 
+My work is to communicate with all members and collect all the points about our design pattern and architecture.
+write the doc for the D3 and diagram is my main job during this week 
+I am not doing code part for this week only work on D3 doc. 
+but it's still quite challenging for me, 30% for total mark, it's most important.
