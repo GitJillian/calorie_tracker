@@ -1,6 +1,7 @@
 package com.example.calorietracker.helper;
 
 import com.example.calorietracker.data.model.Report;
+import com.example.calorietracker.menu.FoodModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -166,6 +167,11 @@ public class JsReader {
 
         int[] sums = {0,0,0};
         return sums;
+    }
+
+    public ArrayList<FoodModel> getFoodListObj(){
+        ArrayList<FoodModel> models =  new ArrayList<>();
+        return models;
     }
 
 

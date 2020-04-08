@@ -40,16 +40,12 @@ public class HomeActivity extends AppCompatActivity {
     String frequency, name, gender, password, path;
     int weight, age;
     float height;
-    Date today;
     String todayStr;
-    Calendar calendar = Calendar.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         todayStr = DateHelper.getTodayFormat();
         setContentView(R.layout.activity_home);
         Intent intent = getIntent();
@@ -62,6 +58,25 @@ public class HomeActivity extends AppCompatActivity {
         try {
             student_reader = factory.JSONReaderFactory(file_path);
             Student student = (Student)student_reader.getProduct();
+            /*Report report1 = new Report("2020-04-01");
+            report1.setLunch(1293);
+            Report report2 = new Report("2020-04-02");
+            report2.setLunch(1344);
+            Report report3 = new Report("2020-04-03");
+            report3.setLunch(2000);
+            Report report4 = new Report("2020-04-04");
+            report4.setBreakfast(1331);
+            Report report5 = new Report("2020-04-05");
+            report5.setDinner(1922);
+            Report report6 = new Report("2020-04-06");
+            report6.setBreakfast(2000);
+            StudentWriter writer = new StudentWriter(file_path);
+            writer.addReport(report1);
+            writer.addReport(report2);
+            writer.addReport(report3);
+            writer.addReport(report4);
+            writer.addReport(report5);
+            writer.addReport(report6);*/
             frequency = student.getFrequency();
             age = student.getAge();
             gender = student.getGender();
@@ -70,7 +85,9 @@ public class HomeActivity extends AppCompatActivity {
             name = student.getName();
             } catch (JSONException e) {
             e.printStackTrace();
-        }
+        } /*catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
 
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.bottom_navigation);

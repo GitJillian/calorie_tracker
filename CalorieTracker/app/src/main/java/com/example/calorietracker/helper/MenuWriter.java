@@ -24,9 +24,11 @@ public class MenuWriter extends JsWriter {
         super(file_out);
     }
 
-    //from write FoodImage lists into JSON file
+
 
     public void writeFoodImageArray(Context context, ArrayList<FoodImage> FoodArray){
+        //from write FoodImage lists into JSON file
+        //was used by admin, but not used any more
         ArrayList<String> names = new ArrayList<>();
         ArrayList<FoodModel> modelArrayList = new ArrayList<>();
         for(FoodImage image:FoodArray){
@@ -61,12 +63,12 @@ public class MenuWriter extends JsWriter {
         try{
             single_menu.put("totalCarbohydrate",String.valueOf(model.getTotalCarbon()));
             single_menu.put("protein",String.valueOf(model.getProtein()));
-            single_menu.put("calorie",String.valueOf(model.getCalorie()));
+            single_menu.put("calory",String.valueOf(model.getCalorie()));
             single_menu.put("sugar",String.valueOf(model.getSugar()));
             single_menu.put("sodium",String.valueOf(model.getSodium()));
             single_menu.put("servingSize",String.valueOf(model.getServingSize()));
             single_menu.put("name",String.valueOf(model.getName()));
-            single_menu.put("fats",String.valueOf(model.getFats()));
+            single_menu.put("totalFat",String.valueOf(model.getFats()));
             single_menu.put("type",String.valueOf(model.getType()));
 
         } catch (JSONException e) {
