@@ -14,10 +14,10 @@ public class JSONReaderFactory {
         String path = file_path.getAbsolutePath();
         int JSONType = determineJSONType(path);
 
-        switch (JSONType) {
-            case JSONReaderFactory.Menu:
-                product = new MenuReader(file_path);//return a menu reader
-            case JSONReaderFactory.Student:
+        if(JSONType ==JSONReaderFactory.Menu){
+                product = new MenuReader(file_path);
+        }
+        else if(JSONType ==JSONReaderFactory.Student){
                 product = new StudentReader(file_path);//return a student reader
         }
         return product;
@@ -25,11 +25,11 @@ public class JSONReaderFactory {
 
     public static int determineJSONType(String path){
 
-        int json_type = 2;
+        int json_type = -1;
         if(path.contains("menu")){
             json_type = JSONReaderFactory.Menu;
         }
-        else{
+        else if(!path.contains("menu")){
             json_type = JSONReaderFactory.Student;
         }
         return json_type;

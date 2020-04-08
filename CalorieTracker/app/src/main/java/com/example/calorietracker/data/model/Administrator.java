@@ -36,6 +36,7 @@ public class Administrator {
       File file = new File(FileHelper.getFileDir(context),"/menu_to_publish.JSON");
       MenuWriter menu_writer = new MenuWriter(file);
       menu_writer.writeFoodImageArray(context,FoodArray);
+      //not used any more
 
   }
 
@@ -44,5 +45,6 @@ public class Administrator {
       File file = new File(FileHelper.getFileDir(context),"/menu_to_publish.JSON");
       MenuWriter menu_writer = new MenuWriter(file);
       menu_writer.writeFoodArray(FoodArray);
+      //not used any more
     }
 }

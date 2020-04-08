@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
+import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.menu.FoodModel;
 import org.json.JSONException;
 import com.example.calorietracker.helper.StudentWriter;
@@ -31,6 +32,7 @@ import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
 import com.example.calorietracker.ui.home.HomeActivity;
+import com.example.calorietracker.ui.home.SelfSelectView;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
 
@@ -46,7 +48,7 @@ public class HealthMode extends Fragment {
     private int temparySum;
     private int sum = 0;
     private int limit;
-    private MenuReader mReader;
+    private JsReader mReader;
     private static int[] mealBmrs;
     private static int breakfast_calorie, lunch_calorie, dinner_calorie;
     private ArrayList<FoodModel> foodList;
@@ -104,7 +106,7 @@ public class HealthMode extends Fragment {
     }
 
 
-    public String[] calorieList(MenuReader mReader){
+    public String[] calorieList(JsReader mReader){
 
         //getting the calorie list from our database
         ArrayList<FoodModel> menu = mReader.getFoodListObj();
@@ -147,12 +149,13 @@ public class HealthMode extends Fragment {
         float average = (limit / num);
 
         try{
-            InputStream in = getContext().getAssets().open("menu3.JSON");
-            mReader = new MenuReader(in);
+            //InputStream in = getContext().getAssets().open("menu3.JSON");
+            File file_menu = new File(FileHelper.getFileDir(getContext()),"/menu_to_publish.JSON");
+            JSONReaderFactory factory = new JSONReaderFactory();
+            mReader = factory.JSONReaderFactory(file_menu);
+            //mReader = new MenuReader(in);
         }
         catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
 

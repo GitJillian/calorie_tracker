@@ -12,11 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.calorietracker.R;
-import com.example.calorietracker.data.model.Student;
-import com.example.calorietracker.helper.FileHelper;
-import com.example.calorietracker.helper.JSONReaderFactory;
-import com.example.calorietracker.helper.JsReader;
-import com.example.calorietracker.helper.StudentReader;
 import com.example.calorietracker.ui.home.HomeActivity;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -26,7 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import org.json.JSONException;
+
 
 import java.io.File;
 import java.io.FileInputStream;

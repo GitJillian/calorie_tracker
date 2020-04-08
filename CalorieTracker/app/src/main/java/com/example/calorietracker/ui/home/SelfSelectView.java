@@ -16,9 +16,13 @@ import com.example.calorietracker.adapter.SelfSelectAdapter;
 import com.example.calorietracker.helper.ConvertIcon;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
+import com.example.calorietracker.helper.JsReader;
 import com.example.calorietracker.helper.MenuReader;
+import com.example.calorietracker.helper.MenuWriter;
 import com.example.calorietracker.menu.FoodModel;
 import org.json.JSONException;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -62,20 +66,22 @@ public class SelfSelectView extends AppCompatActivity implements SelfSelectAdapt
         MenuReader menuReader;
 
         try {
-            //TODO:USE FACTORY INSTEAD
-            InputStream in = SelfSelectView.this.getAssets().open("menu3.JSON");
-            //File file = new File(FileHelper.getFileDir(SelfSelectView.this,"/menu_release.JSON"));
-           // MenuWriter writer = new MenuWriter(file);
 
+            File file = new File(FileHelper.getFileDir(SelfSelectView.this),"/menu_to_publish.JSON");
+            System.out.println(file.getAbsolutePath());
+            MenuWriter menu_writer = new MenuWriter(file);
+            InputStream in = SelfSelectView.this.getAssets().open("menu3.JSON");
             menuReader = new MenuReader(in);
             ArrayList<FoodModel> foodModelArrayList = menuReader.getFoodListObj();
+            System.out.println(foodModelArrayList.size());
+            menu_writer.writeFoodArray(foodModelArrayList);
 
-            //writer.writeFoodArray(foodModelArrayList);
+            JsReader menu_reader = factory.JSONReaderFactory(file);
+            ArrayList<FoodModel> models = menu_reader.getFoodListObj();
+            System.out.println("models size"+models.size());
 
-           // JsReader menu_reader = factory.JSONReaderFactory(file);
-            //JSONArray foodList = (JSONArray) menu_reader.getProduct();
-            for (int i = 0; i < foodModelArrayList.size(); i++) {
-                FoodModel model = foodModelArrayList.get(i);
+            for (int i = 0; i < models.size(); i++) {
+                FoodModel model = models.get(i);
                 //FoodModel model = (FoodModel)menu_reader.transJsonToFood(jsonArray.getJSONObject(i));
                 model.setImagePath(FileHelper.getDrawable(SelfSelectView.this, model.getName()));
                 arrayList.add(model);

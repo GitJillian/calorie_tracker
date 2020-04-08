@@ -29,9 +29,7 @@ public class EditProfile extends AppCompatActivity{
     Boolean gender = true;
     TextView view1, view2;
     String frequency;
-    int weight, age;
-    float height;
-    String name, password;
+    String password;
     StudentReader student_reader;
     String path;
     String oldName;
@@ -69,7 +67,7 @@ public class EditProfile extends AppCompatActivity{
         heightEditText.setText(student_reader.getStudentHeight());
         weightEditText.setText(student_reader.getStudentWeight());
         ageEditText.setText(student_reader.getStudentAge());
-        //need gender panduan(.
+
         String stringGender = student_reader.getStudentGender();
         frequency = student_reader.getFrequency();
 
@@ -132,7 +130,7 @@ public class EditProfile extends AppCompatActivity{
 
     }
 
-//check if your input is valid
+    //check if your input is valid
     public boolean checkInput(EditText heightEditText, EditText weightEditText, boolean gender,
                               EditText ageEditText, String frequency) throws IOException {
         String sex;
@@ -192,4 +190,3 @@ public class EditProfile extends AppCompatActivity{
         return flag;
     }
 }
-

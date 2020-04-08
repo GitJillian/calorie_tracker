@@ -117,17 +117,7 @@ public class MenuReader extends JsReader {
         return food;
     }
 
-//getting all food items from database
-    @Override
-    public ArrayList<FoodModel> getProduct(){
-        for(int i=0; i<foodlistJson.length(); i++){
-            JSONObject obj = getFoodByIndexJson(i);
-            FoodModel food = transJsonToFood(obj);
-            foodObjs.add(food);
-        }
-        return foodObjs;
-    }
-
+@Override
     public ArrayList<FoodModel> getFoodListObj() {
         ArrayList<FoodModel> models = new ArrayList<>();
 
