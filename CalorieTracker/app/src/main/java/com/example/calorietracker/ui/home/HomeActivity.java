@@ -1,5 +1,6 @@
 package com.example.calorietracker.ui.home;
 
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.example.calorietracker.R;
 import com.example.calorietracker.data.model.Administrator;
+import com.example.calorietracker.data.model.Report;
 import com.example.calorietracker.data.model.Student;
 import com.example.calorietracker.fragment.HealthMode;
 import com.example.calorietracker.fragment.ReportMode;
@@ -19,6 +21,7 @@ import com.example.calorietracker.helper.DateHelper;
 import com.example.calorietracker.helper.FileHelper;
 import com.example.calorietracker.helper.JSONReaderFactory;
 import com.example.calorietracker.helper.JsReader;
+import com.example.calorietracker.helper.StudentWriter;
 import com.example.calorietracker.ui.design.BottomNavigationViewHelper;
 import com.example.calorietracker.fragment.HomeInfo;
 import com.example.calorietracker.adapter.ViewPagerAdapter;
