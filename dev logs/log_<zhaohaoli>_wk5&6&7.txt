@@ -1,8 +1,0 @@
-During these three weeks
-I have to work on the Develiverable2 and 3
-Since last dev vlog said that I was prepared for the D2
-and What I did for during the D2 is preparing the database set. insert all the food's calorie information to the database
-and also working on the UI interface, cause UI is connected to each part of coding so it spends some time to communicate with teammates
-
-its quit challenge to me that figure out how to use android studio and toolbar, it's quite hard to learn and spend some time to watch the tutorial for that
-

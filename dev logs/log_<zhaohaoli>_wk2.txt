@@ -1,6 +1,0 @@
-week2
-this week we working on our project for differnet part. 
-I working on setting database from The Caf website- enter the food imformation in database.
-The challanging part:
-  
-database haven't decide whot build it and how to set different foods in different cargratie.
