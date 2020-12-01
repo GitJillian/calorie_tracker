@@ -1,4 +1,0 @@
-week 3 
-we are workong on UI interface. We made few difeernet plaans but hard to chosse the better one.
-otherwise, keep making UML diagram more clearly and logical.casue we still learning how to graph that
-next week , we shall working on writting the code and set up our database first.
